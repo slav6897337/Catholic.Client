@@ -1,0 +1,75 @@
+.logo-container {
+    position: relative;
+    width: 40%;
+    border: 1.5px solid #016066;
+}
+
+.site-name{
+    font-family: 'Bellota Text';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+
+    background: linear-gradient(91.65deg, #DBBF9A 4.69%, #C7AF8D 45.41%, #977458 91.55%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin-left: 50px;
+    margin-top: 38px;
+}
+
+.site-description{
+    font-family: 'Cambay';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    /* identical to box height */
+
+
+    color: #016066;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    margin-left: 50px;
+}
+
+.cross-vertical-line {
+    position: absolute;
+    width: 0;
+    height: 64px;
+    top: 50px;
+    border: 2px solid #016066;
+}
+
+.cross-horizontal-line {
+    position: absolute;
+    width: 34px;
+    height: 0;
+    border: 2px solid #016066;
+    top:34px;
+    left: 15px;
+}
+
+.cross-top-right-angle{
+    position: absolute;
+    width: 18px;
+    height: 22.85px;
+    background: linear-gradient(180deg, #DBBF9A 0%, #C7AF8D 48.44%, #977458 100%);
+;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
