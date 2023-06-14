@@ -1,18 +1,25 @@
-import React from 'react';
-import './Logo.css';
+import { FunctionComponent } from "react";
+import {inspect} from "util";
+import styles from "./Logo.module.css"
 
-const Logo = () => {
+const Logo: FunctionComponent = () => {
   return (
-    <div className='logo-container'>
-      <div className='cross-vertical-line'/>
-      <div className='cross-horizontal-line'/>
-      <div className='cross-top-left-angle'/>
-      <div className='cross-top-right-angle'/>
-      <div className='cross-bottom-right-angle'/>
-      <div className='cross-bottom-left-angle'/>
-      <div className="site-name">Catholic.sk</div>
-      <div className="site-description">The place where the community meets</div>
+    <div className={styles.logo}>
+      <button className={styles.logotext}>
+        <b className={styles.catholicsk}>Catholic.sk</b>
+        <div className={styles.thePlaceWhere}>
+          The place where the community meets
+        </div>
+      </button>
+      <button className={styles.crosslogo}>
+        <img
+          className={styles.crosslogoChild}
+          alt=""
+          src="/img/cross.svg"
+        />
+      </button>
     </div>
   );
 };
+
 export default Logo;

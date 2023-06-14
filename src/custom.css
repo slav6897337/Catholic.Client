@@ -32,3 +32,46 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+
+@import url("https://fonts.googleapis.com/css2?family=Bellota+Text:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cambay:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;1,400&display=swap");
+body {
+    margin: 0;
+    line-height: normal;
+}
+:root {
+    /* fonts */
+    --font-cambay: Cambay;
+    --font-bellota-text: "Bellota Text";
+    --font-cardo: Cardo;
+
+    /* font sizes */
+    --font-size-xl: 1.25rem;
+    --font-size-base: 1rem;
+    --font-size-9xl: 1.75rem;
+    --font-size-lg: 1.13rem;
+    --font-size-13xl: 2rem;
+
+    /* Colors */
+    --color-darkslategray-100: #016066;
+    --color-black: #000;
+    --color-white: #fff;
+
+    /* Gaps */
+    --gap-41xl: 3.75rem;
+    --gap-9xl: 1.75rem;
+    --gap-xs: 0.75rem;
+    --gap-3xs: 0.63rem;
+    --gap-5xl: 1.5rem;
+    --gap-99xl: 7.38rem;
+
+    /* Paddings */
+    --padding-sm: 0.88rem;
+    --padding-mid-9: 1.12rem;
+
+    /* border radiuses */
+    --br-5xs: 8px;
+    --br-9xs: 4px;
+}
