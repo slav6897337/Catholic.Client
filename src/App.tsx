@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-
+import React, {Component} from 'react';
 import './custom.css';
 import './fonts.css';
 import Navigation from './Navigation/Navigation';
@@ -13,10 +12,10 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-      <NavMenu />
-        <Navigation />
-        <Footer />
+        <Header/>
+        <NavMenu/>
+        <Navigation/>
+        <Footer/>
       </div>
     );
   }

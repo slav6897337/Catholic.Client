@@ -1,0 +1,14 @@
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 4% 0 4%;
+}
+
+.logoHorizontalLine{
+    width: 100%;
+    border: 1px solid #BABABA;
+   margin: 1rem;
+}

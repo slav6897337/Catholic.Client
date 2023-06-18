@@ -16,7 +16,7 @@ const Welcome = () => {
           labore et dolore magna aliqua. </p>
       </div>
       <div className="welcome-image">
-        <img className="welcome-picture" src="/welcome-image.png" alt="welcome-image" />
+
         <div className="overlay-top"/>
         <div className="overlay-right"/>
       </div>

@@ -1,10 +1,12 @@
 import React from 'react';
-import './Header.css';
+import styles from './Header.module.css';
 import Logo from "./Logo";
+
 const Header = () => {
   return (
-    <div className='header-container'>
-  <Logo />
+    <div className={styles.headerContainer}>
+      <Logo/>
+      <div className={styles.logoHorizontalLine}/>
     </div>
   );
 };

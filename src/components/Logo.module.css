@@ -45,9 +45,32 @@
 }
 .logo {
     position: relative;
-    width: 100%;
-    height: 8.94rem;
+    width: 26rem;
+    height: 8rem;
     margin: 1rem;
+}
+@media screen and (max-width: 960px) {
+    .catholicsk {
+        font-size: var(--font-size-13xl);
+    }
+    .thePlaceWhere {
+        font-size: var(--font-size-base);
+        text-align: left;
+    }
+    .logotext {
+        flex-direction: column;
+        top: 2.8rem;
+        left: 3.3rem;
+    }
+    .crosslogoChild {
+
+        width: 4.28rem;
+        height: 7.94rem;
+    }
+    .logo {
+        margin: 0.4rem;
+        height: 7rem;
+    }
 }
 @media screen and (max-width: 420px) {
     .catholicsk {
@@ -59,11 +82,16 @@
     }
     .logotext {
         flex-direction: column;
-        top: 1.5rem;
-        left: 2.1rem;
+        top: 2.8rem;
+        left: 4rem;
     }
     .crosslogoChild {
-        width: 3rem;
-        height: 4rem;
+        margin-left: 1.6rem;
+        width: 3.28rem;
+        height: 6.94rem;
+    }
+    .logo {
+        margin: 0.4rem;
+        height: 6rem;
     }
 }

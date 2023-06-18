@@ -10,8 +10,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    margin: 6rem;
+    align-items: Center;
+    margin-top: 8rem;
     width: 50%;
 }
 
@@ -76,4 +76,14 @@
     margin-top: 3%;
     width: 97%;
     height: auto;
+}
+
+@media screen and (max-width: 420px) {
+    .welcome-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 20rem;
+    }
 }

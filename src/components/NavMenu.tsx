@@ -40,7 +40,13 @@ export default function NavMenu() {
     </>
 
   return (
-    <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap", justifyContent: "flex-end"}}>
+    <div style={{
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "nowrap",
+      justifyContent: width > 600 ? "center" : "flex-end",
+      marginBottom: "6px"
+    }}>
       {width > 600 ? <MenuContent/> :
         <div>
           <Button

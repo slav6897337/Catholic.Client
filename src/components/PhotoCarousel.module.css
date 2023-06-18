@@ -1,0 +1,62 @@
+
+.photoCarouselItem {
+    position: absolute;
+    top: 1.19rem;
+    left: 1.13rem;
+    width: 37.75rem;
+    height: 23.19rem;
+    object-fit: cover;
+}
+.photoCarousel {
+    position: absolute;
+    border-width: 2px;
+    border-style: solid;
+    border-image: linear-gradient(90.88deg, #DBBF9A 0.32%, #C7AF8D 45.4%, #977458 93.4%);
+    border-image-slice: 1;
+    padding: 0.6rem;
+    width: 540px;
+    height: 360px;
+    top:18rem;
+    left: 6rem;
+}
+
+.photoCarouselImage{
+    width: 536px;
+    height: 336px;
+}
+
+@media screen and (max-width: 960px) {
+    .photoCarousel {
+        padding: 0.6rem;
+        width: 400px;
+        height: 250px;
+        top:14rem;
+        left: 2rem;
+    }
+    .photoCarouselItem {
+        width: 28.75rem;
+        height: 18.75rem;
+    }
+    .photoCarouselImage{
+        width: 396px;
+        height: 226px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .photoCarousel {
+
+        padding: 0.6rem;
+        width: 346px;
+        height: 220px;
+        top:26rem;
+        left: 1.2rem;
+    }
+    .photoCarouselItem {
+        width: 23.75rem;
+        height: 17.5rem;
+    }
+    .photoCarouselImage{
+        width: 340px;
+        height: 200px;
+    }
+}

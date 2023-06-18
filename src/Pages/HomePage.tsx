@@ -4,6 +4,7 @@ import './HomePage.css';
 import Welcome from '../components/Welcome';
 import Activities from '../components/Activities';
 import AllNews from '../components/AllNews';
+import PhotoCarousel from "../components/PhotoCarousel";
 
 export default class HomePage extends Component {
     static displayName = HomePage.name;
@@ -11,7 +12,11 @@ export default class HomePage extends Component {
     render() {
         return (
         <div className="home">
-            <DailyBibleQuote />
+            <div style={{ }} >
+                <PhotoCarousel />
+                <DailyBibleQuote />
+            </div>
+
             <div className="home__background-image" style={{ backgroundImage: 'url(/home-background.png)' }}>
                 <div className="home__background">
                     <Welcome />
