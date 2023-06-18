@@ -47,6 +47,7 @@
     position: relative;
     width: 100%;
     height: 8.94rem;
+    margin: 1rem;
 }
 @media screen and (max-width: 420px) {
     .catholicsk {
@@ -58,9 +59,11 @@
     }
     .logotext {
         flex-direction: column;
+        top: 1.5rem;
+        left: 2.1rem;
     }
     .crosslogoChild {
-        width: 5.34rem;
-        height: 8rem;
+        width: 3rem;
+        height: 4rem;
     }
 }
