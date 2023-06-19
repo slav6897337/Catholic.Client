@@ -15,14 +15,32 @@
     border-image-slice: 1;
     padding: 0.6rem;
     width: 540px;
-    height: 360px;
+    height: 350px;
     top:18rem;
     left: 6rem;
 }
 
 .photoCarouselImage{
     width: 536px;
-    height: 336px;
+    height: 326px;
+}
+
+@media screen and (max-width: 1200px) {
+    .photoCarousel {
+        padding: 0.6rem;
+        width: 450px;
+        height: 290px;
+        top:18rem;
+        left: 2rem;
+    }
+    .photoCarouselItem {
+        width: 28.75rem;
+        height: 18.75rem;
+    }
+    .photoCarouselImage{
+        width: 446px;
+        height: 266px;
+    }
 }
 
 @media screen and (max-width: 960px) {
@@ -42,14 +60,32 @@
         height: 226px;
     }
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 840px) {
+    .photoCarousel {
+        padding: 0.6rem;
+        width: 386px;
+        height: 250px;
+        top:34%;
+        left: 16%;
+    }
+    .photoCarouselItem {
+        width: 23.75rem;
+        height: 17.5rem;
+    }
+    .photoCarouselImage{
+        width: 380px;
+        height: 230px;
+    }
+}
+
+@media screen and (max-width: 500px) {
     .photoCarousel {
 
         padding: 0.6rem;
         width: 346px;
-        height: 220px;
-        top:26rem;
-        left: 1.2rem;
+        height: 210px;
+        top:34%;
+        left: 10%;
     }
     .photoCarouselItem {
         width: 23.75rem;
@@ -57,6 +93,6 @@
     }
     .photoCarouselImage{
         width: 340px;
-        height: 200px;
+        height: 190px;
     }
 }

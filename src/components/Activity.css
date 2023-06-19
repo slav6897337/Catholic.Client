@@ -1,23 +1,48 @@
 .activity{
-    width: 26.9rem;
-    height: 40.4rem;
-
+    display: flex;
+    flex-direction: column;
+    width: 24rem;
+    height: auto;
     background: #FFFFFF;
     box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.15);
     border-radius: 0.5rem;
     margin-bottom: 3.25rem;
+    margin-right: 1.2rem;
+    margin-left: 1.2rem;
+    overflow: hidden
+}
+
+.activityImageContainer{
+    display: flex;
+    overflow: hidden
+}
+
+.activity img{
+    width: 100%;
+    height: 15rem;
+    transition: transform 0.3s;
+    object-fit: cover;
 }
 
 .activity:hover{
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
+}
+
+.activity:hover .activity__link_arrow{
+    padding-left: 1rem;
+}
+
+.activity:hover img{
+    transform: translate3d(0, 0, 0) scale3d(1.2, 1.2, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+    width: 100%;
 }
 
 .activity h1{
     font-family: 'Cambay', sans-serif;
     font-style: normal;
-    font-weight: 400;
-    font-size: 1.4rem;
-    line-height: 2.25rem;
+    font-size: 1.3rem;
+    font-weight: 500;
     margin: 1rem;
     color: #000000;
 }
@@ -25,29 +50,16 @@
 .activity p{
     font-family: 'Cambay', sans-serif;
     font-style: normal;
-    font-weight: 400;
-    font-size: 1.1rem;
-    line-height: 1.8rem;
-    margin: 0 1rem 3.4rem 1rem;
+    margin: 0 1rem 1.8rem 1rem;
     color: #000000;
 }
 
 .activity__link{
-    display: block;
-    font-family: 'Cambay', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.4rem;
-    line-height: 2.25rem;
-    margin-bottom: 2.48rem;
-    margin-left: 1rem;
+    display: flex;
     color: #016066;
 }
 
-.activity__link:hover{
-    background: linear-gradient(91.65deg, #DBBF9A 4.69%, #C7AF8D 45.41%, #977458 91.55%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+.activity__link p{
+    display: flex;
+    color: #016066;
 }

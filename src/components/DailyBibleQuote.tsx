@@ -23,7 +23,7 @@ const DailyBibleQuote = () => {
   }, []);
 
   return (
-    <div className="quote" style={{backgroundImage: 'url(/bible-quote.png)'}}>
+    <div className="quote">
       <div className="background-container">
         {quote ?
           <div className="quote-container">

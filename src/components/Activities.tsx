@@ -5,7 +5,7 @@ import './Activities.css';
 const Activities = () => {
   return (
       <div className="activities" >
-        <h1>Activities</h1>
+        <h1 className="activitiesTitle">Activities</h1>
       <div className="activities-container">
         <Activity
           title="Holy Mass"

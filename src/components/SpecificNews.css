@@ -5,11 +5,11 @@
 
     background: #FFFFFF;
     border-radius: 0.25rem;
-    margin-bottom: 0.8rem;
+    margin: 0.8rem;
 }
 
 .news:hover{
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
 }
 
 .news__title{

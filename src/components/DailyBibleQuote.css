@@ -3,7 +3,7 @@
 }
 
 .background-container {
-    background: rgba(1, 96, 102, 0.69);
+    background: rgba(1, 96, 102, 0.8);
     width: 100%;
 }
 
@@ -96,7 +96,7 @@
         width: 32.5rem;
     }
 }
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1064px) {
     .quote-title {
         font-size: 1.8rem;
     }

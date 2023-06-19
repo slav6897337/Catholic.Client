@@ -12,6 +12,17 @@ body {
     line-height: 1;
 }
 
+p, h1, h2{
+    font-size: var(--font-size-extra-large);
+    line-height: var(--line-height-extra-large);
+}
+
+h3{
+    font-size: var(--font-size-extra-large-h);
+    line-height: var(--line-height-extra-large-h);
+}
+
+
 a {
     text-decoration: none;
 }
@@ -31,6 +42,28 @@ textarea {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}
+
+@media screen and (max-width: 960px) {
+    p, h1, h2, h3{
+        font-size: var(--font-size-large);
+        line-height: var(--line-height-large);
+    }
+
+}
+
+@media screen and (max-width: 567px) {
+    p, h1, h2, h3{
+        font-size: var(--font-size-medium);
+        line-height: var(--line-height-medium);
+    }
+}
+
+@media screen and (max-width: 420px) {
+    p, h1, h2, h3{
+        font-size: var(--font-size-small);
+        line-height: var(--line-height-small);
+    }
 }
 
 
@@ -53,11 +86,40 @@ body {
     --font-size-9xl: 1.625em;
     --font-size-lg: 1.13rem;
     --font-size-13xl: 2rem;
+    --font-size-11xl: 1.88rem;
+    --font-size-5xl: 1.5rem;
+
+    --font-size-small: 0.9rem;
+    --font-size-medium: 1rem;
+    --font-size-large: 1.1rem;
+    --font-size-extra-large: 1.2rem;
+
+    --font-size-small-h: 1.4rem;
+    --font-size-medium-h: 1.5rem;
+    --font-size-large-h: 1.6rem;
+    --font-size-extra-large-h: 1.7rem;
+
+
+    /* line height */
+    --line-height-small: 1.3rem;
+    --line-height-medium: 1.4rem;
+    --line-height-large: 1.5rem;
+    --line-height-extra-large: 1.6rem;
+
+    --line-height-small-h: 1.6rem;
+    --line-height-medium-h: 1.7rem;
+    --line-height-large-h: 1.8rem;
+    --line-height-extra-large-h: 1.9rem;
+
 
     /* Colors */
     --color-darkslategray-100: #016066;
     --color-black: #000;
     --color-white: #fff;
+    --color-gainsboro-100: #e7e7e7;
+    --color-gainsboro-200: #dbdbdb;
+    --color-silver: #b6b6b6;
+    --color-gold: linear-gradient(90.88deg, #DBBF9A 0.32%, #C7AF8D 45.4%, #977458 93.4%);
 
     /* Gaps */
     --gap-41xl: 3.75rem;

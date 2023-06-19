@@ -44,10 +44,10 @@ export default function NavMenu() {
       display: "flex",
       flexDirection: "row",
       flexWrap: "nowrap",
-      justifyContent: width > 600 ? "center" : "flex-end",
+      justifyContent: width > 670 ? "center" : "flex-end",
       marginBottom: "6px"
     }}>
-      {width > 600 ? <MenuContent/> :
+      {width > 670 ? <MenuContent/> :
         <div>
           <Button
             id="basic-button"
