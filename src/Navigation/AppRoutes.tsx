@@ -1,6 +1,7 @@
 import React, {ReactNode} from "react";
 import BibleQuotes from '../components/DailyBibleQuote';
 import HomePage from '../Pages/HomePage';
+import HolyMassPage from "../Pages/HolyMassPage";
 
 
 interface IAppRoutes {
@@ -13,6 +14,10 @@ const AppRoutes:IAppRoutes[] = [
   {
     index: true,
     element: <HomePage />
+  },
+  {
+    path: '/holy-mass',
+    element: <HolyMassPage />
   },
   {
     path: '/bible-quotes',

@@ -1,0 +1,10 @@
+.titleContainer{
+    background-color: var(--color-green-80);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    color: white;
+    font-family: Cambay;
+    font-size: 0.5rem;
+}

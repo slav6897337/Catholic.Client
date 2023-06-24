@@ -8,28 +8,28 @@ import PhotoCarousel from "../components/PhotoCarousel";
 import Note from "../components/Note";
 
 export default class HomePage extends Component {
-    static displayName = HomePage.name;
-    
-    render() {
-        return (
-        <div className="home" style={{ backgroundImage: 'url(/background.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <div style={{ }} >
-                <PhotoCarousel />
-                <DailyBibleQuote />
-            </div>
+  static displayName = HomePage.name;
 
-
-                <div className="home__background">
-                    <div className="home__welcome_container">
-                        <Welcome />
-                        <Note />
-                    </div>
-
-                    <Activities />
-                    <AllNews />
-                </div>
-
+  render() {
+    return (
+      <div className="home">
+        <div style={{}}>
+          <PhotoCarousel/>
+          <DailyBibleQuote/>
         </div>
-        );
-    }
+
+
+        <div className="home__background">
+          <div className="home__welcome_container">
+            <Welcome/>
+            <Note/>
+          </div>
+
+          <Activities/>
+          <AllNews/>
+        </div>
+
+      </div>
+    );
+  }
 }

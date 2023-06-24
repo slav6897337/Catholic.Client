@@ -12,6 +12,12 @@ body {
     line-height: 1;
 }
 
+.body-container{
+    background-image: url(../public/background.png);
+    background-size: cover;
+    background-position: center;
+}
+
 p, h1, h2{
     font-size: var(--font-size-extra-large);
     line-height: var(--line-height-extra-large);
@@ -120,6 +126,7 @@ body {
     --color-gainsboro-200: #dbdbdb;
     --color-silver: #b6b6b6;
     --color-gold: linear-gradient(90.88deg, #DBBF9A 0.32%, #C7AF8D 45.4%, #977458 93.4%);
+    --color-green-80: rgba(1, 96, 102, 0.8);
 
     /* Gaps */
     --gap-41xl: 3.75rem;

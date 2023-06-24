@@ -14,7 +14,10 @@ export default class App extends Component {
       <div>
         <Header/>
         <NavMenu/>
-        <Navigation/>
+        <div className="body-container">
+          <Navigation/>
+        </div>
+
         <Footer/>
       </div>
     );
