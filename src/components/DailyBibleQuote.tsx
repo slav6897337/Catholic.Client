@@ -29,10 +29,7 @@ const DailyBibleQuote = () => {
           <div className="quote-container">
             
             <div className="horizontal-container">
-              <div className="date-container">
-                <div className="date">{moment(new Date()).format('MMMM D,yyyy')}</div>
-              </div>
-
+              <div className="date">{moment(new Date()).format('MMMM D,yyyy')}</div>
               <div className="vertical-line"/>
               
               <div className="vertical-container">

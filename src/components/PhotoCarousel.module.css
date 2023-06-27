@@ -80,11 +80,10 @@
 
 @media screen and (max-width: 500px) {
     .photoCarousel {
-
         padding: 0.6rem;
         width: 346px;
         height: 210px;
-        top:52%;
+        top:55%;
         left: 8%;
     }
     .photoCarouselItem {
@@ -94,5 +93,23 @@
     .photoCarouselImage{
         width: 340px;
         height: 190px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .photoCarousel {
+        padding: 0.5rem;
+        width: 336px;
+        height: 200px;
+        top:72%;
+        left: 4%;
+    }
+    .photoCarouselItem {
+        width: 23.75rem;
+        height: 17.5rem;
+    }
+    .photoCarouselImage{
+        width: 330px;
+        height: 180px;
     }
 }

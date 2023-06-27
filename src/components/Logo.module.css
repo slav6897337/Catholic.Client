@@ -59,11 +59,11 @@
     }
     .logotext {
         flex-direction: column;
-        top: 2.8rem;
-        left: 3.3rem;
+        top: 3.2rem;
+        left: 4.4rem;
     }
     .crosslogoChild {
-
+        margin-left: 1rem;
         width: 4.28rem;
         height: 7.94rem;
     }
@@ -93,5 +93,6 @@
     .logo {
         margin: 0.4rem;
         height: 6rem;
+        width: 23rem;
     }
 }
