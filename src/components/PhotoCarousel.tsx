@@ -34,8 +34,8 @@ const PhotoCarousel: FunctionComponent = () => {
 
           }}
         >
-          {images.map((image) =>
-            (<SwiperSlide><img className={styles.photoCarouselImage} src={image.imgPath} alt={image.label} /></SwiperSlide>))}
+          {images.map((image,  index) =>
+            (<SwiperSlide key={index}><img className={styles.photoCarouselImage} src={image.imgPath} alt={image.label} /></SwiperSlide>))}
 
         </Swiper>
       </div>
