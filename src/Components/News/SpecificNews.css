@@ -1,10 +1,10 @@
 .news{
     display: block;
-    width: 20.9rem;
-    height: 12.7rem;
     background: #FFFFFF;
     border-radius: 0.25rem;
     margin: 0.8rem 0.8rem 2rem;
+    padding-bottom: 0.4rem;
+    min-height: 14rem;
 }
 
 .news:hover{

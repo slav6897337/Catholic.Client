@@ -10,7 +10,8 @@ const Navigation = () => {
     <div className="body-container">
       <Routes>
         {hostname === "www.holymass-dev.store" ? <Route index={true} element={<HolyMassPage/>}/> : null}
-        {hostname === "www.holymass-dev.store" && window.location.pathname !== '/' ? window.location.href = "www.catholic-dev.store" : null}
+        {hostname === "www.holymass-dev.store" && window.location.pathname !== '/' ? window.location.host = "www.catholic-dev.store" : null}
+        {window.location.pathname === '/holy-mass' ? window.location.host = '/www.holymass-dev.store' : null}
 
         {AppRoutes.map((route, index) => {
           const {element, ...rest} = route;

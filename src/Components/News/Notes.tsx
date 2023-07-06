@@ -23,13 +23,12 @@ const Notes: FunctionComponent = () => {
   return (
     <Carousel
       containerClassName={styles.notesContainer}
-
       items={notes}
       autoplay={{
-                delay: 6000,
-                disableOnInteraction: false
-              }}
-              navigation={false}
+        delay: 6000,
+        disableOnInteraction: false
+      }}
+      navigation={false}
     />
   );
 };
