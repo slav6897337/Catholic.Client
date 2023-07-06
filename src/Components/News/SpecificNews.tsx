@@ -7,14 +7,14 @@ interface ISpecificNews {
   title: string,
   date: Date,
   description: string,
-  link: string,
+  link?: string,
 }
 
 const SpecificNews = (props: ISpecificNews) => {
   if(!props.title || !props.date || !props.description || !props.link) return null;
   
   return (
-    <Link to={props.link} className="news">
+    <Link to={props.link} className={`news ${props.link ? 'newsClickable' : 'newsNonClickable'}`} >
       <div className="news__title">
         <h1>{props.title}</h1>
         <p>{moment(props.date).format('DD.MM.yyyy')}</p>

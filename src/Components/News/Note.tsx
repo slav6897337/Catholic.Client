@@ -21,7 +21,6 @@ const Note: FunctionComponent<{note: INote}> = ({note}) => {
       <p className={styles.noteInfo}>
         {note.info}
       </p>
-
     </div>
   );
 };

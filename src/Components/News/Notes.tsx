@@ -1,7 +1,6 @@
 import {FunctionComponent, useState} from "react";
 import styles from "./Notes.module.css";
 import {INote} from "../../Domain/INote";
-import moment from "moment";
 import Note from "./Note";
 import Carousel from "../Carousel/Carousel";
 

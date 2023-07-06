@@ -2,5 +2,6 @@ export interface INews {
   title: string,
   date: Date,
   description: string,
-  link: string,
+  isChurchNews: boolean,
+  link?: string,
 }

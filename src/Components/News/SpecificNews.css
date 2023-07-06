@@ -7,8 +7,12 @@
     min-height: 14rem;
 }
 
-.news:hover{
+.newsClickable:hover{
     box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
+}
+
+.newsNonClickable:hover{
+    box-shadow: none;
 }
 
 .news__title{

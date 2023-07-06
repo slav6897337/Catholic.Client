@@ -1,35 +1,36 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './AllNews.module.css';
 import SpecificNews from './SpecificNews';
-import {IBibleQuote} from "../../Domain/IBibleQuote";
 import {INews} from "../../Domain/INews";
-import Api from "../../Utiles/Api";
 import SwiperCore, {Navigation, Pagination} from 'swiper';
-import {Swiper, SwiperRef, SwiperSlide, useSwiper} from 'swiper/react';
+import {Swiper, SwiperSlide} from 'swiper/react';
 
 const defaultNews: INews[] = [{
   title: 'English Bible Group',
   date: new Date(),
   description: 'English Bible Group is currently meeting every Thursday, 18:00, at Dom Quo Vadis, Bratislava. For more information click the icon on the menu bar near the top of this web page.',
-  link: '/'
+  link: '/bible-group',
+  isChurchNews: false
 },
   {
     title: 'Catholic Brochure',
     date: new Date(),
     description: 'Free Catholic brochures in 10 languages are being distributed by the Legion of Mary in Slovakia and Europe. Contact us for copies or to support this project.',
-    link: '/'
+    link: '/catholic-brochure',
+    isChurchNews: false
   },
   {
     title: 'Saint Edith Stein',
     date: new Date(),
     description: 'Spiritual reading while staying at home.',
-    link: '/'
+    link: '/saint-edith-stein',
+    isChurchNews: false
   },
   {
     title: 'Holy Mass',
     date: new Date(),
     description: 'July 7 at 6.30pm - First Friday of July',
-    link: '/'
+    isChurchNews: true
   }
 ];
 
@@ -78,7 +79,6 @@ const AllNews: React.FC = () => {
             clickable: true,
             horizontalClass: styles.swiperPagination
           }}
-
           onReachEnd={handleSwiperSlideChange}
           wrapperClass={styles.swiperWrapper}
         >

@@ -10,7 +10,7 @@ const Navigation = () => {
     } else if (window.location.pathname === '/holy-mass') {
       window.location.href = 'http://www.holymass-dev.store';
     }
-  }, []);
+  }, [window.location.pathname]);
 
   return (
     <div className="body-container">
