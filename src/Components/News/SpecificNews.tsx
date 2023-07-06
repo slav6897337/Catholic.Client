@@ -11,16 +11,26 @@ interface ISpecificNews {
 }
 
 const SpecificNews = (props: ISpecificNews) => {
-  if(!props.title || !props.date || !props.description || !props.link) return null;
-  
-  return (
-    <Link to={props.link} className={`news ${props.link ? 'newsClickable' : 'newsNonClickable'}`} >
+  if (!props.title || !props.date || !props.description) return null;
+
+  const Content = () => (
+    <>
       <div className="news__title">
         <h1>{props.title}</h1>
         <p>{moment(props.date).format('DD.MM.yyyy')}</p>
       </div>
       <p>{props.description}</p>
-    </Link>
+    </>);
+
+
+  return (
+    props.link?.length ?
+      <Link to={props.link} className="news newsClickable">
+        <Content/>
+      </Link> :
+      <div className="news newsNonClickable">
+        <Content/>
+      </div>
   );
 };
 

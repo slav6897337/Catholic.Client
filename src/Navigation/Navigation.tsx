@@ -1,16 +1,18 @@
 import React, {useEffect} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useLocation} from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import HolyMassPage from "../Pages/HolyMassPage";
 
 const Navigation = () => {
+  const location = useLocation();
+
   useEffect(() => {
     if (window.location.hostname === "www.holymass-dev.store" && window.location.pathname !== '/') {
-      window.location.href = `http://www.catholic-dev.store${window.location.pathname}`;
+      window.location.assign(`http://www.catholic-dev.store${window.location.pathname}`);
     } else if (window.location.pathname === '/holy-mass') {
-      window.location.href = 'http://www.holymass-dev.store';
+      window.location.assign('http://www.holymass-dev.store');
     }
-  }, [window.location.pathname]);
+  }, [location]);
 
   return (
     <div className="body-container">
