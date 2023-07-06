@@ -298,3 +298,4 @@ __pycache__/
 .DS_Store
 
 # End of https://www.gitignore.io/api/visualstudio
+/build/

@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import './NavMenu.css';
 import {NavLink} from "react-router-dom";
-import useWindowDimensions from "../hookcs/useWindowDimensions";
+import useWindowDimensions from "../../hookcs/useWindowDimensions";
 
 interface ILink {
   name: string,
@@ -12,7 +12,7 @@ interface ILink {
 }
 
 export default function NavMenu() {
-  const { height, width } = useWindowDimensions();
+  const {height, width} = useWindowDimensions();
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -68,7 +68,7 @@ export default function NavMenu() {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MobileMenuContent />
+            <MobileMenuContent/>
           </Menu>
         </div>
       }

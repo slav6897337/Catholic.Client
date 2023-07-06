@@ -3,9 +3,7 @@
     text-align: left;
     color: var(--color-black);
     font-family: var(--font-cambay);
-    margin-left: 8rem;
-    margin-right: 8rem;
-    margin-bottom: 2rem;
+    margin: 0 8rem 2rem;
 }
 .welcomeTitle{
     color: var(--color-darkslategray-100);
@@ -39,7 +37,7 @@
 }
 @media screen and (max-width: 840px) {
     .welcome {
-        margin-top: 8.4rem;
+        margin-top: 4rem;
         margin-left: 2rem;
         margin-right: 2rem;
     }

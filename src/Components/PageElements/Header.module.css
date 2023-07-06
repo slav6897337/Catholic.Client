@@ -1,0 +1,14 @@
+.headerContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background: rgba(1, 96, 102, 0.8);
+}
+
+@media screen and (max-width: 680px) {
+    .headerContainer {
+        flex-direction: column-reverse;
+    }
+}
+

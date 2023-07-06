@@ -1,16 +1,10 @@
-import {FunctionComponent, useState} from "react";
+import {FunctionComponent} from "react";
 import styles from "./Note.module.css";
-import {INote} from "../Domain/INote";
-import moment from "moment";
+import {INote} from "../../Domain/INote";
 
-const defaultNote: INote = {
-  title: "Weekly gathering",
-  date: "Thursday: 6:00 PM",
-  additionalTitle: "Dom Quo Vadis",
-  info: "Hurbanovo námestie 1, 811 03 Bratislava"
-}
-const Note: FunctionComponent = () => {
-  const [note, setNote] = useState<INote>(defaultNote);
+
+const Note: FunctionComponent<{note: INote}> = ({note}) => {
+
   return (
     <div className={styles.noteContainer}>
       <div className={styles.noteTitleContainer}>

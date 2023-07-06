@@ -1,7 +1,8 @@
 import React, {ReactNode} from "react";
-import BibleQuotes from '../components/DailyBibleQuote';
+import BibleQuotes from '../Components/HomePage/DailyBibleQuote';
 import HomePage from '../Pages/HomePage';
 import HolyMassPage from "../Pages/HolyMassPage";
+import NewsPage from "../Pages/NewsPage";
 
 
 interface IAppRoutes {
@@ -22,6 +23,10 @@ const AppRoutes:IAppRoutes[] = [
   {
     path: '/bible-quotes',
     element: <BibleQuotes />
+  },
+  {
+    path: '*',
+    element: <NewsPage />
   },
 ];
 

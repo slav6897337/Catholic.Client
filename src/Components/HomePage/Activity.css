@@ -29,7 +29,7 @@
 }
 
 .activity:hover .activity__link_arrow{
-    padding-left: 1rem;
+    margin-left: 1rem;
 }
 
 .activity:hover img{
@@ -50,12 +50,16 @@
 .activity p{
     font-family: 'Cambay', sans-serif;
     font-style: normal;
-    margin: 0 1rem 1.8rem 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     color: #000000;
+    padding-top: 0.4rem;
 }
 
 .activity__link{
     display: flex;
+    align-items: center;
+    margin: 1rem 1rem 1.8rem 0;
     color: #016066;
 }
 

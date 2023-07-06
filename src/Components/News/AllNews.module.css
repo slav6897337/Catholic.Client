@@ -1,0 +1,54 @@
+.allNews{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0 15rem 0;
+}
+
+.allNewsTitle{
+    font-family: 'Cambay', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.75rem;
+    line-height: 2.9rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    color: #016066;
+}
+
+.allNewsContainer{
+    width: 98%;
+}
+
+.swiperWrapper{
+
+}
+
+.swiperPagination{
+    bottom: 0!important;
+}
+
+
+@media screen and (max-width: 760px) {
+    .allNewsContainer{
+        width: 68%;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .allNewsContainer{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 450px) {
+    .allNewsContainer{
+        width: 88%;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .allNewsContainer{
+        width: 100%;
+    }
+}

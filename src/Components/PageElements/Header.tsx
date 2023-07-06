@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import styles from './Header.module.css';
 import Logo from "./Logo";
 
-const Header = () => {
+interface IProps {
+  children: ReactNode;
+}
+
+const Header: React.FC<IProps> = ({children}) => {
   return (
     <div className={styles.headerContainer}>
-      <Logo/>
-      <div className={styles.logoHorizontalLine}/>
+      {children}
     </div>
   );
 };

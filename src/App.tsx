@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import './custom.css';
 import './fonts.css';
 import Navigation from './Navigation/Navigation';
-import Footer from "./components/Footer";
-import NavMenu from "./components/NavMenu";
-import Header from "./components/Header";
+import Logo from "./Components/PageElements/Logo";
+import NavMenu from "./Components/PageElements/NavMenu";
+import Footer from "./Components/PageElements/Footer";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -12,12 +12,9 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header/>
+        <Logo/>
         <NavMenu/>
-        <div className="body-container">
-          <Navigation/>
-        </div>
-
+        <Navigation/>
         <Footer/>
       </div>
     );

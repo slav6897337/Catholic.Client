@@ -16,8 +16,8 @@ const SpecificNews = (props: ISpecificNews) => {
   return (
     <Link to={props.link} className="news">
       <div className="news__title">
-        <h1>News Title</h1>
-        <p>{moment(new Date()).format('DD.MM.yyyy')}</p>
+        <h1>{props.title}</h1>
+        <p>{moment(props.date).format('DD.MM.yyyy')}</p>
       </div>
       <p>{props.description}</p>
     </Link>

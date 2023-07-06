@@ -1,0 +1,38 @@
+.border{
+    border-width: 2px;
+    border-style: solid;
+    border-image: linear-gradient(90.88deg, #DBBF9A 0.32%, #C7AF8D 45.4%, #977458 93.4%);
+    border-image-slice: 1;
+}
+
+.carouselBorder {
+    position: absolute;
+    transform: rotate(2deg);
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+.carousel {
+    max-width: 36%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    position: relative;
+}
+
+.clearfix::after {
+    /* Clearfix hack to contain floated children */
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#swiper{
+    margin: 0.8rem;
+}
+
+@media screen and (max-width: 680px) {
+    .carousel {
+        max-width: 80%;
+    }
+}
+

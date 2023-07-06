@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {IBibleQuote} from '../Domain/IBibleQuote';
-import Api from '../Utiles/Api';
+import {IBibleQuote} from '../../Domain/IBibleQuote';
+import Api from '../../Utiles/Api';
 import moment from 'moment';
 import './DailyBibleQuote.css';
 
