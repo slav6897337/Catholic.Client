@@ -1,0 +1,41 @@
+.container {
+    width: 70%;
+    padding: 2rem;
+    text-align: left;
+    color: var(--color-black);
+    font-family: var(--font-cambay);
+    margin: 2rem;
+    border-radius: 4px;
+    border: 1px solid #DBDBDB;
+    background: rgba(1, 96, 102, 0.03);
+    backdrop-filter: blur(17.5px);
+}
+.title{
+    color: var(--color-darkslategray-100);
+
+}
+.titleLine{
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-image: var(--color-gold);
+    border-image-slice: 1;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.container p{
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+.container h1{
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+@media screen and (max-width: 840px) {
+    .container {
+        margin-top: 4rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}

@@ -1,0 +1,20 @@
+.eventsContainer {
+    margin: 5%;
+    min-height: 10rem;
+}
+
+.eventsContainer h1 {
+    font-family: var(--font-cambay);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-darkslategray-100);
+    margin-bottom: 1rem;
+}
+
+.eventsContainer p {
+    font-family: var(--font-cambay);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-darkslategray-100);
+    margin-bottom: 0.5rem;
+}

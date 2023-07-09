@@ -2,6 +2,9 @@ import React from 'react';
 import styles from "./HolyMassPage.module.css";
 import AllNews from '../Components/News/AllNews';
 import Notes from "../Components/News/Notes";
+import MainInfo from "../Components/HolyMassPage/MainInfo";
+import CalendarWithEvents from "../Components/Calendar/CalendarWithEvents";
+import IHolyMass from "../Domain/IHolyMass";
 
 interface IState {
   selectedDate: Date;
@@ -9,6 +12,7 @@ interface IState {
 
 export default class HolyMassPage extends React.Component<{}, IState> {
   static displayName = HolyMassPage.name;
+
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -16,9 +20,10 @@ export default class HolyMassPage extends React.Component<{}, IState> {
     };
   }
 
-  handleDateSelect = (date: Date ) => {
-    this.setState({ selectedDate: date });
+  handleDateSelect = (date: Date) => {
+    this.setState({selectedDate: date});
   };
+
   render() {
     return (
       <div className={styles.hollyMassBody}>
@@ -27,10 +32,49 @@ export default class HolyMassPage extends React.Component<{}, IState> {
           <p className={styles.right}>each <strong>Sunday at 11:00am</strong> (in English)</p>
         </div>
 
-          <Notes />
-          <AllNews />
+        <div className={styles.mainContainer}>
+          <div className={styles.sideContainer}>
+            <CalendarWithEvents holyMasses={holyMasses}/>
+            <Notes notesContainer={styles.notesContainer}/>
+          </div>
+
+          <MainInfo holyMasses={holyMasses}/>
+        </div>
+
+        <AllNews/>
 
       </div>
     );
   }
 }
+
+const holyMasses: IHolyMass[] = [
+  {
+    date: new Date(2023,5,11,11),
+  },
+  {
+    date: new Date(2023,5,16,18, 30),
+    description: "Solemnity of the Sacred Heart of Jesus (not a holy day of obligation).",
+  },
+  {
+    date: new Date(2023,5,18,11),
+  },
+  {
+    date: new Date(2023,5,25,11),
+    description: "Confirmation of the adults with archbishop Nicola Girasoli, papal Nuncio.",
+  },
+  {
+    date: new Date(2023,6,2,11),
+  },
+  {
+    date: new Date(2023,6,5,11),
+    description: "Solemtnity of Saints Cyril and Methodius (not a holy day of obligation).",
+  },
+  {
+    date: new Date(2023,6,7,18, 30),
+    description: "First Friday of July.Sunday, July 9 at 11am.",
+  },
+  {
+    date: new Date(2023,6,9,11),
+  },
+];

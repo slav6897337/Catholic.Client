@@ -119,7 +119,7 @@ body {
 
 
     /* Colors */
-    --color-darkslategray-100: #016066;
+    --color-green-100: #016066;
     --color-black: #000;
     --color-white: #fff;
     --color-gainsboro-100: #e7e7e7;
@@ -127,6 +127,8 @@ body {
     --color-silver: #b6b6b6;
     --color-gold: linear-gradient(90.88deg, #DBBF9A 0.32%, #C7AF8D 45.4%, #977458 93.4%);
     --color-green-80: rgba(1, 96, 102, 0.8);
+    --color-green-60: rgba(1, 96, 102, 0.6);
+    --color-green-40: rgba(1, 96, 102, 0.4);
 
     /* Gaps */
     --gap-41xl: 3.75rem;

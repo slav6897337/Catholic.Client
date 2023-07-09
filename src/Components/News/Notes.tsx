@@ -16,12 +16,17 @@ const defaultNote2: INote = {
   additionalTitle: "St. Ladislav church",
   info: "Špitálska 7, 812 50 Bratislava"
 }
-const Notes: FunctionComponent = () => {
+
+interface IProps {
+  notesContainer?: string;
+}
+
+const Notes: FunctionComponent<IProps> = (props) => {
   const [notesData, setNote] = useState<INote[]>([defaultNote, defaultNote2]);
   const notes = notesData.map(noteData => <Note note={noteData}/>);
   return (
     <Carousel
-      containerClassName={styles.notesContainer}
+      containerClassName={props.notesContainer ?? styles.notesContainer}
       items={notes}
       autoplay={{
         delay: 6000,
