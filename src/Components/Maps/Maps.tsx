@@ -24,7 +24,7 @@ const handleDirectionsClick = () => {
 const Map: FunctionComponent = () => {
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyBrXJdTJX16vB4ROgUmob7R2f5HqFSML-s">
+    <LoadScript googleMapsApiKey="Key">
       <GoogleMap
         mapContainerClassName={styles.mapContainer}
         center={center}
