@@ -1,0 +1,74 @@
+.mapContainer{
+    width: 46%;
+    height: 766px;
+}
+
+.infoContainer{
+    display: flex;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    background-color: white;
+    max-width: 20rem;
+}
+
+.verticalLine{
+    border-left: var(--color-green-100) 0.6rem solid;
+    height: 4.4rem;
+    margin-right: 1rem;
+}
+
+.infoText{
+    max-width: 80%;
+    margin: 0.6rem;
+}
+
+.infoContainer h1{
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-darkslategray-100);
+    margin-bottom: 1rem;
+}
+
+.infoContainer p{
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-darkslategray-100);
+    margin-bottom: 0.5rem;
+}
+
+.directionsButton{
+    border-radius: 0.4rem;
+    background-color: var(--color-darkslategray-100);
+    border: var(--color-green-100) 0.1rem solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0.8rem;
+}
+
+.directionsButton:hover{
+    box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
+}
+
+.directionsButton img{
+    color: var(--color-green-100);
+    width: 2.6rem;
+    height: 2.6rem;
+    margin: 0.4rem;
+}
+
+.directionsButton p{
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-darkslategray-100);
+    margin: 0 0.5rem 0.5rem 0.5rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .mapContainer{
+        width: 90%;
+
+    }
+}

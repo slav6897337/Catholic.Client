@@ -32,10 +32,11 @@
     margin-bottom: 1.6rem;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 960px) {
     .container {
-        margin-top: 4rem;
-        margin-left: 2rem;
-        margin-right: 2rem;
+        width: 90%;
+        margin: 5%;
     }
 }
+
+

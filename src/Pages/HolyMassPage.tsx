@@ -5,6 +5,7 @@ import Notes from "../Components/News/Notes";
 import MainInfo from "../Components/HolyMassPage/MainInfo";
 import CalendarWithEvents from "../Components/Calendar/CalendarWithEvents";
 import IHolyMass from "../Domain/IHolyMass";
+import Map from "../Components/Maps/Maps";
 
 interface IState {
   selectedDate: Date;
@@ -39,9 +40,16 @@ export default class HolyMassPage extends React.Component<{}, IState> {
           </div>
 
           <MainInfo holyMasses={holyMasses}/>
+
         </div>
 
         <AllNews/>
+
+        <h1 className={styles.howToFindUs}>HOW TO FIND US</h1>
+        <div className={styles.bottomContainer}>
+          <Map/>
+          <img src={'/img/churchPhoto.png'} alt={'Church'}/>
+        </div>
 
       </div>
     );
