@@ -1,5 +1,5 @@
 .mapContainer{
-    width: 46%;
+    width: 38%;
     height: 766px;
 }
 
@@ -61,7 +61,7 @@
 
 .directionsButton p{
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 600;
     color: var(--color-darkslategray-100);
     margin: 0 0.5rem 0.5rem 0.5rem;
 }

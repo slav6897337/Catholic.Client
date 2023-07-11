@@ -48,7 +48,7 @@ export default class HolyMassPage extends React.Component<{}, IState> {
         <h1 className={styles.howToFindUs}>HOW TO FIND US</h1>
         <div className={styles.bottomContainer}>
           <Map/>
-          <img src={'/img/churchPhoto.png'} alt={'Church'}/>
+          <img className={styles.churchPhoto} src={'/img/churchPhoto.png'} alt={'Church'}/>
         </div>
 
       </div>

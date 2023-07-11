@@ -7,6 +7,12 @@ interface IProps {
   holyMasses: IHolyMass[];
 }
 
+const handleYouTubeClick = () => {
+  const url = 'https://www.youtube.com/@benjaminkosnac5108';
+
+  window.open(url, '_blank');
+};
+
 const MainInfo: FunctionComponent<IProps> = ({holyMasses}) => {
   return (
     <div className={styles.container}>
@@ -20,13 +26,12 @@ const MainInfo: FunctionComponent<IProps> = ({holyMasses}) => {
 
       <p>
         {holyMasses.map((holyMass, index) =>
-          <div key={index}>
-            <span key={index}>
+          <span key={index}>
               {moment(holyMass.date).format('dddd, MMMM DD h:mm')}
-              at {moment(holyMass.date).format('h:mm a')}.
-              {holyMass.description ? ` - ${holyMass.description}` : null}
+            at {moment(holyMass.date).format('h:mm a')}.
+            {holyMass.description ? ` - ${holyMass.description}` : null}
+            <br/>
             </span>
-          </div>
         )}
       </p>
       <p>
@@ -37,12 +42,16 @@ const MainInfo: FunctionComponent<IProps> = ({holyMasses}) => {
         Friday, June 16: 11.45am - 12.20pm.<br/>
         My confessional is on the left, in the back of the church (as you enter through the main entrance door).<br/>
         <br/>
-        Past Holy Masses and other reflections can be found on www.YouTube.com. Search for "Benjamin Kosnac".<br/>
+        Past Holy Masses and other reflections can be found on:
+      </p>
+      <button className={styles.yButton} onClick={handleYouTubeClick}>www.YouTube.com</button>
+      <p>
         To support Fr. Ben's ministry, you may send your donation to:<br/>
-        SK79 1100 0000 0080 1011 9693For any questions, feel free to email me at bkosnac@hotmail.comFr.<br/>
+        <strong>SK79 1100 0000 0080 1011 9693</strong><br/>
+        For any questions, feel free to email me at bkosnac@hotmail.com<br/>
       </p>
 
-      <p>Ben Kosnac, your chaplain</p>
+      <p>Fr. Ben Kosnac, your chaplain</p>
 
     </div>
   );

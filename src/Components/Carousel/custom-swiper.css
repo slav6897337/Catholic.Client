@@ -29,7 +29,6 @@
     font-weight: bold;
 }
 
-
 .swiper-pagination-bullet {
     background-color: #b7e8eb;
     opacity: 0.6;
@@ -41,4 +40,8 @@
     height: 0.55rem;
     width: 0.55rem;
     opacity: 1;
+}
+
+:root {
+    --swiper-theme-color: var(--color-green-80)!important;
 }
