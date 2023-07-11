@@ -3,6 +3,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+ARG REACT_APP_MAPS_KEY
+ENV REACT_APP_MAPS_KEY=${REACT_APP_MAPS_KEY}
 RUN npm run build
 FROM node:14-alpine
 WORKDIR /app
