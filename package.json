@@ -8,7 +8,7 @@
     "@mui/material": "^5.13.4",
     "@react-google-maps/api": "^2.18.1",
     "@types/node": "^16.18.34",
-    "@types/react": "^18.2.9",
+    "@types/react": "^18.2.13",
     "@types/react-dom": "^18.2.4",
     "eslint-config-react-app": "^7.0.1",
     "loglevel": "^1.8.1",
