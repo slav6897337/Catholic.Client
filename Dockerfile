@@ -9,4 +9,5 @@ WORKDIR /app
 RUN npm install -g serve
 COPY --from=build /app/build .
 EXPOSE 3000
+ENV REACT_APP_MAPS_KEY=default
 CMD ["serve", "-s", ".", "-l", "3000"]
