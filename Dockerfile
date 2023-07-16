@@ -1,5 +1,7 @@
 FROM node:14-alpine as build
 WORKDIR /app
+ARG REACT_APP_MAPS_KEY
+ENV REACT_APP_MAPS_KEY=$REACT_APP_MAPS_KEY
 COPY package*.json ./
 RUN npm install
 COPY . .
@@ -9,5 +11,4 @@ WORKDIR /app
 RUN npm install -g serve
 COPY --from=build /app/build .
 EXPOSE 3000
-ENV REACT_APP_MAPS_KEY=default
 CMD ["serve", "-s", ".", "-l", "3000"]
