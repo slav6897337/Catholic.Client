@@ -1,5 +1,7 @@
 FROM node:14-alpine as build
 WORKDIR /app
+ARG REACT_APP_MAPS_KEY
+ENV REACT_APP_MAPS_KEY=$REACT_APP_MAPS_KEY
 COPY package*.json ./
 RUN npm install
 COPY . .
