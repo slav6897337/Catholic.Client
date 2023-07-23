@@ -1,6 +1,5 @@
 import React, {ReactNode} from 'react';
 import styles from './Header.module.css';
-import Logo from "./Logo";
 
 interface IProps {
   children: ReactNode;

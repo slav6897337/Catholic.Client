@@ -21,8 +21,11 @@ export default class HomePage extends Component {
 
         <div className="home__background">
           <div className="home__welcome_container">
+            <h3 className="home__welcome_title">Welcome</h3>
+            <div className="home__welcome_container2">
             <Welcome/>
             <Notes/>
+              </div>
           </div>
 
           <Activities/>

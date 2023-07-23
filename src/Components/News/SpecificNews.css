@@ -4,6 +4,8 @@
     border-radius: 0.25rem;
     margin: 0.8rem 0.8rem 2rem;
     padding-bottom: 0.4rem;
+    padding-right: 0.4rem;
+    padding-left: 0.4rem;
     min-height: 14rem;
 }
 
@@ -19,6 +21,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-top: 0.8rem;
 }
 
 .news h1{
@@ -37,6 +40,6 @@
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.6rem;
-    margin: 1rem;
+    margin: 0.2rem 1rem 1rem;
     color: #000000;
 }

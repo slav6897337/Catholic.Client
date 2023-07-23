@@ -27,7 +27,7 @@
 .thePlaceWhere {
     font-size: var(--font-size-xl);
     font-family: var(--font-cambay);
-    color: var(--color-darkslategray-100);
+    color: var(--color-green-100);
 }
 .logotext {
     cursor: pointer;

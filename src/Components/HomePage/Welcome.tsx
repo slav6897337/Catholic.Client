@@ -4,7 +4,6 @@ import styles from "./Welcome.module.css";
 const Welcome: FunctionComponent = () => {
   return (
     <div className={styles.welcome}>
-      <h3 className={styles.welcomeTitle}>Welcome</h3>
       <div className={styles.welcomeTitleLine} />
 
       <p>

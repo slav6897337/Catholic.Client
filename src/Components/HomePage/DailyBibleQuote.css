@@ -30,7 +30,7 @@
 
 .vertical-line {
     width: 0;
-    height: 6.6rem;
+    height: 6.2rem;
     border: 1px solid #E7E7E7;
     margin-left: 0.5rem;
     margin-right: 0.75rem;
@@ -64,11 +64,12 @@
     height: 1rem;
     font-size: 0.8rem;
     font-family: 'Cambay', cursive;
-    font-style: normal;
+    font-style: italic;
     font-weight: 200;
     line-height: normal;
     color: #DBDBDB;
     margin-top: 0.4rem;
+
 }
 
 .date {

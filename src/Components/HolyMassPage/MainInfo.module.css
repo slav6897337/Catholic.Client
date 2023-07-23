@@ -1,6 +1,6 @@
 .container {
     width: 70%;
-    padding: 2rem;
+    padding: 3rem;
     text-align: left;
     color: var(--color-black);
     font-family: var(--font-cambay);
@@ -11,7 +11,7 @@
     backdrop-filter: blur(17.5px);
 }
 .title{
-    color: var(--color-darkslategray-100);
+    color: var(--color-green-100);
 
 }
 .titleLine{
