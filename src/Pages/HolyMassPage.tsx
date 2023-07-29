@@ -6,6 +6,7 @@ import MainInfo from "../Components/HolyMassPage/MainInfo";
 import CalendarWithEvents from "../Components/Calendar/CalendarWithEvents";
 import IHolyMass from "../Domain/IHolyMass";
 import Map from "../Components/Maps/Maps";
+import Header from "../Components/PageElements/Header";
 
 interface IState {
   selectedDate: Date;
@@ -28,22 +29,26 @@ export default class HolyMassPage extends React.Component<{}, IState> {
   render() {
     return (
       <div className={styles.hollyMassBody}>
-        <div className={styles.titleContainer}>
-          <p className={styles.left}><strong>Holly Masses</strong> at Church of St. Ladislaus</p>
-          <p className={styles.right}>each <strong>Sunday at 11:00am</strong> (in English)</p>
-        </div>
+        <Header>
+          <div className={styles.titleContainer}>
+            <p className={styles.left}><strong>Holly Masses</strong> at Church of St. Ladislaus</p>
+            <p className={styles.right}>each <strong>Sunday at 11:00am</strong> (in English)</p>
+          </div>
+        </Header>
+
 
         <div className={styles.mainContainer}>
           <div className={styles.sideContainer}>
             <CalendarWithEvents holyMasses={holyMasses}/>
-            <Notes notesContainer={styles.notesContainer}/>
+            <Notes notesContainer={styles.notesContainer} holyMassOnly={true}/>
           </div>
 
           <MainInfo holyMasses={holyMasses}/>
 
         </div>
 
-        <AllNews/>
+
+        <AllNews containerStyle={styles.newsContainerStyle}/>
 
         <h1 className={styles.howToFindUs}>HOW TO FIND US</h1>
         <div className={styles.bottomContainer}>

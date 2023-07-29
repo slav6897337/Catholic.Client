@@ -39,7 +39,7 @@
 
 .directionsButton{
     border-radius: 0.4rem;
-    background-color: var(--color-green-100);
+    background-color: var(--color-gainsboro-100);
     border: var(--color-green-100) 0.1rem solid;
     display: flex;
     justify-content: center;

@@ -10,19 +10,41 @@ interface IProps {
     holyMasses: IHolyMass[];
 }
 
+interface ICustomTile {
+    date: Date;
+    view: string;
+}
+
 const CalendarWithEvents: FunctionComponent<IProps> = ({holyMasses}) => {
   const [value, onChange] = useState<Date>(new Date());
 
-  const holyMass =()=>
+  const holyMass = () =>
      holyMasses.find(holyMass => holyMass.date.getDate() === value.getDate());
 
-
+  const getTileClassName = (tile: ICustomTile) =>  {
+    if (tile.view === 'month') {
+      const dates = holyMasses.map(m => m.date);
+      if (dates.find(d =>
+        d.getFullYear() === tile.date.getFullYear() &&
+        d.getMonth() === tile.date.getMonth() &&
+        d.getDate() === tile.date.getDate())){
+        return 'custom-date';
+      }
+    }
+    return null;
+  }
 
   return (
     <div className={styles.CalendarContainer}>
           <Calendar
             onChange={e => onChange(e as Date)}
-            value={value} />
+            value={value}
+            tileClassName={getTileClassName}
+            tileDisabled={({activeStartDate, date, view}) => {
+
+              return false;
+            }}
+          />
 
       <div className={styles.eventsContainer}>
         {holyMass() &&

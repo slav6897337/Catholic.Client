@@ -1,32 +1,40 @@
-import {FunctionComponent, useState} from "react";
+import {FunctionComponent, useEffect, useState} from "react";
 import styles from "./Notes.module.css";
 import {INote} from "../../Domain/INote";
 import Note from "./Note";
 import Carousel from "../Carousel/Carousel";
-
-const defaultNote: INote = {
-  title: "Bible group",
-  date: "Thursday: 6:00 PM",
-  additionalTitle: "Dom Quo Vadis",
-  info: "Hurbanovo námestie 1, 811 03 Bratislava"
-}
-const defaultNote2: INote = {
-  title: "Holly Mass",
-  date: "Sunday: 11:00 am",
-  additionalTitle: "St. Ladislav church",
-  info: "Špitálska 7, 812 50 Bratislava"
-}
+import Api from "../../Utiles/Api";
+import {IRequestQuery} from "../../Domain/IRequestQuery";
+import Loading from "../PageElements/Loading";
 
 interface IProps {
   notesContainer?: string;
+  holyMassOnly?: boolean;
 }
 
 const Notes: FunctionComponent<IProps> = (props) => {
-  const [notesData, setNote] = useState<INote[]>([defaultNote, defaultNote2]);
+  const [notesData, setNotes] = useState<INote[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const request: IRequestQuery = {holyMassOnly: props.holyMassOnly, skip: 0, take: 5};
+
+  useEffect(() => {
+    getNotes();
+  }, []);
+
+  const getNotes = () => {
+    Api.getNotes(request).then((response) => {
+      setNotes(response);
+      setLoading(false);
+    });
+  };
+
   const notes = notesData.map(noteData => <Note note={noteData}/>);
+
+  if(loading) return (<Loading />);
+
   return (
     <Carousel
-      containerClassName={props.notesContainer ?? styles.notesContainer}
+      container={props.notesContainer ?? styles.notesContainer}
       items={notes}
       autoplay={{
         delay: 6000,

@@ -3,6 +3,7 @@ import BibleQuotes from '../Components/HomePage/DailyBibleQuote';
 import HomePage from '../Pages/HomePage';
 import HolyMassPage from "../Pages/HolyMassPage";
 import NewsPage from "../Pages/NewsPage";
+import BibleGroupPage from "../Pages/BibleGroupPage";
 
 
 interface IAppRoutes {
@@ -19,6 +20,10 @@ const AppRoutes:IAppRoutes[] = [
   {
     path: '/holy-mass',
     element: <HolyMassPage />
+  },
+  {
+    path: '/bible-group',
+    element: <BibleGroupPage />
   },
   {
     path: '/bible-quotes',

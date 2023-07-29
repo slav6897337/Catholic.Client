@@ -10,6 +10,7 @@
     background: rgba(1, 96, 102, 0.03);
     backdrop-filter: blur(17.5px);
 }
+
 .title{
     color: var(--color-green-100);
 
@@ -33,6 +34,8 @@
 }
 
 .yButton{
+    display: flex;
+    align-items: center;
     font-family: 'Cambay';
     text-decoration: none;
     font-style: normal;
@@ -41,8 +44,11 @@
     line-height: 2rem;
     padding: 6px 6px 2px;
     border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.4);
     border: 1px solid var(--color-green-100);
+}
+.yButtonText{
+    margin: 0 0.5rem;
 }
 
 .yButton:hover{

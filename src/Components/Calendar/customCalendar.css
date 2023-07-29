@@ -38,9 +38,17 @@
 
 }
 
+.react-calendar__month-view__days__day--weekend{
+    color: black;
+}
+
 abbr[title] {
     text-decoration: none !important;
     font-style: normal;
     font-size: 9px;
     font-weight: 600;
+}
+
+.custom-date{
+    color: #CFA976;
 }

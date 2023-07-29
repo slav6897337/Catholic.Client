@@ -15,7 +15,6 @@ const handleDirectionsClick = () => {
 };
 
 const Map: FunctionComponent = () => {
-console.log(process.env.REACT_APP_MAPS_KEY);
   return (
     <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_KEY}`}>
       <GoogleMap

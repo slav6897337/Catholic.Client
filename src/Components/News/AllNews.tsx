@@ -1,103 +1,56 @@
-import React, {useEffect, useState} from 'react';
-import styles from './AllNews.module.css';
+import React from 'react';
 import SpecificNews from './SpecificNews';
 import {INews} from "../../Domain/INews";
-import SwiperCore, {Navigation, Pagination} from 'swiper';
-import {Swiper, SwiperSlide} from 'swiper/react';
+import Gallery from "../Carousel/Gallery";
+import Api from "../../Utiles/Api";
 
-const defaultNews: INews[] = [{
-  title: 'English Bible Group',
-  date: new Date(),
-  description: 'English Bible Group is currently meeting every Thursday, 18:00, at Dom Quo Vadis, Bratislava. For more information click the icon on the menu bar near the top of this web page.',
-  link: '/bible-group',
-  isChurchNews: false
-},
-  {
-    title: 'Catholic Brochure',
-    date: new Date(),
-    description: 'Free Catholic brochures in 10 languages are being distributed by the Legion of Mary in Slovakia and Europe. Contact us for copies or to support this project.',
-    link: '/catholic-brochure',
-    isChurchNews: false
-  },
-  {
-    title: 'Saint Edith Stein',
-    date: new Date(),
-    description: 'Spiritual reading while staying at home.',
-    link: '/saint-edith-stein',
-    isChurchNews: false
-  },
-  {
-    title: 'Holy Mass',
-    date: new Date(),
-    description: 'July 7 at 6.30pm - First Friday of July',
-    isChurchNews: true
-  }
-];
+interface IProps {
+  holyMassOnly?: boolean;
+  containerStyle?: string;
+}
 
-const specificNewsWidth = 22 * 16 + 16 * 2;
+const AllNews: React.FC<IProps> = (props) => {
+  const [news, setNews] = React.useState<INews[]>([]);
+  const [hasMore, setHasMore] = React.useState<boolean>(true);
 
-
-
-const AllNews: React.FC = () => {
-  const [news, setNews] = React.useState<INews[]>(defaultNews);
-  const [width, setWidth] = useState(window.innerWidth);
-
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Clean up the event listener when the component unmounts
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  // React.useEffect(() => {
+  //   console.log('useEffect');
+  //   fetchItems().catch(Api.void);
+  // }, []);
 
 
   const fetchItems = async () => {
-    setNews((prevItems) => [...prevItems, ...defaultNews]);
-  };
 
-  const handleSwiperSlideChange = async (swiper: SwiperCore) => {
-    const {isEnd} = swiper;
-    if (isEnd) {
-      await fetchItems();
+    if (!hasMore) return;
+
+    const request = {
+      skip: news.length,
+      take: news.length + 5,
+      holyMassOnly: props.holyMassOnly ?? false
     }
+
+    Api.getNews(request).then((response) => {
+      setNews((prevItems) => [...prevItems, ...response.items]);
+      setHasMore(response.count > response.skip + response.take);
+    });
   };
 
   return (
-    <div className={styles.allNews}>
-      <h1 className={styles.allNewsTitle}>News</h1>
-      <div className={styles.allNewsContainer}>
-        <Swiper
-          slidesPerView={Math.floor(width / specificNewsWidth)}
-          spaceBetween={20}
-          navigation={true}
-          modules={[Pagination, Navigation]}
-          pagination={{
-            clickable: true,
-            horizontalClass: styles.swiperPagination
-          }}
-          onReachEnd={handleSwiperSlideChange}
-          wrapperClass={styles.swiperWrapper}
-        >
-          {news.map((item, index) => (
-            <SwiperSlide key={index}>
-              <SpecificNews
-                title={item.title}
-                date={item.date}
-                description={item.description}
-                link={item.link}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-      </div>
-    </div>
+    <Gallery
+      title={'News'}
+      onReachEnd={fetchItems}
+      items={
+        news.map((item, index) => (
+          <SpecificNews
+            title={item.title}
+            date={item.date}
+            description={item.description}
+            link={item.link}
+          />
+        ))
+      }
+    />
   );
 };
 
 export default AllNews;
-

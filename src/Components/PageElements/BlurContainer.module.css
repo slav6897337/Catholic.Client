@@ -1,0 +1,24 @@
+.blurContainer {
+    padding: 3rem;
+    color: var(--color-black);
+    margin: 2rem;
+    border-radius: 4px;
+    border: 1px solid #DBDBDB;
+    background: rgba(1, 96, 102, 0.03);
+    backdrop-filter: blur(17.5px);
+    font-family: var(--font-cambay);
+}
+
+.title{
+    color: var(--color-green-100);
+}
+
+.blurContainer p{
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+.blurContainer h1{
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+}

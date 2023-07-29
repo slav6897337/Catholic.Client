@@ -16,7 +16,7 @@ import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 interface IProps extends SwiperProps {
   items: ReactJSXElement[];
   containerStyle?: React.CSSProperties;
-  containerClassName?: string;
+  container?: string;
 }
 
 const defaultProps: IProps = {
@@ -37,7 +37,7 @@ const Carousel: FunctionComponent<IProps> = (props) => {
   const finalProps = {...defaultProps, ...props};
 
   return (
-    <div className={`${styles.carousel} ${styles.border} ${props.containerClassName}`} style={props.containerStyle}>
+    <div className={`${styles.carousel} ${styles.border} ${props.container}`} style={props.containerStyle}>
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         id={styles.swiper}

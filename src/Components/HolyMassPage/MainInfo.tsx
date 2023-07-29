@@ -2,6 +2,8 @@ import {FunctionComponent} from "react";
 import styles from "./MainInfo.module.css";
 import IHolyMass from "../../Domain/IHolyMass";
 import moment from "moment";
+import BlurContainer from "../PageElements/BlurContainer";
+import GoldLine from "../PageElements/GoldLine";
 
 interface IProps {
   holyMasses: IHolyMass[];
@@ -15,9 +17,10 @@ const handleYouTubeClick = () => {
 
 const MainInfo: FunctionComponent<IProps> = ({holyMasses}) => {
   return (
-    <div className={styles.container}>
-      <h3 className={styles.title}>Upcoming Holy Masses</h3>
-      <div className={styles.titleLine}/>
+    <BlurContainer
+      title="Upcoming Holy Masses"
+    >
+      <GoldLine/>
 
       <p>
         DEAR SISTERS AND BROTHERS,DEAR FRIENDS,
@@ -44,7 +47,10 @@ const MainInfo: FunctionComponent<IProps> = ({holyMasses}) => {
         <br/>
         Past Holy Masses and other reflections can be found on:
       </p>
-      <button className={styles.yButton} onClick={handleYouTubeClick}>www.YouTube.com</button>
+      <button className={styles.yButton} onClick={handleYouTubeClick}>
+        <img style={{width:32, height:32, margin:"0 0 0.2rem 0.2rem"}} src={'/img/youtube.png'} alt={'YouTube'}/>
+        <p style={{margin: "0  0.5rem"}}>YouTube</p>
+        </button>
       <p>
         To support Fr. Ben's ministry, you may send your donation to:<br/>
         <strong>SK79 1100 0000 0080 1011 9693</strong><br/>
@@ -53,7 +59,8 @@ const MainInfo: FunctionComponent<IProps> = ({holyMasses}) => {
 
       <p>Fr. Ben Kosnac, your chaplain</p>
 
-    </div>
+    </BlurContainer>
+
   );
 };
 

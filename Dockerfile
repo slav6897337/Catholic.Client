@@ -1,4 +1,4 @@
-FROM node:14-alpine as build
+FROM node:18.17-alpine as build
 WORKDIR /app
 ARG REACT_APP_MAPS_KEY
 ENV REACT_APP_MAPS_KEY=$REACT_APP_MAPS_KEY
