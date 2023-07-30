@@ -1,0 +1,28 @@
+.border{
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(90.88deg, #DBBF9A 0.32%, #C7AF8D 45.4%, #977458 93.4%);
+    border-image-slice: 1;
+}
+
+.secondBorder {
+    transform: rotate(2deg);
+}
+.container {
+    max-width: 36%;
+    margin-left: 6%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    position: relative;
+}
+.content{
+    transform: rotate(-2deg);
+    margin: 0.8rem;
+}
+
+@media screen and (max-width: 680px) {
+    .container {
+        max-width: 80%;
+    }
+}
+

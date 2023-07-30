@@ -4,6 +4,7 @@ import HomePage from '../Pages/HomePage';
 import HolyMassPage from "../Pages/HolyMassPage";
 import NewsPage from "../Pages/NewsPage";
 import BibleGroupPage from "../Pages/BibleGroupPage";
+import ChoirPage from "../Pages/ChoirPage";
 
 
 interface IAppRoutes {
@@ -28,6 +29,10 @@ const AppRoutes:IAppRoutes[] = [
   {
     path: '/bible-quotes',
     element: <BibleQuotes />
+  },
+  {
+    path: '/choir',
+    element: <ChoirPage />
   },
   {
     path: '*',

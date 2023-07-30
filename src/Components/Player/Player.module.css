@@ -1,0 +1,38 @@
+.title{
+    color: var(--color-green-100);
+    margin: 1rem;
+}
+
+audio{
+  opacity: 0.6;
+}
+
+.player{
+
+}
+
+.song{
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+    margin: 0.2rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: none;
+}
+.song img{
+    margin-right: 0.2rem;
+}
+.song:hover{
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.selected{
+    color: #016066;
+    font-weight: bold;
+    background-color: #F1F1F1;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
