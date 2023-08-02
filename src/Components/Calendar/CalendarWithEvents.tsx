@@ -19,7 +19,10 @@ const CalendarWithEvents: FunctionComponent<IProps> = ({holyMasses}) => {
   const [value, onChange] = useState<Date>(new Date());
 
   const holyMass = () =>
-     holyMasses.find(holyMass => holyMass.date.getDate() === value.getDate());
+     holyMasses.find(holyMass =>
+       value.getFullYear() === holyMass.date.getFullYear() &&
+       value.getMonth() === holyMass.date.getMonth() &&
+       value.getDate() === holyMass.date.getDate());
 
   const getTileClassName = (tile: ICustomTile) =>  {
     if (tile.view === 'month') {
