@@ -1,35 +1,50 @@
-.horizontalContainer{
+.horizontalContainer {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.leftImg{
+.leftImg {
     width: 40%;
     height: 40%;
     margin: 4% 4% 0 0;
 }
 
-.rightImg{
+.rightImg {
     width: 40%;
     height: 40%;
     margin: 0 0 4% 4%;
-
 }
 
+.line {
+    width: 65%;
+}
+
+.avatar {
+    border-radius: 131.252px;
+    width: 12%;
+    height: 12%;
+    margin-left: 4%;
+}
+
+.avatarText p{
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+}
 @media screen and (max-width: 680px) {
     .horizontalContainer {
         flex-wrap: wrap;
     }
 
-    .leftImg{
+    .leftImg {
         width: 80%;
         height: 80%;
         margin: 4%;
     }
 
-    .rightImg{
+    .rightImg {
         width: 80%;
         height: 80%;
         margin: 4%;
-
     }
 }

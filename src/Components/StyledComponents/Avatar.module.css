@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar {
+    border-radius: 131.252px;
+    width: 12%;
+    height: 12%;
+    margin-left: 4%;
+}
+
+.avatarText p {
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+}
