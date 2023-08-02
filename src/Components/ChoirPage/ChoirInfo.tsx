@@ -27,12 +27,12 @@ const ChoirInfo: React.FC<IProps> = (props) => {
             interested are invited to join the choir.
           </p>
         </div>
-        {props.images?.length && <img src={props.images[0]} alt="Songs"/>}
+        {props.images?.length && <img className={styles.rightImg} src={props.images[0]} alt="Songs"/>}
       </div>
         <div className={styles.horizontalContainer}>
-          {props.images && props.images.length > 1 && <img src={props.images[1]} alt="Songs"/>}
+          {props.images && props.images.length > 1 && <img className={styles.leftImg} src={props.images[1]} alt="Songs"/>}
 
-          <div >
+          <div>
             <p>
               We regularly practice on Sundays at 10:30 am to go through the songs prior to the 11 am mass. If you have any
               questions, please do not hesitate to visit us by coming up to the balcony before or after mass. We're easy to

@@ -1,3 +1,35 @@
 .horizontalContainer{
     display: flex;
 }
+
+.leftImg{
+    width: 40%;
+    height: 40%;
+    margin: 4% 4% 0 0;
+}
+
+.rightImg{
+    width: 40%;
+    height: 40%;
+    margin: 0 0 4% 4%;
+
+}
+
+@media screen and (max-width: 680px) {
+    .horizontalContainer {
+        flex-wrap: wrap;
+    }
+
+    .leftImg{
+        width: 80%;
+        height: 80%;
+        margin: 4%;
+    }
+
+    .rightImg{
+        width: 80%;
+        height: 80%;
+        margin: 4%;
+
+    }
+}

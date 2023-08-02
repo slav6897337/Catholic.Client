@@ -14,7 +14,8 @@ interface ISong {
 }
 
 const Player: FunctionComponent<IProps> = (props) => {
-  const [currentSong, setCurrentSong] = useState<string | null>();
+  const [currentSong, setCurrentSong] =
+    useState<string | null>(songs.length ? songs[0].src : null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
