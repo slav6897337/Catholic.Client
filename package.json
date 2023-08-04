@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.13.6",
+    "@mui/material": "^5.13.7",
     "@react-google-maps/api": "^2.18.1",
     "@types/node": "^16.18.37",
     "@types/react": "^18.2.13",
