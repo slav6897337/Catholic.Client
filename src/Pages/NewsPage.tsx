@@ -47,7 +47,7 @@ const NewsPage: React.FC<IProps> = (props) => {
       <p>Not Found</p>
     </div>
   );
-console.log(page.body);
+
   return (
     <div className={styles.body}>
       {page?.title
@@ -60,17 +60,18 @@ console.log(page.body);
 
       <div>
         {page?.mainImage
-          ? <img className={styles.image} alt='Main' src={page.mainImage}/>
+          ? <img className={styles.image} alt='Main' src={Api.getImageUrl(page.mainImage)}/>
           : null}
 
         <div className={styles.additionalBibleGroupInfoContainer}>
-          <BlurContainer className={`${styles.mainTextContainer} ${styles.mainTextContainerWithoutImage}`}>
+          <BlurContainer className={page.mainImage ? styles.mainTextContainer : styles.mainTextContainerWithoutImage}>
             <div dangerouslySetInnerHTML={{ __html: page.body }} />
           </BlurContainer>
         </div>
       </div>
 
-      {page.images
+
+      {page.images.length
         ? <Gallery
           title={'Image Gallery'}
           items={page.images.map((item, index) => (
