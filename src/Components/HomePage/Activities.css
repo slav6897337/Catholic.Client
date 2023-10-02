@@ -16,6 +16,7 @@
 }
 
 .activities-container{
+    max-width: 100rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

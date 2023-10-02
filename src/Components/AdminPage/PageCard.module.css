@@ -1,0 +1,7 @@
+.pageCardContainer{
+    display: flex;
+    flex-direction: column;
+    width: 56%;
+    margin-top: 2rem;
+    margin-right: 10px;
+}

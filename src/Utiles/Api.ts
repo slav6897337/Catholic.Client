@@ -6,6 +6,7 @@ import {INote} from "../Domain/INote";
 import {IRequestQuery} from "../Domain/IRequestQuery";
 import {INews} from "../Domain/INews";
 import {IPaging} from "../Domain/IPaging";
+import {IAdmin} from "../Domain/IAdmin";
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL ?? '';
 
@@ -28,12 +29,13 @@ const Api = {
 
   listPages: async () => await Http.get<string[]>(`${baseUrl}/api/pages-list`),
   getPage: async (pageName: string) => await Http.get<IPage>(`${baseUrl}/api/pages/${pageName}`),
+  getPages: async () => await Http.get<IPage[]>(`${baseUrl}/api/pages`),
   createPage: async (page: IPage, adminToken: string) =>
     await Http.post<IPage>(`${baseUrl}/api/pages`, page, [authHeader(adminToken)]),
-  updatePage: async (page: IPage, adminToken: string) =>
-    await Http.put<IPage>(`${baseUrl}/api/pages`, page, [authHeader(adminToken)]),
+  updatePage: async (id: string, page: IPage, adminToken: string) =>
+    await Http.put<IPage>(`${baseUrl}/api/pages/${id}`, page, [authHeader(adminToken)]),
   deletePage: async (id: string, adminToken: string) =>
-    await Http.delete<IPage>(`${baseUrl}/api/pages/${id}`, [authHeader(adminToken)]),
+    await Http.delete(`${baseUrl}/api/pages/${id}`, [authHeader(adminToken)]),
 
   getNotes: async (request: IRequestQuery) => await Http.get<INote[]>(`${baseUrl}/api/notes${query(request)}`),
   createNote: async (note: INote, adminToken: string) =>
@@ -52,6 +54,15 @@ const Api = {
   deleteNews: async (id: string, adminToken: string) =>
     await Http.delete<INews>(`${baseUrl}/api/news/${id}`, [authHeader(adminToken)]),
 
+  getImageUrl: (route: string) => `${baseUrl}/api${route}`,
+  uploadImage: async (formData: FormData, adminToken: string) =>
+    await Http.uploadFile(`${baseUrl}/api/images`, formData, [authHeader(adminToken)]),
+  listImages: async () => await Http.get<string[]>(`${baseUrl}/api/images`),
+  deleteImage: async (fileName: string, adminToken: string) =>
+    await Http.delete<string>(`${baseUrl}/api/images/${fileName}`, [authHeader(adminToken)]),
+
+login: async (admin: IAdmin) =>
+  await Http.post<IAdmin>(`${baseUrl}/api/admins/token`, admin),
   void: ()=>{}
 };
 

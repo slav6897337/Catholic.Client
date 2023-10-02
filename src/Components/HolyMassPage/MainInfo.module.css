@@ -33,29 +33,6 @@
     margin-bottom: 1.6rem;
 }
 
-.yButton{
-    display: flex;
-    align-items: center;
-    font-family: 'Cambay';
-    text-decoration: none;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.2rem;
-    line-height: 2rem;
-    padding: 6px 6px 2px;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border: 1px solid var(--color-green-100);
-}
-.yButtonText{
-    margin: 0 0.5rem;
-}
-
-.yButton:hover{
-    color: var(--color-green-100);
-    box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
-}
-
 @media screen and (max-width: 960px) {
     .container {
         width: 90%;

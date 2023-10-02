@@ -1,0 +1,26 @@
+.modalContainer{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  padding: 3rem;
+  color: var(--color-black);
+  margin: 2rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-black);
+  background: white;
+  font-family: var(--font-cambay);
+}
+
+.modalText{
+  color: var(--color-green-100);
+}
+
+.modalButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 4rem;
+}

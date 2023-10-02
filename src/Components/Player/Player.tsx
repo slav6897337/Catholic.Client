@@ -17,11 +17,17 @@ const Player: FunctionComponent<IProps> = (props) => {
   const [currentSong, setCurrentSong] =
     useState<string | null>(songs.length ? songs[0].src : null);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     if (currentSong && audioRef.current) {
       audioRef.current.load();
-      audioRef.current.play();
+      if (!isFirstRender.current) {
+        audioRef.current.play();
+      } else {
+        isFirstRender.current = false;
+      }
+
     }
   }, [currentSong]);
 
@@ -33,7 +39,7 @@ const Player: FunctionComponent<IProps> = (props) => {
     <GoldBorder>
       {props.title && <h1 className={styles.title}>{props.title}</h1>}
 
-      <audio controls autoPlay ref={audioRef} className={styles.player}>
+      <audio controls ref={audioRef} className={styles.player}>
         {currentSong && <source src={currentSong} type="audio/mpeg"/>}
       </audio>
 

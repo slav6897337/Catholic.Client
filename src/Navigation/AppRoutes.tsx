@@ -5,6 +5,9 @@ import HolyMassPage from "../Pages/HolyMassPage";
 import NewsPage from "../Pages/NewsPage";
 import BibleGroupPage from "../Pages/BibleGroupPage";
 import ChoirPage from "../Pages/ChoirPage";
+import AdminPage from "../Pages/AdminPage";
+import EditPage from "../Pages/EditPage";
+import LogInPage from "../Pages/LogInPage";
 
 
 interface IAppRoutes {
@@ -33,6 +36,22 @@ const AppRoutes:IAppRoutes[] = [
   {
     path: '/choir',
     element: <ChoirPage />
+  },
+  {
+    path: '/admin',
+    element: <AdminPage />
+  },
+  {
+    path: '/admin/edit/:id',
+    element: <EditPage />
+  },
+  {
+    path: '/admin/new-page',
+    element: <EditPage />
+  },
+  {
+    path: '/admin/log-in',
+    element: <LogInPage />
   },
   {
     path: '*',

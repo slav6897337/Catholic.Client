@@ -1,10 +1,14 @@
 .noteContainer {
-    margin: 1.2rem;
+    margin: 0.4rem 1.2rem 1.6rem 1.2rem;
     height: 13rem;
 }
 
 .noteTitleContainer{
     margin-bottom: 1.6rem;
+}
+
+.noteInfo{
+    margin-bottom: 1.9rem;
 }
 
 

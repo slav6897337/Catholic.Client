@@ -4,6 +4,9 @@ import IHolyMass from "../../Domain/IHolyMass";
 import moment from "moment";
 import BlurContainer from "../PageElements/BlurContainer";
 import GoldLine from "../PageElements/GoldLine";
+import Button from "../StyledComponents/Button";
+import Actions from "../../Utiles/Actions";
+import Constants from "../../Domain/Constants";
 
 interface IProps {
   holyMasses: IHolyMass[];
@@ -47,10 +50,9 @@ const MainInfo: FunctionComponent<IProps> = ({holyMasses}) => {
         <br/>
         Past Holy Masses and other reflections can be found on:
       </p>
-      <button className={styles.yButton} onClick={handleYouTubeClick}>
-        <img style={{width:32, height:32, margin:"0 0 0.2rem 0.2rem"}} src={'/img/youtube.png'} alt={'YouTube'}/>
-        <p style={{margin: "0  0.5rem"}}>YouTube</p>
-        </button>
+
+      <Button icon='/img/youtube.png' text='YouTube' onClick={() => Actions.redirect(Constants.fatherBenYouTubeChannel)}/>
+
       <p>
         To support Fr. Ben's ministry, you may send your donation to:<br/>
         <strong>SK79 1100 0000 0080 1011 9693</strong><br/>

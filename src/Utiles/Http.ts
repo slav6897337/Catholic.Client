@@ -11,12 +11,14 @@ function getHeaders(additionalHeaders?: IHeader[]): Headers {
   return headers;
 }
 
-function request<T>(url: string, method: string, body?: any, additionalHeaders?: IHeader[]): Promise<T> {
+function request<T>(url: string, method: string, body?: any, additionalHeaders?: IHeader[], formData?: FormData): Promise<T> {
   const headers = getHeaders(additionalHeaders);
   const options: RequestInit = {
     headers,
     method,
-    body: body ? JSON.stringify(body) : undefined
+    body: body
+      ? JSON.stringify(body)
+      : formData ? formData : undefined
   };
 
   log.info(`Sending ${method} request to ${url}`);
@@ -41,7 +43,9 @@ export const http = {
   put: <T>(url: string, body: any, additionalHeaders?: IHeader[]): Promise<T> =>
     request<T>(url, 'PUT', body, additionalHeaders),
   delete: <T>(url: string, additionalHeaders?: IHeader[]): Promise<T> =>
-    request<T>(url, 'DELETE', undefined, additionalHeaders)
+    request<T>(url, 'DELETE', undefined, additionalHeaders),
+  uploadFile: async (url: string, formData: FormData, additionalHeaders?: IHeader[]): Promise<string> =>
+    request<string>(url, 'POST', undefined, additionalHeaders, formData)
 };
 
 export default http;

@@ -5,4 +5,5 @@ export interface IPage {
   title: string,
   body: string,
   images: string[],
+  mainImage: string,
 }
