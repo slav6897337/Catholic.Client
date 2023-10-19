@@ -1,0 +1,37 @@
+.gallery{
+    width: 100%;
+}
+
+.galleryWrapper{
+    width: 100%;
+}
+
+.galleryImage{
+    width: 26rem;
+}
+
+.fullImage{
+    width: 100%;
+}
+
+.imageContainer:hover{
+    .button{
+        display: flex;
+    }
+}
+
+.button{
+    display: none;
+    position: absolute;
+    bottom: 1.4rem;
+    left:28%;
+}
+
+.fullButton{
+    left:36%;
+}
+
+.modalStyles{
+
+    padding: 10px 0 0 0;
+}

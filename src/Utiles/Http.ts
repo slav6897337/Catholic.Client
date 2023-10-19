@@ -1,18 +1,22 @@
 import {IHeader} from '../Domain/IHeader';
 import log from './Logging';
 
-function getHeaders(additionalHeaders?: IHeader[]): Headers {
+function getHeaders(additionalHeaders?: IHeader[], json: boolean = true): Headers {
   const headers = new Headers();
-  headers.append('Content-Type', 'application/json');
-  headers.append('Accept', 'application/json');
+  if(json){
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+  } else {
+    headers.append('Accept', '*/*');
+  }
   if (additionalHeaders && additionalHeaders.length) {
     additionalHeaders.forEach(h => headers.append(h.key, h.value));
   }
   return headers;
 }
 
-function request<T>(url: string, method: string, body?: any, additionalHeaders?: IHeader[], formData?: FormData): Promise<T> {
-  const headers = getHeaders(additionalHeaders);
+async function request<T>(url: string, method: string, body?: any, additionalHeaders?: IHeader[], formData?: FormData): Promise<T> {
+  const headers = getHeaders(additionalHeaders, body != null);
   const options: RequestInit = {
     headers,
     method,
@@ -23,16 +27,19 @@ function request<T>(url: string, method: string, body?: any, additionalHeaders?:
 
   log.info(`Sending ${method} request to ${url}`);
 
-  return fetch(url, options)
-    .then(response => {
-      if (response.ok) {
-        return response.json() as Promise<T>;
-      }
-      log.error(`Error ${response.status} (${response.statusText}) while sending ${method} request to ${url} 
+  let response = await fetch(url, options);
+  if (response.ok) {
+    const contentType = response.headers.get('Content-Type');
+    if (contentType && contentType.includes('application/json')) {
+      return await response.json();
+    } else {
+      return await response.text() as T;
+    }
+  }
+  log.error(`Error ${response.status} (${response.statusText}) while sending ${method} request to ${url} 
               with options ${JSON.stringify(options)}`);
-      log.error(response.text());
-      return undefined as unknown as Promise<T>;
-    });
+  log.error(response.text());
+  return undefined as unknown as Promise<T>;
 }
 
 export const http = {

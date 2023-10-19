@@ -1,32 +1,23 @@
-import React, {ReactElement, useEffect, useState} from 'react';
+import React, {ReactElement, useEffect, useRef, useState} from 'react';
 import styles from './Gallery.module.css';
 import SwiperCore, {Navigation, Pagination} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/react';
+import useWindowDimensions from "../../hookcs/useWindowDimensions";
 
 
-const specificNewsWidth = 22 * 16 + 16 * 2;
+const specificItemWidth = 22 * 16 + 16 * 2;
 
 interface IProps {
   items: ReactElement[];
   title?: string;
   containerStyle?: string;
   onReachEnd?: () => void;
+  onClick?: () => void;
+  singleSlidePerView?: boolean;
 }
 
 const Gallery: React.FC<IProps> = (props) => {
-  const [width, setWidth] = useState(window.innerWidth);
-
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Clean up the event listener when the component unmounts
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const {height, width} = useWindowDimensions();
 
   const handleSwiperSlideChange = async (swiper: SwiperCore) => {
     const {isEnd} = swiper;
@@ -43,7 +34,7 @@ const Gallery: React.FC<IProps> = (props) => {
 
       <div className={styles.galleryContainer}>
         <Swiper
-          slidesPerView={Math.floor(width / specificNewsWidth)}
+          slidesPerView={props.singleSlidePerView ? 'auto' : Math.floor(width / specificItemWidth)}
           spaceBetween={20}
           navigation={true}
           modules={[Pagination, Navigation]}

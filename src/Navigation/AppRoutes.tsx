@@ -5,9 +5,11 @@ import HolyMassPage from "../Pages/HolyMassPage";
 import NewsPage from "../Pages/NewsPage";
 import BibleGroupPage from "../Pages/BibleGroupPage";
 import ChoirPage from "../Pages/ChoirPage";
-import AdminPage from "../Pages/AdminPage";
-import EditPage from "../Pages/EditPage";
-import LogInPage from "../Pages/LogInPage";
+import AdminPage from "../Pages/Admin/AdminPage";
+import EditPage from "../Pages/Admin/EditPage";
+import LogInPage from "../Pages/Admin/LogInPage";
+import AdminNewsPage from "../Pages/Admin/AdminNewsPage";
+import EditNewsPage from "../Pages/Admin/EditNewsPage";
 
 
 interface IAppRoutes {
@@ -46,12 +48,24 @@ const AppRoutes:IAppRoutes[] = [
     element: <EditPage />
   },
   {
+    path: '/admin/edit-news/:id',
+    element: <EditNewsPage />
+  },
+  {
+    path: '/admin/new-news',
+    element: <EditNewsPage />
+  },
+  {
     path: '/admin/new-page',
     element: <EditPage />
   },
   {
     path: '/admin/log-in',
     element: <LogInPage />
+  },
+  {
+    path: '/admin/news',
+    element: <AdminNewsPage />
   },
   {
     path: '*',

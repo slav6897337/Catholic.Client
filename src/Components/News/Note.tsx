@@ -1,6 +1,7 @@
 import {FunctionComponent} from "react";
 import styles from "./Note.module.css";
 import {INote} from "../../Domain/INote";
+import moment from "moment/moment";
 
 
 const Note: FunctionComponent<{note: INote}> = ({note}) => {
@@ -11,7 +12,7 @@ const Note: FunctionComponent<{note: INote}> = ({note}) => {
         <h1 className={styles.noteTitle}>
           {note.title}
         </h1>
-        <p className={styles.noteDate}>{note.date}</p>
+        <p className={styles.noteDate}>{moment(note.date).format('MMMM D, h:mm a')}</p>
       </div>
 
       <h1 className={styles.noteAdditionalTitle}>

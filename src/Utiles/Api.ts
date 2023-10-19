@@ -40,17 +40,19 @@ const Api = {
   getNotes: async (request: IRequestQuery) => await Http.get<INote[]>(`${baseUrl}/api/notes${query(request)}`),
   createNote: async (note: INote, adminToken: string) =>
     await Http.post<INote>(`${baseUrl}/api/notes`, note, [authHeader(adminToken)]),
-  updateNote: async (note: INote, adminToken: string) =>
-    await Http.put<INote>(`${baseUrl}/api/notes`, note, [authHeader(adminToken)]),
+  updateNote: async (id: string, note: INote, adminToken: string) =>
+    await Http.put<INote>(`${baseUrl}/api/notes/${id}`, note, [authHeader(adminToken)]),
   deleteNote: async (id: string, adminToken: string) =>
     await Http.delete<INote>(`${baseUrl}/api/notes/${id}`, [authHeader(adminToken)]),
 
+  getAllNews: async () =>
+    await Http.get<INews[]>(`${baseUrl}/api/news/all`),
   getNews: async (request: IRequestQuery) =>
     await Http.get<IPaging<INews>>(`${baseUrl}/api/news${query(request)}`),
   createNews: async (news: INews, adminToken: string) =>
     await Http.post<INews>(`${baseUrl}/api/news`, news, [authHeader(adminToken)]),
-  updateNews: async (news: INews, adminToken: string) =>
-    await Http.put<INews>(`${baseUrl}/api/news`, news, [authHeader(adminToken)]),
+  updateNews: async (id: string, news: INews, adminToken: string) =>
+    await Http.put<INews>(`${baseUrl}/api/news/${id}`, news, [authHeader(adminToken)]),
   deleteNews: async (id: string, adminToken: string) =>
     await Http.delete<INews>(`${baseUrl}/api/news/${id}`, [authHeader(adminToken)]),
 
@@ -59,7 +61,7 @@ const Api = {
     await Http.uploadFile(`${baseUrl}/api/images`, formData, [authHeader(adminToken)]),
   listImages: async () => await Http.get<string[]>(`${baseUrl}/api/images`),
   deleteImage: async (fileName: string, adminToken: string) =>
-    await Http.delete<string>(`${baseUrl}/api/images/${fileName}`, [authHeader(adminToken)]),
+    await Http.delete<string>(`${baseUrl}/api${fileName}`, [authHeader(adminToken)]),
 
 login: async (admin: IAdmin) =>
   await Http.post<IAdmin>(`${baseUrl}/api/admins/token`, admin),

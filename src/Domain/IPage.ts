@@ -7,3 +7,13 @@ export interface IPage {
   images: string[],
   mainImage: string,
 }
+
+export const defaultPage : IPage = {
+  id: '',
+  title: '',
+  body: '',
+  urlSegment: '',
+  mainImage: '',
+  images: Array<string>(),
+  date: new Date()
+}

@@ -70,6 +70,10 @@
     flex-grow: 0;
 }
 
+.currentLink{
+    font-weight: bold;
+}
+
 .link:hover {
     background: linear-gradient(91.65deg, #DBBF9A 4.69%, #C7AF8D 45.41%, #977458 91.55%);
     -webkit-background-clip: text;

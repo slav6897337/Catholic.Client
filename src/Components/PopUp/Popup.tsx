@@ -1,8 +1,14 @@
-import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import React, {useState, forwardRef, useImperativeHandle} from 'react';
 import styles from './Popup.module.css';
+import Loading from "../PageElements/Loading";
+import Button from "../StyledComponents/Button";
+import {Simulate} from "react-dom/test-utils";
+import toggle = Simulate.toggle;
 
 interface ModalProps {
   children?: React.ReactNode;
+  loading?: boolean;
+  modalStyle?: string;
 }
 
 export interface ModalHandle {
@@ -18,14 +24,24 @@ const Popup = forwardRef<ModalHandle, ModalProps>((props, ref) => {
     }
   }));
 
+
   if (!show) {
     return null;
   }
 
   return (
     <div className={styles.overlayStyle}>
-      <div className={styles.modalStyle}>
-        {props.children}
+      <div className={`${styles.modalStyle} ${props.modalStyle}`}>
+        <Button
+          className={styles.mButton}
+          iconClassName={styles.mButtonIcon}
+          icon='/icons/cancel.png'
+          onClick={() => setShow(prevShow => !prevShow)}
+        />
+        {props.loading
+          ? <div className={styles.loading}><Loading/></div>
+          : props.children
+        }
       </div>
     </div>
   );

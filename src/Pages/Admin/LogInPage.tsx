@@ -1,16 +1,16 @@
 import React from 'react';
 import styles from "./LogInPage.module.css";
 import log from "loglevel";
-import Api from "../Utiles/Api";
-import {IPage} from "../Domain/IPage";
-import Loading from "../Components/PageElements/Loading";
-import PageCard from "../Components/AdminPage/PageCard";
-import Modal from "../Components/PageElements/Modal";
-import BlurContainer from "../Components/PageElements/BlurContainer";
-import Button from "../Components/StyledComponents/Button";
-import Actions from "../Utiles/Actions";
-import {IAdmin} from "../Domain/IAdmin";
-import AdminHelper from "../Utiles/Admin";
+import Api from "../../Utiles/Api";
+import {IPage} from "../../Domain/IPage";
+import Loading from "../../Components/PageElements/Loading";
+import PageCard from "../../Components/AdminPage/PageCard";
+import Modal from "../../Components/PageElements/Modal";
+import BlurContainer from "../../Components/PageElements/BlurContainer";
+import Button from "../../Components/StyledComponents/Button";
+import Actions from "../../Utiles/Actions";
+import {IAdmin} from "../../Domain/IAdmin";
+import AdminHelper from "../../Utiles/Admin";
 
 interface IState {
   loading: boolean;

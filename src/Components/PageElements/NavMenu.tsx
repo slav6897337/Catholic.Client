@@ -3,18 +3,15 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import './NavMenu.css';
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation } from "react-router-dom";
 import useWindowDimensions from "../../hookcs/useWindowDimensions";
-
-interface ILink {
-  name: string,
-  path: string
-}
+import {ILink, links} from "../../Navigation/Lincks";
 
 export default function NavMenu() {
   const {height, width} = useWindowDimensions();
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
+  const location = useLocation();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -26,9 +23,8 @@ export default function NavMenu() {
   const MenuContent = () =>
     <>{
       links.map((link: ILink, index: number) =>
-        <NavLink key={index} className="link" to={link.path}>{link.name}</NavLink>
+        <NavLink key={index} className={`link ${location.pathname === link.path ? 'currentLink' : null}`} to={link.path}>{link.name}</NavLink>
       )}</>
-
 
   const MobileMenuContent = () =>
     <>{
@@ -76,13 +72,3 @@ export default function NavMenu() {
 
   );
 }
-
-const links: ILink[] = [
-  {name: 'Home', path: '/'},
-  {name: 'Holy Mass', path: '/holy-mass'},
-  {name: 'Bible Group', path: '/bible-group'},
-  {name: 'Choir', path: '/choir'},
-  {name: 'Legion of Mary', path: '/legion-of-mary'},
-  {name: 'News', path: '/news'},
-  {name: 'Contacts', path: '/contacts'}
-];

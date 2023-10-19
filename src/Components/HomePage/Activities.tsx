@@ -46,7 +46,7 @@ const Activities = () => {
            Serving in over 170 countries, we strive for the salvation of souls and the glory of God under Mary's guidance.
            Meet us every Monday at 19:00 on Zoom."
           image="/img/bible.png"
-          link="/holy-mass"
+          link="/legion-of-mary"
           isImageTop={true}
         />
 
@@ -56,7 +56,7 @@ const Activities = () => {
            Located at the Old Market (Stará tržnica) in Bratislava, we offer books, rosaries, and other Catholic articles every Saturday for evangelization.
            Volunteer with us or support our mission through your prayers."
           image="/img/reading.png"
-          link="/holy-mass"
+          link="/catholic-table"
           isImageTop={false}
         />
 

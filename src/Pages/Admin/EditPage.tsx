@@ -1,10 +1,10 @@
 import React, {ChangeEvent, ChangeEventHandler, FunctionComponent, ReactNode, useEffect, useRef} from 'react';
 import log from "loglevel";
-import Api from "../Utiles/Api";
-import {IPage} from "../Domain/IPage";
-import Loading from "../Components/PageElements/Loading";
-import PageCard from "../Components/AdminPage/PageCard";
-import Modal from "../Components/PageElements/Modal";
+import Api from "../../Utiles/Api";
+import {IPage} from "../../Domain/IPage";
+import Loading from "../../Components/PageElements/Loading";
+import PageCard from "../../Components/AdminPage/PageCard";
+import Modal from "../../Components/PageElements/Modal";
 import {useParams} from "react-router-dom";
 import {Editor} from 'react-draft-wysiwyg';
 import {EditorState, ContentState, convertToRaw, convertFromRaw} from 'draft-js';
@@ -13,13 +13,13 @@ import {stateFromHTML} from 'draft-js-import-html';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import styles from "./EditPage.module.css";
-import Button from "../Components/StyledComponents/Button";
-import Actions from "../Utiles/Actions";
-import Constants from "../Domain/Constants";
-import Popup, {ModalHandle} from "../Components/PopUp/Popup";
-import Gallery from "../Components/Carousel/Gallery";
-import AdminHelper from "../Utiles/Admin";
-import {IAdmin} from "../Domain/IAdmin";
+import Button from "../../Components/StyledComponents/Button";
+import Actions from "../../Utiles/Actions";
+import Constants from "../../Domain/Constants";
+import Popup, {ModalHandle} from "../../Components/PopUp/Popup";
+import Gallery from "../../Components/Carousel/Gallery";
+import AdminHelper from "../../Utiles/Admin";
+import {IAdmin} from "../../Domain/IAdmin";
 
 const EditPage: FunctionComponent = () => {
 
