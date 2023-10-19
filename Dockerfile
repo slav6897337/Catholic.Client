@@ -6,7 +6,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-FROM 18.18.1-alpine
+FROM node:18.18.1-alpine
 WORKDIR /app
 RUN npm install -g serve
 COPY --from=build /app/build .
