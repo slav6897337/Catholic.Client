@@ -1,0 +1,44 @@
+.collapse {
+    transition-property: height;
+    transition-duration: 400ms;
+    overflow: hidden;
+}
+
+.collapseWrapper{
+    display: flex;
+    align-items: center;
+    border-radius: 2rem;
+    padding: 0.2rem 0.8rem;
+}
+
+.collapseButtonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.collapseWrapper:hover{
+    box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
+}
+
+.collapseIcon{
+    background-color: #016066;
+    border-radius: 2rem;
+    width: 1.2rem;
+    height: 0.2rem;
+    padding: 0;
+    margin: 0;
+}
+.first{
+    transform: rotate(45deg);
+    margin-right: -0.46rem;
+}
+.second{
+    transform: rotate(-45deg);
+    margin-right: 0.6rem;
+}
+.collapseText{
+    color: var(--color-green-100);
+    font-size: 1.2rem;
+    font-weight: 800;
+}

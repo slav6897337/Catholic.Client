@@ -1,4 +1,4 @@
-import React, {ChangeEvent, ChangeEventHandler, FunctionComponent, ReactNode, useEffect, useRef} from 'react';
+import React, {FunctionComponent, useEffect} from 'react';
 import log from "loglevel";
 import Api from "../../Utiles/Api";
 import {defaultPage, IPage} from "../../Domain/IPage";
@@ -21,7 +21,7 @@ const EditNewsPage: FunctionComponent = () => {
   const [news, setNews] = React.useState<INews>(defaultNews);
   const [page, setPage] = React.useState<IPage>(defaultPage);
   const [loading, setLoading] = React.useState<boolean>(true);
-  const[c, setC] = React.useState<boolean>(false);
+  const[collapse, setCollapse] = React.useState<boolean>(false);
 
   useEffect(() => {
     if (!id) {
@@ -41,6 +41,7 @@ const EditNewsPage: FunctionComponent = () => {
               if (page) {
                 page.images ??= [];
                 setPage(page);
+                setCollapse(true);
               }
               setLoading(false);
             });
@@ -60,7 +61,7 @@ const EditNewsPage: FunctionComponent = () => {
     await savePage();
     setLoading(false);
 
-    //window.close()
+    window.close()
   };
 
   const savePage = async () => {
@@ -113,15 +114,15 @@ const EditNewsPage: FunctionComponent = () => {
         onBodyUpdate={description => setNews({...news, description} as INews)}
       />
 
-      <Button text='Collapse' onClick={() => setC(prev => !prev)}/>
-
       <Checkbox
         value={news.isChurchNews}
         text='Show this news only on Holly Mass page'
         onClick={isChurchNews => setNews({...news, isChurchNews} as INews)}
       />
 
-      <PageEditor page={page ?? {} as IPage} onChange={setPage} showTitle={false}/>
+      <Collapse isExpanded={collapse} text='Add Page for News' onClick={value => setCollapse(value)}>
+        <PageEditor page={page ?? {} as IPage} onChange={setPage} showTitle={false}/>
+      </Collapse>
 
       <Button
         className={styles.saveButton}

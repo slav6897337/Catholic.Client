@@ -6,6 +6,7 @@
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     font-family: inherit;
+    scroll-behavior: smooth;
 }
 
 body {
