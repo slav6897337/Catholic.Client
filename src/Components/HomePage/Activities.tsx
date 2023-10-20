@@ -25,7 +25,7 @@ const Activities = () => {
           We're an enthusiastic group engaging in thoughtful reflection, reading, and discussion on the Old and New Testaments in English.
           One-time or regular attendance welcomed. Join our journey of faith today!"
           image="/img/bible-rosary.png"
-          link="/bible-group"
+          link="/english-bible-group"
           isImageTop={false}
         />
 

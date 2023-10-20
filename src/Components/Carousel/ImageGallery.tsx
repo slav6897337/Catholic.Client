@@ -9,12 +9,17 @@ import useWindowDimensions from "../../hookcs/useWindowDimensions";
 
 interface IProps {
   images: string[];
-  buttonText?: string;
-  buttonIcon?: string;
-  buttonOnClick?: (index: number) => void;
+  leftButtonText?: string;
+  leftButtonIcon?: string;
+  leftButtonOnClick?: (image: string) => void;
+  leftButtonCondition?: (image: string) => boolean;
+  rightButtonText?: string;
+  rightButtonIcon?: string;
+  rightButtonOnClick?: (image: string) => void;
   containerStyle?: string;
   onReachEnd?: () => void;
   onClick?: () => void;
+  title?: string;
 }
 
 const ImageGallery: React.FC<IProps> = (props) => {
@@ -28,6 +33,7 @@ const ImageGallery: React.FC<IProps> = (props) => {
     <div className={`${styles.gallery} ${props.containerStyle}`}>
       <div className={styles.galleryWrapper}>
         <Gallery
+          title={props.title}
           items={props.images.map((item, index) => (
             <div className={styles.imageContainer} key={index}>
               <img className={styles.galleryImage}
@@ -35,12 +41,20 @@ const ImageGallery: React.FC<IProps> = (props) => {
                    alt={index.toString()}
                    onClick={() => modalRef?.current?.toggle()}
               />
-              {props.buttonOnClick &&
+              {props.leftButtonOnClick && props.leftButtonCondition && props.leftButtonCondition(item) &&
                   <Button
-                      className={styles.button}
-                      icon={props.buttonIcon}
-                      text={props.buttonText}
-                      onClick={() => props.buttonOnClick}
+                      className={`${styles.button} ${styles.leftButton}`}
+                      icon={props.leftButtonIcon}
+                      text={props.leftButtonText}
+                      onClick={() => props.leftButtonOnClick ? props.leftButtonOnClick(item) : null}
+                  />
+              }
+              {props.rightButtonOnClick &&
+                  <Button
+                      className={`${styles.button} ${styles.rightButton}`}
+                      icon={props.rightButtonIcon}
+                      text={props.rightButtonText}
+                      onClick={() => props.rightButtonOnClick ? props.rightButtonOnClick(item) : null}
                   />
               }
             </div>
@@ -57,12 +71,20 @@ const ImageGallery: React.FC<IProps> = (props) => {
                        src={Api.getImageUrl(item)}
                        alt={index.toString()}
                   />
-                  {props.buttonOnClick &&
+                  {props.leftButtonOnClick && props.leftButtonCondition && props.leftButtonCondition(item) &&
                       <Button
-                          className={`${styles.button} ${styles.fullButton}`}
-                          icon={props.buttonIcon}
-                          text={props.buttonText}
-                          onClick={() => props.buttonOnClick}
+                          className={`${styles.button} ${styles.leftButton}`}
+                          icon={props.leftButtonIcon}
+                          text={props.leftButtonText}
+                          onClick={() => props.leftButtonOnClick ? props.leftButtonOnClick(item) : null}
+                      />
+                  }
+                  {props.rightButtonOnClick &&
+                      <Button
+                          className={`${styles.button} ${styles.rightButton}`}
+                          icon={props.rightButtonIcon}
+                          text={props.rightButtonText}
+                          onClick={() => props.rightButtonOnClick ? props.rightButtonOnClick(item) : null}
                       />
                   }
                 </div>

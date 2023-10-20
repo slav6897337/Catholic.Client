@@ -1,4 +1,4 @@
-import React, {FunctionComponent, MouseEventHandler} from "react";
+import React, {FunctionComponent, MouseEventHandler, ReactNode} from "react";
 import styles from "./Button.module.css";
 
 
@@ -10,6 +10,7 @@ interface IProps {
   style?: React.CSSProperties;
   iconClassName?: string;
   textClassName?: string;
+  children?: ReactNode;
 }
 
 
@@ -24,6 +25,7 @@ const Button: FunctionComponent<IProps> = (props) => {
         ? <p className={`${styles.sButtonText} ${props.textClassName}`}>{props.text}</p>
         : null
       }
+      {props.children && props.children}
     </button>
   );
 };

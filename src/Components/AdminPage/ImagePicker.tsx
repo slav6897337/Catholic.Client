@@ -13,16 +13,18 @@ import Modal from "../PageElements/Modal";
 import AdminHelper from "../../Utiles/Admin";
 import log from "loglevel";
 import ImageGallery from "../Carousel/ImageGallery";
+import allNews from "../News/AllNews";
 
 interface IProps {
   title: string;
   images: string[];
-  onChange: (images: string[]) => void;
+  mainImage?: string
+  onChange: (images: string[], mainImage?: string) => void;
   titleClassName?: string;
   className?: string;
 }
 
-const ImagePicker: FunctionComponent<IProps> = ({title, onChange, images, titleClassName, className}) => {
+const ImagePicker: FunctionComponent<IProps> = ({title, onChange, images, mainImage, titleClassName, className}) => {
   const [admin, setAdmin] = React.useState<IAdmin | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [modalLoading, setModalLoading] = React.useState<boolean>(false);
@@ -31,52 +33,46 @@ const ImagePicker: FunctionComponent<IProps> = ({title, onChange, images, titleC
   const [popupContent, setPopupContent] = React.useState<React.JSX.Element | null>(null);
   const loadedImages = useRef(new Set<number>()).current;
 
+  const allImages = mainImage ? [...images, mainImage] : images;
+
   useEffect(() => {
-      const admin = AdminHelper.getAdminCredentials();
-      setAdmin(admin);
+    const admin = AdminHelper.getAdminCredentials();
+    setAdmin(admin);
   }, []);
 
-  const saveImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-    setModalLoading(true);
-    const file = e.target.files[0];
+  const saveImage = (e: HTMLInputElement) => {
+    if (!e.files) return;
+    setLoading(true);
+    const file = e.files[0];
     const formData = new FormData();
     formData.append(file.name, file);
 
     Api.uploadImage(formData, admin?.token ?? '').then((image) => {
       if (!image) return;
-      onChange([...images, image]);
-      modalRef.current?.toggle();
-    }).finally(() => setModalLoading(false));
+      onChange([...images, image], mainImage);
+    }).finally(() => setLoading(false));
   };
 
-  const UploadImage = (
-    <div>
-      <input
-        type="file"
-        name="file"
-        id="file"
-        className={styles.inputfile}
-        onChange={e => saveImage(e)}
-      />
-    </div>
-  );
+  const deleteImage = async (image: string) => {
+    const newMainImage = image == mainImage ? undefined : mainImage;
+    const newImages = images.filter(i => i !== image);
+    onChange(newImages, newMainImage);
 
-  const deleteImage = async (index: number) => {
-    const newImages = images.slice(0, index).concat(images.slice(index + 1));
-    onChange(newImages);
-
-    await Api.deleteImage(images[index], admin?.token ?? '');
+    await Api.deleteImage(image, admin?.token ?? '');
     modalRef.current?.toggle();
   };
 
-  const DeleteImage = (index: number) => (
+  const makeManeImage = (image: string) => {
+    const newImages = allImages.filter(i => i !== image);
+    onChange(newImages, image);
+  };
+
+  const DeleteImage = (image: string) => (
     <Modal
       title='Are you certain you want to remove photo?'
-      okOnClick={() => deleteImage(index)}
+      okOnClick={() => deleteImage(image)}
       cancelOnClick={() => modalRef?.current?.toggle()}
     />
-
   );
 
   const PoopUpContent = (content: React.JSX.Element) => {
@@ -94,22 +90,34 @@ const ImagePicker: FunctionComponent<IProps> = ({title, onChange, images, titleC
       <div className={styles.blockContainer}>
         <p className={styles.header}>{title}</p>
 
-        <Button
-          className={styles.addButton}
-          icon='/icons/upload.png'
-          text='Upload New Image'
-          onClick={() => PoopUpContent(UploadImage)}
-        />
+        <form className={styles.inputLabel}>
+          <img className={styles.inputImage} src='/icons/upload.png' alt='Upload' />
+          <label>
+            <p>Upload New Image</p>
+            <input
+              type="file"
+              name="file"
+              id="file"
+              accept='image/*'
+              className={styles.inputFile}
+
+              onChange={e => saveImage(e.target)}
+            />
+          </label>
+        </form>
 
         <ImageGallery
-          images={images}
-          buttonIcon='/icons/delete.png'
-          buttonText='Delete image'
-          buttonOnClick={index => PoopUpContent(DeleteImage(index))}
+          images={allImages}
+          rightButtonIcon='/icons/delete.png'
+          rightButtonText='Delete image'
+          rightButtonOnClick={index => PoopUpContent(DeleteImage(index))}
+          leftButtonIcon={'/icons/wallpaper.png'}
+          leftButtonText={'Pin to Top'}
+          leftButtonOnClick={index => makeManeImage(index)}
+          leftButtonCondition={image => mainImage !== image}
         />
 
       </div>
-
 
       <Popup ref={modalRef} loading={modalLoading}>
         {popupContent}

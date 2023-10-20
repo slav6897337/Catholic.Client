@@ -9,6 +9,7 @@ import Header from "../Components/PageElements/Header";
 import BlurContainer from "../Components/PageElements/BlurContainer";
 import {IPage} from "../Domain/IPage";
 import Loading from "../Components/PageElements/Loading";
+import ImageGallery from "../Components/Carousel/ImageGallery";
 
 interface IProps {
 
@@ -30,6 +31,10 @@ const NewsPage: React.FC<IProps> = (props) => {
       try {
         Api.getPage(pageSegment).then((pageInfo) => {
           if (pageInfo) {
+            if(pageInfo.images.length && !pageInfo.mainImage){
+              const main = pageInfo.images.shift()
+              pageInfo.mainImage = main ?? '';
+            }
             setPage(pageInfo);
           }
           setLoading(false);
@@ -70,14 +75,10 @@ const NewsPage: React.FC<IProps> = (props) => {
         </div>
       </div>
 
-
-      {page.images.length
-        ? <Gallery
-          title={'Image Gallery'}
-          items={page.images.map((item, index) => (
-            <img key={index} src={item} alt={index.toString()}/>
-          ))}/>
-        : null}
+      <ImageGallery
+        images={page.images}
+        title={'Image Gallery'}
+      />
     </div>
   );
 }

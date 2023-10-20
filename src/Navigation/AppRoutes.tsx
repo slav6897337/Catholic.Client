@@ -28,7 +28,7 @@ const AppRoutes:IAppRoutes[] = [
     element: <HolyMassPage />
   },
   {
-    path: '/bible-group',
+    path: '/english-bible-group',
     element: <BibleGroupPage />
   },
   {

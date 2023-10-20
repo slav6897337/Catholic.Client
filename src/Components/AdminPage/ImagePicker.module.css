@@ -35,6 +35,47 @@
     outline: none;
 }
 
+input[type="file"] {
+    display: none;
+}
+
+.inputLabel{
+    display: flex;
+    align-items: center;
+    font-family: 'Cambay';
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    padding: 6px 6px 2px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--color-green-100);
+    margin: 2rem 12% 2rem 12%;
+    width: 76%;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.inputLabel:hover{
+    color: var(--color-green-100);
+    box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
+}
+
+.inputImage{
+    width: 2rem;
+    margin-right: 0.4rem;
+}
+
+.inputFile{
+    font-weight: 400;
+    font-size: 1.2rem;
+    padding: 6px 6px 2px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
 .addButton{
     margin: 2rem 12% 2rem 12%;
     width: 76%;

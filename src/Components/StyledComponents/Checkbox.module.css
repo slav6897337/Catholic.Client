@@ -1,0 +1,41 @@
+.checkbox{
+    display: flex;
+    align-items: center;
+    margin: 2rem 2rem 2rem 14%;
+}
+
+.checkboxContainer{
+    border: 2px solid var(--color-black);
+    border-radius: 15px;
+    width: 2.4rem;
+    height: 1.2rem;
+    margin-top: 0.4rem;
+}
+.checkboxContainer:hover{
+    box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
+}
+
+.checkedContainer{
+    border: 2px solid var(--color-green-100);
+}
+
+.checkboxText{
+    color: var(--color-green-100);
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-right: 1rem;
+}
+
+.checkboxMark{
+    border-radius: 15px;
+    background-color: black;
+    color: black;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin: 0.1rem;
+}
+
+.checkedMark{
+    background-color: var(--color-green-100);
+    margin-left: 1.2rem;
+}

@@ -23,12 +23,15 @@
 .button{
     display: none;
     position: absolute;
-    bottom: 1.4rem;
-    left:28%;
+    bottom: 6%;
 }
 
-.fullButton{
-    left:36%;
+.rightButton{
+    right:10%;
+}
+
+.leftButton{
+    left:10%;
 }
 
 .modalStyles{

@@ -3,26 +3,17 @@ import log from "loglevel";
 import Api from "../../Utiles/Api";
 import {defaultPage, IPage} from "../../Domain/IPage";
 import Loading from "../../Components/PageElements/Loading";
-import PageCard from "../../Components/AdminPage/PageCard";
-import Modal from "../../Components/PageElements/Modal";
 import {useParams} from "react-router-dom";
-import {Editor} from 'react-draft-wysiwyg';
-import {EditorState, ContentState, convertToRaw, convertFromRaw} from 'draft-js';
-import {stateToHTML} from 'draft-js-export-html';
-import {stateFromHTML} from 'draft-js-import-html';
-import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import styles from "./EditPage.module.css";
+import styles from "./EditNewsPage.module.css";
 import Button from "../../Components/StyledComponents/Button";
-import Actions from "../../Utiles/Actions";
-import Constants from "../../Domain/Constants";
-import Popup, {ModalHandle} from "../../Components/PopUp/Popup";
-import Gallery from "../../Components/Carousel/Gallery";
 import AdminHelper from "../../Utiles/Admin";
 import {IAdmin} from "../../Domain/IAdmin";
 import {defaultNews, INews} from "../../Domain/INews";
 import BodyEditor from "../../Components/AdminPage/BodyEditor";
 import PageEditor from "../../Components/AdminPage/PageEditor";
+import Checkbox from "../../Components/StyledComponents/Checkbox";
+import {Collapse} from "../../Components/StyledComponents/Collapse";
 
 const EditNewsPage: FunctionComponent = () => {
   const {id} = useParams();
@@ -30,6 +21,7 @@ const EditNewsPage: FunctionComponent = () => {
   const [news, setNews] = React.useState<INews>(defaultNews);
   const [page, setPage] = React.useState<IPage>(defaultPage);
   const [loading, setLoading] = React.useState<boolean>(true);
+  const[c, setC] = React.useState<boolean>(false);
 
   useEffect(() => {
     if (!id) {
@@ -52,8 +44,7 @@ const EditNewsPage: FunctionComponent = () => {
               }
               setLoading(false);
             });
-          }
-          else {
+          } else {
             setLoading(false);
           }
         }
@@ -65,8 +56,15 @@ const EditNewsPage: FunctionComponent = () => {
 
   const save = async () => {
     setLoading(true);
+    await saveNews();
+    await savePage();
+    setLoading(false);
 
-    if (!page) return;
+    //window.close()
+  };
+
+  const savePage = async () => {
+    if (!page || !page.body) return;
 
     if (!page.id) {
       page.urlSegment = generateUrlSegment(page.title);
@@ -74,14 +72,21 @@ const EditNewsPage: FunctionComponent = () => {
     } else {
       await Api.updatePage(page.id, page, admin?.token ?? '');
     }
+  };
 
-    setLoading(false);
+  const saveNews = async () => {
+    if (!news) return;
 
-    //window.close()
+    if (!news.id) {
+      await Api.createNews(news, admin?.token ?? '');
+    } else {
+      await Api.updateNews(news.id, news, admin?.token ?? '');
+    }
   };
 
   const updateTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPage({...page, title: event.target.value} as IPage)
+    setNews({...news, title: event.target.value} as INews)
   };
 
   const generateUrlSegment = (title: string) => {
@@ -98,7 +103,8 @@ const EditNewsPage: FunctionComponent = () => {
 
       <div className={styles.blockContainer}>
         <p className={styles.header}>Title</p>
-        <input className={styles.inputStyling} type="text" value={page?.title} onChange={e => updateTitle(e)}/>
+        <input className={styles.inputStyling} type="text" value={news.title ?? page?.title}
+               onChange={e => updateTitle(e)}/>
       </div>
 
       <BodyEditor
@@ -107,7 +113,15 @@ const EditNewsPage: FunctionComponent = () => {
         onBodyUpdate={description => setNews({...news, description} as INews)}
       />
 
-      <PageEditor page={page ?? {} as IPage}  onChange={setPage} showTitle={false}/>
+      <Button text='Collapse' onClick={() => setC(prev => !prev)}/>
+
+      <Checkbox
+        value={news.isChurchNews}
+        text='Show this news only on Holly Mass page'
+        onClick={isChurchNews => setNews({...news, isChurchNews} as INews)}
+      />
+
+      <PageEditor page={page ?? {} as IPage} onChange={setPage} showTitle={false}/>
 
       <Button
         className={styles.saveButton}

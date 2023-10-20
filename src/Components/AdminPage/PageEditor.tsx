@@ -38,7 +38,8 @@ const PageEditor: FunctionComponent<IProps> = ({page, onChange, showTitle = true
       <ImagePicker
         title='Image Gallery'
         images={page.images}
-        onChange={images => onChange({...page, images})}
+        mainImage={page.mainImage}
+        onChange={(images, mainImage) => onChange({...page, images, mainImage})}
       />
     </div>
   );
