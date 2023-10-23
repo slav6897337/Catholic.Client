@@ -7,6 +7,7 @@ import {IRequestQuery} from "../Domain/IRequestQuery";
 import {INews} from "../Domain/INews";
 import {IPaging} from "../Domain/IPaging";
 import {IAdmin} from "../Domain/IAdmin";
+import IHolyMass from "../Domain/IHolyMass";
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL ?? '';
 
@@ -36,6 +37,14 @@ const Api = {
     await Http.put<IPage>(`${baseUrl}/api/pages/${id}`, page, [authHeader(adminToken)]),
   deletePage: async (id: string, adminToken: string) =>
     await Http.delete(`${baseUrl}/api/pages/${id}`, [authHeader(adminToken)]),
+
+  listHollyMasses: async () => await Http.get<IHolyMass[]>(`${baseUrl}/api/holy-mass`),
+  addHollyMass: async (hollyMass: IHolyMass, adminToken: string) =>
+    await Http.post<IHolyMass>(`${baseUrl}/api/holy-mass`, hollyMass, [authHeader(adminToken)]),
+  updateHollyMass: async (id: string, adminToken: string) =>
+    await Http.put(`${baseUrl}/api/holy-mass/${id}`, [authHeader(adminToken)]),
+  deleteHollyMass: async (id: string, adminToken: string) =>
+    await Http.delete(`${baseUrl}/api/holy-mass/${id}`, [authHeader(adminToken)]),
 
   getNotes: async (request: IRequestQuery) => await Http.get<INote[]>(`${baseUrl}/api/notes${query(request)}`),
   createNote: async (note: INote, adminToken: string) =>

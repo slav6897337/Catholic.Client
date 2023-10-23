@@ -30,6 +30,10 @@
     border: none;
 }
 
+.bigButton{
+    height: 4rem;
+}
+
 .nButtonText{
     padding-top: 0.4rem;
     margin-left: 0.8rem;

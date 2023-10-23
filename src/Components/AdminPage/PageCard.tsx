@@ -38,9 +38,14 @@ const PageCard: FunctionComponent<IProps> = ({page, titleStyle, titleClassName, 
         : null}
       <WhiteContainer title={page.title}>
         <div className={styles.pageCardContainer}>
-          <Button className={styles.button} icon='/icons/view.png' text='View' onClick={() => Actions.redirect(page.urlSegment)}/>
-          <Button className={styles.button} icon='/icons/edit.png' text='Edit' onClick={() => Actions.redirect(`admin/edit/${page.urlSegment}`)}/>
-          <Button className={styles.button} icon='/icons/delete.png' text='Delete' onClick={() => setShowDeletePopup(true)}/>
+          <Button className={styles.button} icon='/icons/view.png' text='View'
+                  onClick={() => Actions.redirect(page.urlSegment)}/>
+          <Button className={styles.button} icon='/icons/edit.png' text='Edit'
+                  onClick={() => Actions.redirect(`admin/edit/${page.urlSegment}`)}/>
+          {page.urlSegment !== 'home' && page.urlSegment !== 'holy-mass'
+            ? <Button className={styles.button} icon='/icons/delete.png' text='Delete'
+                      onClick={() => setShowDeletePopup(true)}/>
+            : null}
         </div>
 
       </WhiteContainer>

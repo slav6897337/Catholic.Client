@@ -5,14 +5,11 @@ import Api from "../../Utiles/Api";
 import {IPage} from "../../Domain/IPage";
 import Loading from "../../Components/PageElements/Loading";
 import PageCard from "../../Components/AdminPage/PageCard";
-import Modal from "../../Components/PageElements/Modal";
-import BlurContainer from "../../Components/PageElements/BlurContainer";
 import Button from "../../Components/StyledComponents/Button";
 import Actions from "../../Utiles/Actions";
 import {IAdmin} from "../../Domain/IAdmin";
 import AdminHelper from "../../Utiles/Admin";
 import WhiteContainer from "../../Components/PageElements/WhiteContainer";
-import {INews} from "../../Domain/INews";
 import AddCard from "../../Components/AdminPage/AddCard";
 
 interface IState {
@@ -68,15 +65,18 @@ export default class AdminPage extends React.Component<{}, IState> {
         <Loading/>
       </div>);
 
+
     return (
       <div className={styles.body}>
-
-
-        {this.state.pages.map((page, index) => {
-          return (
-            <PageCard page={page} key={index}/>
-          );
-        })}
+        {this.state.pages
+          .sort((p1, p2) =>
+            p1.urlSegment === 'home' ? -2 :
+              p1.urlSegment === 'holy-mass' ? -1 : 1)
+          .map((page, index) => {
+            return (
+              <PageCard page={page} key={index}/>
+            );
+          })}
         <WhiteContainer title={"News"}>
           <Button
             className={styles.nButton}
