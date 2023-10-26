@@ -1,0 +1,109 @@
+.body {
+    background: linear-gradient(270deg, rgba(241, 241, 241, 0.70) 0%, rgba(241, 241, 241, 0.65) 46.33%, #F1F1F1 100%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    min-height: 28rem;
+    padding: 1rem 0;
+}
+
+.titleContainer {
+    padding: 2rem;
+    color: white;
+    font-family: var(--font-cambay);
+    font-size: 0.5rem;
+    min-width: 34%;
+}
+
+.image {
+    position: absolute;
+    margin-top: 1rem;
+    margin-left: 50%;
+    width: 46%;
+}
+
+.holyMassContainer {
+    display: flex;
+    width: 100%;
+}
+
+.holyMassEditContainer {
+    width: 64%;
+    margin: 1rem;
+}
+
+.blockContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    width: 100%;
+}
+
+.calendarContainer {
+    width: 20%;
+    margin: 4rem;
+}
+
+.button{
+    margin: 1rem;
+    width: 98%;
+    justify-content: center;
+}
+
+.buttonText{
+
+}
+
+.horizontalLine{
+    width: 98%;
+    height: 0.1rem;
+    background-color: var(--color-black);
+    margin: 1rem;
+}
+
+.header {
+    font-weight: bold;
+    color: var(--color-green-100);
+    font-size: 2rem;
+}
+
+.inputStyling {
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--color-black);
+    border-radius: 5px;
+    width: 80%;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--color-black);
+    background-color: var(--color-white);
+    outline: none;
+}
+
+.bodyEditor{
+    width: 100%;
+    padding: 0;
+}
+
+.wrapperClassName{
+    width: 88%;
+}
+
+@media screen and (max-width: 1200px) {
+
+}
+
+@media screen and (max-width: 960px) {
+
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 480px) {
+
+}

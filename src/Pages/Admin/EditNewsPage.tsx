@@ -21,17 +21,17 @@ const EditNewsPage: FunctionComponent = () => {
   const [news, setNews] = React.useState<INews>(defaultNews);
   const [page, setPage] = React.useState<IPage>(defaultPage);
   const [loading, setLoading] = React.useState<boolean>(true);
-  const[collapse, setCollapse] = React.useState<boolean>(false);
+  const [collapse, setCollapse] = React.useState<boolean>(false);
 
   useEffect(() => {
+    const admin = AdminHelper.getAdminCredentials();
+    setAdmin(admin);
+
     if (!id) {
       setLoading(false);
       return;
     }
     try {
-      const admin = AdminHelper.getAdminCredentials();
-      setAdmin(admin);
-
       Api.getNews({take: 1000, skip: 0, holyMassOnly: false}).then((newsResponse) => {
         const news = newsResponse?.items?.find((item) => item.id === id);
         if (news) {
@@ -42,10 +42,14 @@ const EditNewsPage: FunctionComponent = () => {
                 page.images ??= [];
                 setPage(page);
                 setCollapse(true);
+                if(!news.link){
+                  setNews({...news, link: generateUrlSegment(news.title)});
+                }
               }
               setLoading(false);
             });
           } else {
+            setPage({title: news.title, urlSegment: generateUrlSegment(news.title), body:''} as IPage)
             setLoading(false);
           }
         }
@@ -61,14 +65,12 @@ const EditNewsPage: FunctionComponent = () => {
     await savePage();
     setLoading(false);
 
-    window.close()
+    //window.close()
   };
 
   const savePage = async () => {
     if (!page || !page.body) return;
-
     if (!page.id) {
-      page.urlSegment = generateUrlSegment(page.title);
       await Api.createPage(page, admin?.token ?? '');
     } else {
       await Api.updatePage(page.id, page, admin?.token ?? '');
@@ -77,7 +79,6 @@ const EditNewsPage: FunctionComponent = () => {
 
   const saveNews = async () => {
     if (!news) return;
-
     if (!news.id) {
       await Api.createNews(news, admin?.token ?? '');
     } else {
@@ -87,7 +88,14 @@ const EditNewsPage: FunctionComponent = () => {
 
   const updateTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPage({...page, title: event.target.value} as IPage)
-    setNews({...news, title: event.target.value} as INews)
+    setNews({...news, title: event.target.value, link: page.body ? generateUrlSegment(news.title) : null} as INews)
+  };
+
+  const updatePage = (page: IPage) => {
+    setPage(page);
+    if(!news.link){
+      setNews({...news, link: generateUrlSegment(news.title)})
+    }
   };
 
   const generateUrlSegment = (title: string) => {
@@ -108,11 +116,15 @@ const EditNewsPage: FunctionComponent = () => {
                onChange={e => updateTitle(e)}/>
       </div>
 
-      <BodyEditor
-        body={news?.description ?? ''}
-        title="News Description"
-        onBodyUpdate={description => setNews({...news, description} as INews)}
-      />
+      <div className={styles.blockContainer}>
+        <p className={styles.header}>News Description</p>
+        <textarea
+          className={styles.inputDescriptionStyling}
+          maxLength={200}
+          value={news.description}
+          onChange={e =>  setNews({...news, description: e.target.value} as INews)                  }
+        />
+      </div>
 
       <Checkbox
         value={news.isChurchNews}
@@ -121,7 +133,7 @@ const EditNewsPage: FunctionComponent = () => {
       />
 
       <Collapse isExpanded={collapse} text='Add Page for News' onClick={value => setCollapse(value)}>
-        <PageEditor page={page ?? {} as IPage} onChange={setPage} showTitle={false}/>
+        <PageEditor page={page ?? {} as IPage} onChange={updatePage} showTitle={false}/>
       </Collapse>
 
       <Button

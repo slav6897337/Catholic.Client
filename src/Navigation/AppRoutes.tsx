@@ -10,7 +10,7 @@ import EditPage from "../Pages/Admin/EditPage";
 import LogInPage from "../Pages/Admin/LogInPage";
 import AdminNewsPage from "../Pages/Admin/AdminNewsPage";
 import EditNewsPage from "../Pages/Admin/EditNewsPage";
-import EditHollyMassPage from "../Pages/Admin/EditHollyMassPage";
+import EditHolyMassPage from "../Pages/Admin/EditHolyMassPage";
 
 
 interface IAppRoutes {
@@ -46,7 +46,7 @@ const AppRoutes:IAppRoutes[] = [
   },
   {
     path: '/admin/edit/holy-mass',
-    element: <EditHollyMassPage />
+    element: <EditHolyMassPage />
   },
   {
     path: '/admin/edit/:id',

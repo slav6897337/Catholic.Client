@@ -1,0 +1,77 @@
+.holyMassContainer{
+    border-radius: 0.6rem;
+    border: 1px solid var(--color-black);
+    margin: 1rem;
+    width: 98%;
+}
+
+.dateButton{
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    text-align: left;
+    font-family: var(--font-cambay);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    padding: 0.2rem 1rem;
+}
+
+.descriptionContainer{
+    display: flex;
+    border-top: 1px solid var(--color-black);
+    background-color: white;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+.descriptionInput{
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: var(--font-cambay);
+    font-size: 1.25rem;
+    font-style: normal;
+    padding: 0 1rem;
+}
+
+.descriptionInput::placeholder {
+    font-size: 1rem;
+    color: var(--color-silver);
+}
+
+.deleteButton{
+    border-color: red;
+    margin: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 0.6rem;
+    padding: 0.1rem;
+}
+
+.saveButton{
+    border-color: green;
+    margin: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 0.6rem;
+    padding: 0.1rem;
+}
+
+.deleteButtonIcon{
+    width: 1rem;
+    height: 1rem;
+    margin: 0.1rem;
+}
+
+.modalStyles{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pickerContainer{
+    width: 18rem;
+}

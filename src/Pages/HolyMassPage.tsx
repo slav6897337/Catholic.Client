@@ -7,9 +7,14 @@ import CalendarWithEvents from "../Components/Calendar/CalendarWithEvents";
 import IHolyMass from "../Domain/IHolyMass";
 import Map from "../Components/Maps/Maps";
 import Header from "../Components/PageElements/Header";
+import Api from "../Utiles/Api";
+import log from "loglevel";
+import {defaultPage, IPage} from "../Domain/IPage";
 
 interface IState {
   selectedDate: Date;
+  page: IPage;
+  holyMasses: IHolyMass[];
 }
 
 export default class HolyMassPage extends React.Component<{}, IState> {
@@ -18,13 +23,31 @@ export default class HolyMassPage extends React.Component<{}, IState> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      selectedDate: new Date()
+      selectedDate: new Date(),
+      page: defaultPage,
+      holyMasses:[]
     };
   }
 
-  handleDateSelect = (date: Date) => {
-    this.setState({selectedDate: date});
-  };
+  componentDidMount() {
+    try {
+      Api.listHollyMasses().then((masses) => {
+        if (masses?.length) {
+          this.setState({
+            holyMasses: masses
+          })
+        }
+      });
+      Api.getPage('holy-mass').then((page) => {
+        if (page) {
+          page.images ??= [];
+          this.setState({page})
+        }
+      });
+    } catch (e) {
+      log.info(e);
+    }
+  }
 
   render() {
     return (
@@ -39,16 +62,16 @@ export default class HolyMassPage extends React.Component<{}, IState> {
 
         <div className={styles.mainContainer}>
           <div className={styles.sideContainer}>
-            <CalendarWithEvents holyMasses={holyMasses}/>
+            <CalendarWithEvents holyMasses={this.state.holyMasses}/>
             <Notes notesContainer={styles.notesContainer} holyMassOnly={true}/>
           </div>
 
-          <MainInfo holyMasses={holyMasses}/>
+          <MainInfo page={this.state.page} holyMasses={this.state.holyMasses}/>
 
         </div>
 
 
-        <AllNews containerStyle={styles.newsContainerStyle}/>
+        <AllNews containerStyle={styles.newsContainerStyle} holyMassOnly={true}/>
 
         <h1 className={styles.howToFindUs}>HOW TO FIND US</h1>
         <div className={styles.bottomContainer}>
@@ -60,34 +83,3 @@ export default class HolyMassPage extends React.Component<{}, IState> {
     );
   }
 }
-
-const holyMasses: IHolyMass[] = [
-  {
-    date: new Date(2023,5,11,11),
-  },
-  {
-    date: new Date(2023,5,16,18, 30),
-    description: "Solemnity of the Sacred Heart of Jesus (not a holy day of obligation).",
-  },
-  {
-    date: new Date(2023,5,18,11),
-  },
-  {
-    date: new Date(2023,5,25,11),
-    description: "Confirmation of the adults with archbishop Nicola Girasoli, papal Nuncio.",
-  },
-  {
-    date: new Date(2023,6,2,11),
-  },
-  {
-    date: new Date(2023,6,5,11),
-    description: "Solemtnity of Saints Cyril and Methodius (not a holy day of obligation).",
-  },
-  {
-    date: new Date(2023,6,7,18, 30),
-    description: "First Friday of July.Sunday, July 9 at 11am.",
-  },
-  {
-    date: new Date(2023,6,9,11),
-  },
-];

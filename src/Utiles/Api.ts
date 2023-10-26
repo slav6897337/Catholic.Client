@@ -38,11 +38,21 @@ const Api = {
   deletePage: async (id: string, adminToken: string) =>
     await Http.delete(`${baseUrl}/api/pages/${id}`, [authHeader(adminToken)]),
 
-  listHollyMasses: async () => await Http.get<IHolyMass[]>(`${baseUrl}/api/holy-mass`),
-  addHollyMass: async (hollyMass: IHolyMass, adminToken: string) =>
-    await Http.post<IHolyMass>(`${baseUrl}/api/holy-mass`, hollyMass, [authHeader(adminToken)]),
-  updateHollyMass: async (id: string, adminToken: string) =>
-    await Http.put(`${baseUrl}/api/holy-mass/${id}`, [authHeader(adminToken)]),
+  listHollyMasses: async () => {
+    const masses = await Http.get<IHolyMass[]>(`${baseUrl}/api/holy-mass`);
+    return masses.map(mass => ({
+      ...mass,
+      schedule: new Date(mass.schedule)
+    }));
+  },
+  addHollyMass: async (hollyMass: IHolyMass, adminToken: string) =>{
+    const newHolyMass = await Http.post<IHolyMass>(`${baseUrl}/api/holy-mass`, hollyMass, [authHeader(adminToken)]);
+    return {...newHolyMass, schedule: new Date(newHolyMass.schedule)};
+  },
+  updateHollyMass: async (id: string, holyMass: IHolyMass, adminToken: string) =>{
+    const newHolyMass = await Http.put<IHolyMass>(`${baseUrl}/api/holy-mass/${id}`, holyMass,[authHeader(adminToken)]);
+    return {...newHolyMass, schedule: new Date(newHolyMass.schedule)};
+  },
   deleteHollyMass: async (id: string, adminToken: string) =>
     await Http.delete(`${baseUrl}/api/holy-mass/${id}`, [authHeader(adminToken)]),
 

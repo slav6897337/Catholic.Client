@@ -23,15 +23,10 @@ const AllNews: React.FC<IProps> = (props) => {
 
     if (!hasMore) return;
 
-    const request = {
-      skip: news.length,
-      take: news.length + 5,
-      holyMassOnly: props.holyMassOnly ?? false
-    }
-
-    Api.getNews(request).then((response) => {
-      setNews((prevItems) => [...prevItems, ...response.items]);
-      setHasMore(response.count > response.skip + response.take);
+    Api.getAllNews().then((response) => {
+      const newsResp = props.holyMassOnly ? response.filter(n => n.isChurchNews) : response;
+      setNews(newsResp);
+      setHasMore(false);
     });
   };
 

@@ -1,7 +1,7 @@
 .sButton {
     display: flex;
     align-items: center;
-    font-family: 'Cambay';
+    font-family: var(--font-cambay);
     text-decoration: none;
     font-style: normal;
     font-weight: 400;

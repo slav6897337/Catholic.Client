@@ -53,3 +53,9 @@ abbr[title] {
     color: #CFA976;
     font-weight: bold;
 }
+
+.react-time-picker__wrapper{
+    margin: 2rem 0 1rem 3.4rem;
+    padding: 0.6rem;
+    border-radius: 0.4rem;
+}

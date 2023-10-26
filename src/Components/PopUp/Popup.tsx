@@ -1,9 +1,7 @@
-import React, {useState, forwardRef, useImperativeHandle} from 'react';
+import React, {forwardRef, useImperativeHandle, useState} from 'react';
 import styles from './Popup.module.css';
 import Loading from "../PageElements/Loading";
 import Button from "../StyledComponents/Button";
-import {Simulate} from "react-dom/test-utils";
-import toggle = Simulate.toggle;
 
 interface ModalProps {
   children?: React.ReactNode;
