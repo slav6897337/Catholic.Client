@@ -42,14 +42,10 @@ const EditNewsPage: FunctionComponent = () => {
                 page.images ??= [];
                 setPage(page);
                 setCollapse(true);
-                if(!news.link){
-                  setNews({...news, link: generateUrlSegment(news.title)});
-                }
               }
               setLoading(false);
             });
           } else {
-            setPage({title: news.title, urlSegment: generateUrlSegment(news.title), body:''} as IPage)
             setLoading(false);
           }
         }
@@ -61,29 +57,37 @@ const EditNewsPage: FunctionComponent = () => {
 
   const save = async () => {
     setLoading(true);
-    await saveNews();
-    await savePage();
+    const title = news.title ? news.title : page.title;
+    const urlSegment = page.urlSegment ? page.urlSegment : page.body ? generateUrlSegment(title) : '';
+    const newPage:IPage = {...page, title, urlSegment};
+    const newNews:INews = {...news, title, link: urlSegment};
+    await saveNews(newNews);
+    await savePage(newPage);
     setLoading(false);
 
-    //window.close()
+    window.close()
   };
 
-  const savePage = async () => {
-    if (!page || !page.body) return;
-    if (!page.id) {
-      await Api.createPage(page, admin?.token ?? '');
+  const savePage = async (pageForSaving:IPage) => {
+    if (!pageForSaving || !pageForSaving.body) return;
+    let newPage: IPage;
+    if (!pageForSaving.id) {
+      newPage = await Api.createPage(pageForSaving, admin?.token ?? '');
     } else {
-      await Api.updatePage(page.id, page, admin?.token ?? '');
+      newPage = await Api.updatePage(pageForSaving.id, pageForSaving, admin?.token ?? '');
     }
+    setPage(newPage);
   };
 
-  const saveNews = async () => {
-    if (!news) return;
-    if (!news.id) {
-      await Api.createNews(news, admin?.token ?? '');
+  const saveNews = async (newsForSaving: INews) => {
+    if (!newsForSaving) return;
+    let newNews: INews;
+    if (!newsForSaving.id) {
+      newNews = await Api.createNews(newsForSaving, admin?.token ?? '');
     } else {
-      await Api.updateNews(news.id, news, admin?.token ?? '');
+      newNews = await Api.updateNews(newsForSaving.id, newsForSaving, admin?.token ?? '');
     }
+    setNews(newNews);
   };
 
   const updateTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,7 +97,7 @@ const EditNewsPage: FunctionComponent = () => {
 
   const updatePage = (page: IPage) => {
     setPage(page);
-    if(!news.link){
+    if (!news.link) {
       setNews({...news, link: generateUrlSegment(news.title)})
     }
   };
@@ -122,7 +126,7 @@ const EditNewsPage: FunctionComponent = () => {
           className={styles.inputDescriptionStyling}
           maxLength={200}
           value={news.description}
-          onChange={e =>  setNews({...news, description: e.target.value} as INews)                  }
+          onChange={e => setNews({...news, description: e.target.value} as INews)}
         />
       </div>
 

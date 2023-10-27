@@ -57,7 +57,7 @@ const NewsPage: React.FC<IProps> = (props) => {
       {page?.title
         ? <Header>
           <div className={styles.titleContainer}>
-            <p className={styles.left}>English Bible group</p>
+            <p className={styles.left}>{page.title}</p>
           </div>
         </Header>
         : null}

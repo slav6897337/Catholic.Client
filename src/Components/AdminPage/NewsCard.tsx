@@ -14,15 +14,16 @@ interface IProps {
   className?: string;
   style?: React.CSSProperties;
   adminToken: string;
+  onChange: () => void;
 }
 
-const NewsCard: FunctionComponent<IProps> = ({news, adminToken, titleStyle, titleClassName, className, style}) => {
+const NewsCard: FunctionComponent<IProps> = ({news, adminToken, onChange, titleStyle, titleClassName, className, style}) => {
 
   const [showDeletePopup, setShowDeletePopup] = React.useState(false);
   const handleDelete = async () => {
     await Api.deleteNews(news.id, adminToken);
-
-    setShowDeletePopup(false)
+    onChange();
+    setShowDeletePopup(false);
   };
 
   return (
