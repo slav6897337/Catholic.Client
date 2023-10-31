@@ -62,14 +62,14 @@ const NewsPage: React.FC<IProps> = (props) => {
         </Header>
         : null}
 
-      <div>
+      <div className={styles.bodyContainer}>
         {page?.mainImage
           ? <img className={styles.image} alt='Main' src={Api.getImageUrl(page.mainImage)}/>
           : null}
 
         <div className={styles.additionalBibleGroupInfoContainer}>
           <BlurContainer className={page.mainImage ? styles.mainTextContainer : styles.mainTextContainerWithoutImage}>
-            <div dangerouslySetInnerHTML={{ __html: page.body }} />
+            <div dangerouslySetInnerHTML={{__html: page.body}}/>
           </BlurContainer>
         </div>
       </div>
