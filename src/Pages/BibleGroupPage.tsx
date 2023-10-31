@@ -3,9 +3,14 @@ import styles from "./BibleGroupPage.module.css";
 import Header from "../Components/PageElements/Header";
 import BibleGroupInfo from "../Components/BibleGroupPage/BibleGroupInfo";
 import Gallery from "../Components/Carousel/Gallery";
+import ImageGallery from "../Components/Carousel/ImageGallery";
+import Api from "../Utiles/Api";
+import log from "loglevel";
+import {defaultPage, IPage} from "../Domain/IPage";
 
 interface IState {
   selectedDate: Date;
+  page: IPage
 }
 
 export default class BibleGroupPage extends React.Component<{}, IState> {
@@ -14,8 +19,22 @@ export default class BibleGroupPage extends React.Component<{}, IState> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      selectedDate: new Date()
+      selectedDate: new Date(),
+      page: defaultPage
     };
+  }
+
+  componentDidMount() {
+    try {
+      Api.getPage('english-bible-group').then((page) => {
+        if (page) {
+          page.images ??= [];
+          this.setState({page})
+        }
+      });
+    } catch (e) {
+      log.info(e);
+    }
   }
 
   render() {
@@ -30,36 +49,15 @@ export default class BibleGroupPage extends React.Component<{}, IState> {
         <div className={styles.bibleGroupInfoContainer}>
           <img className={styles.image} alt='Bible' src={'/img/bible-rosary.png'}/>
           <div className={styles.additionalBibleGroupInfoContainer}>
-            <BibleGroupInfo className={styles.bibleGroupInfo}/>
+            <BibleGroupInfo className={styles.bibleGroupInfo} body={this.state.page.body}/>
           </div>
         </div>
 
-        <Gallery
+        <ImageGallery
+          images={this.state.page.images ?? []}
           title={'Image Gallery'}
-          items={imagesData.map((item, index) => (
-            <img src={item.imgPath} alt={item.label}/>
-          ))}/>
+        />
       </div>
     );
   }
 }
-
-const imagesData = [
-  {
-    label: 'Holly Mass',
-    imgPath: '/img/reading.png',
-  },
-  {
-    label: 'Bible',
-    imgPath: '/img/bible.png',
-  },
-  {
-    label: 'Bible',
-    imgPath:
-      '/img/bible-rosary.png',
-  },
-  {
-    label: 'Reading',
-    imgPath: '/img/reading.png',
-  },
-];

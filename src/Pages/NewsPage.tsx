@@ -78,6 +78,7 @@ const NewsPage: React.FC<IProps> = (props) => {
         images={page.images}
         title={'Image Gallery'}
       />
+
     </div>
   );
 }
