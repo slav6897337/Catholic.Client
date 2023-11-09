@@ -8,6 +8,7 @@ interface ISpecificNews {
   date: Date,
   description: string,
   link?: string,
+  style?: React.CSSProperties;
 }
 
 const SpecificNews = (props: ISpecificNews) => {
@@ -25,10 +26,10 @@ const SpecificNews = (props: ISpecificNews) => {
 
   return (
     props.link?.length ?
-      <Link to={props.link} className="news newsClickable">
+      <Link to={`/${props.link}`} className="news newsClickable" style={props.style}>
         <Content/>
       </Link> :
-      <div className="news newsNonClickable">
+      <div className="news newsNonClickable" style={props.style}>
         <Content/>
       </div>
   );

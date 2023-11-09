@@ -13,19 +13,25 @@ body {
     line-height: 1;
 }
 
-.body-container{
+.body{
+    background: linear-gradient(270deg, rgba(241, 241, 241, 0.70) 0%, rgba(241, 241, 241, 0.65) 46.33%, #F1F1F1 100%);
+    padding-bottom: 2rem;
+    min-height: 880px;
+}
+
+.body-container {
     background-image: url(../public/background.png);
     background-size: cover;
     background-position: center;
     min-height: 880px;
 }
 
-p, h1, h2{
+p, h1, h2 {
     font-size: var(--font-size-extra-large);
     line-height: var(--line-height-extra-large);
 }
 
-h3{
+h3 {
     font-size: var(--font-size-extra-large-h);
     line-height: var(--line-height-extra-large-h);
 }
@@ -52,17 +58,18 @@ table {
     border-spacing: 0;
 }
 
-.error-container{
+.error-container {
     position: absolute;
     top: 1rem;
     right: 1rem;
 }
-.DraftEditor-editorContainer{
-    z-index: auto!important;
+
+.DraftEditor-editorContainer {
+    z-index: auto !important;
 }
 
 @media screen and (max-width: 960px) {
-    p, h1, h2, h3{
+    p, h1, h2, h3 {
         font-size: var(--font-size-large);
         line-height: var(--line-height-large);
     }
@@ -70,29 +77,33 @@ table {
 }
 
 @media screen and (max-width: 567px) {
-    p, h1, h2, h3{
+    p, h1, h2, h3 {
         font-size: var(--font-size-medium);
         line-height: var(--line-height-medium);
     }
 }
 
 @media screen and (max-width: 420px) {
-    p, h1, h2, h3{
+    p, h1, h2, h3 {
         font-size: var(--font-size-small);
         line-height: var(--line-height-small);
     }
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@700&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Bellota+Text:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cambay:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;1,400&display=swap");
+
+
 body {
     margin: 0;
     line-height: normal;
 }
+
 :root {
     /* fonts */
     --font-cambay: Cambay;
+    --font-monrope: Manrope;
     --font-bellota-text: "Bellota Text";
     --font-cardo: Cardo;
 

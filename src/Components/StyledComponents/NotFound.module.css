@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 880px;
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 42rem;
+    width: 42rem;
+    height: 42rem;
+    background: rgba(242, 242, 242, 0.60);
+}
+
+.numbers {
+    font-family: var(--font-monrope);
+    color: #016066;
+    text-align: center;
+    font-size: 8rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 6rem 0 1rem 0;
+}
+
+.sorryText{
+    font-family: var(--font-monrope);
+    color:  #1A1A1A;
+    text-align: center;
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 1.4rem;
+}
+
+.text p{
+    font-family: var(--font-monrope);
+    color: #3A3A3A;
+    text-align: center;
+
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 1.575rem */
+    letter-spacing: 0.00625rem;
+    margin: 0.4rem;
+}
+.text{
+
+    margin-bottom: 2rem;
+}

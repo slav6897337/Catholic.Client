@@ -1,0 +1,16 @@
+
+.titleContainer {
+  padding: 2rem;
+  color: white;
+  font-family: var(--font-cambay);
+  font-size: 0.5rem;
+}
+
+.newsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+}
+

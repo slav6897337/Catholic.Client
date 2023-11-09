@@ -12,6 +12,7 @@ import AdminNewsPage from "../Pages/Admin/AdminNewsPage";
 import EditNewsPage from "../Pages/Admin/EditNewsPage";
 import EditHolyMassPage from "../Pages/Admin/EditHolyMassPage";
 import EditHomePage from "../Pages/Admin/EditHomePage";
+import ListNewsPage from "../Pages/ListNewsPage";
 
 
 interface IAppRoutes {
@@ -40,6 +41,10 @@ const AppRoutes:IAppRoutes[] = [
   {
     path: '/choir',
     element: <ChoirPage />
+  },
+  {
+    path: '/news',
+    element: <ListNewsPage />
   },
   {
     path: '/admin',

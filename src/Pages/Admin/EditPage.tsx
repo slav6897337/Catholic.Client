@@ -19,6 +19,9 @@ const EditPage: FunctionComponent = () => {
   const [loading, setLoading] = React.useState<boolean>(true);
 
   useEffect(() => {
+    const admin = AdminHelper.getAdminCredentials();
+    setAdmin(admin);
+
     if (!id) {
       setPage({
         title: '',
@@ -32,8 +35,6 @@ const EditPage: FunctionComponent = () => {
       return;
     }
     try {
-      const admin = AdminHelper.getAdminCredentials();
-      setAdmin(admin);
 
       Api.getPage(id).then((page) => {
         if (page) {

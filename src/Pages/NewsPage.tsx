@@ -9,6 +9,7 @@ import BlurContainer from "../Components/PageElements/BlurContainer";
 import {IPage} from "../Domain/IPage";
 import Loading from "../Components/PageElements/Loading";
 import ImageGallery from "../Components/Carousel/ImageGallery";
+import {NotFound} from "../Components/StyledComponents/NotFound";
 
 interface IProps {
 
@@ -47,8 +48,8 @@ const NewsPage: React.FC<IProps> = (props) => {
   if (loading) return (<Loading/>);
 
   if (!page) return (
-    <div className={styles.body}>
-      <p>Not Found</p>
+    <div className='body'>
+      <NotFound/>
     </div>
   );
 
