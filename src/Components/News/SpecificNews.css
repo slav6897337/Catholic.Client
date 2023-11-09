@@ -43,3 +43,13 @@
     margin: 0.2rem 1rem 1rem;
     color: #000000;
 }
+
+@media screen and (max-width: 420px) {
+    .news{
+
+        margin: 0.2rem;
+    }
+    .newsClickable:hover{
+        box-shadow: 0 0 0.2rem rgba(1, 96, 102, 0.8);
+    }
+}

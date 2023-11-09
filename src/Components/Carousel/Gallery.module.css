@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     padding: 1rem 0 2rem 0;
-    margin: 0 1.6rem;
+    margin: 0 2rem;
 }
 
 .galleryTitle{
@@ -35,20 +35,23 @@
 }
 
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 840px) {
     .galleryContainer{
         width: 68%;
     }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 680px) {
     .galleryContainer{
         width: 80%;
     }
+    .gallery{
+        margin: 0 1rem;
+    }
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 550px) {
     .galleryContainer{
-        width: 88%;
+        width: 100%;
     }
 }
 
