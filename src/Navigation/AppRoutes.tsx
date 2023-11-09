@@ -11,6 +11,7 @@ import LogInPage from "../Pages/Admin/LogInPage";
 import AdminNewsPage from "../Pages/Admin/AdminNewsPage";
 import EditNewsPage from "../Pages/Admin/EditNewsPage";
 import EditHolyMassPage from "../Pages/Admin/EditHolyMassPage";
+import EditHomePage from "../Pages/Admin/EditHomePage";
 
 
 interface IAppRoutes {
@@ -43,6 +44,10 @@ const AppRoutes:IAppRoutes[] = [
   {
     path: '/admin',
     element: <AdminPage />
+  },
+  {
+    path: '/admin/edit/home',
+    element: <EditHomePage />
   },
   {
     path: '/admin/edit/holy-mass',

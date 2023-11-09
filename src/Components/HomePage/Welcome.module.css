@@ -18,6 +18,7 @@
     border-image-slice: 1;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    width: 74%;
 }
 .welcome p{
     margin-top: 1.6rem;
@@ -39,8 +40,10 @@
 }
 @media screen and (max-width: 840px) {
     .welcome {
-        margin-top: 4rem;
         margin-left: 2rem;
         margin-right: 2rem;
+    }
+    .welcomeTitleLine{
+        width: 56%;
     }
 }

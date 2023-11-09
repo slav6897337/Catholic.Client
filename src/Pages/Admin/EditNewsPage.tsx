@@ -131,8 +131,14 @@ const EditNewsPage: FunctionComponent = () => {
       </div>
 
       <Checkbox
+        value={news.isHomeNews}
+        text='Show on Catholic.sk'
+        onClick={isHomeNews => setNews({...news, isHomeNews} as INews)}
+      />
+
+      <Checkbox
         value={news.isChurchNews}
-        text='Show this news only on Holly Mass page'
+        text='Show on Hollymass.sk'
         onClick={isChurchNews => setNews({...news, isChurchNews} as INews)}
       />
 

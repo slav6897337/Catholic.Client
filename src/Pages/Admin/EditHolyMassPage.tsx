@@ -157,7 +157,6 @@ const EditHolyMassPage: FunctionComponent = () => {
 
 
       <BodyEditor
-        title='Confessions'
         className={styles.bodyEditor}
         wrapperClassName={styles.wrapperClassName}
         body={pageSelections?.confessions ?? ''}
@@ -167,7 +166,6 @@ const EditHolyMassPage: FunctionComponent = () => {
       <Button icon='/img/youtube.png' text='YouTube' onClick={() => Actions.redirect(Constants.fatherBenYouTubeChannel)}/>
 
       <BodyEditor
-        title='Additional Info'
         className={styles.bodyEditor}
         wrapperClassName={styles.wrapperClassName}
         body={pageSelections?.body ?? ''}

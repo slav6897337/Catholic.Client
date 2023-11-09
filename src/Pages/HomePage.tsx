@@ -7,15 +7,42 @@ import AllNews from '../Components/News/AllNews';
 import PhotoCarousel from "../Components/HomePage/PhotoCarousel";
 import Header from "../Components/PageElements/Header";
 import Notes from "../Components/News/Notes";
+import {defaultPage, IPage} from "../Domain/IPage";
+import Api from "../Utiles/Api";
+import log from "loglevel";
 
-export default class HomePage extends Component {
+interface IState {
+  page: IPage;
+}
+
+export default class HomePage extends React.Component<{}, IState> {
   static displayName = HomePage.name;
+
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      page: defaultPage,
+    };
+  }
+
+  componentDidMount() {
+    try {
+      Api.getPage('home').then((page) => {
+        if (page) {
+          page.images ??= [];
+          this.setState({page})
+        }
+      });
+    } catch (e) {
+      log.info(e);
+    }
+  }
 
   render() {
     return (
       <div className="home">
         <Header>
-          <PhotoCarousel/>
+          <PhotoCarousel images={[this.state.page.mainImage, ...this.state.page.images]}/>
           <DailyBibleQuote/>
         </Header>
 
@@ -23,13 +50,13 @@ export default class HomePage extends Component {
           <div className="home__welcome_container">
             <h3 className="home__welcome_title">Welcome</h3>
             <div className="home__welcome_container2">
-            <Welcome/>
+            <Welcome text={this.state.page.body}/>
             <Notes/>
               </div>
           </div>
 
           <Activities/>
-          <AllNews/>
+          <AllNews homeOnly={true}/>
         </div>
       </div>
     );

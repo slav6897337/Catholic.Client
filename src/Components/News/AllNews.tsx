@@ -6,6 +6,7 @@ import Api from "../../Utiles/Api";
 
 interface IProps {
   holyMassOnly?: boolean;
+  homeOnly?: boolean;
   containerStyle?: string;
 }
 
@@ -20,12 +21,12 @@ const AllNews: React.FC<IProps> = (props) => {
 
 
   const fetchItems = async () => {
-
     if (!hasMore) return;
 
     Api.getAllNews().then((response) => {
-      const newsResp = props.holyMassOnly ? response.filter(n => n.isChurchNews) : response;
-      setNews(newsResp);
+      if(props.homeOnly) response = response.filter(n => n.isHomeNews);
+      if(props.holyMassOnly) response = response.filter(n => n.isChurchNews);
+      setNews(response);
       setHasMore(false);
     });
   };

@@ -1,32 +1,39 @@
-.checkbox{
+.checkbox {
     display: flex;
     align-items: center;
     margin: 2rem 2rem 2rem 14%;
 }
 
-.checkboxContainer{
+.checkboxContainer {
     border: 2px solid var(--color-black);
     border-radius: 15px;
     width: 2.4rem;
     height: 1.2rem;
     margin-top: 0.4rem;
+    display: flex;
+    align-items: center;
+
 }
-.checkboxContainer:hover{
+
+.checkboxContainer:hover {
     box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
 }
 
-.checkedContainer{
+.checkedContainer {
     border: 2px solid var(--color-green-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.checkboxText{
+.checkboxText {
     color: var(--color-green-100);
     font-size: 1.2rem;
     font-weight: 800;
     margin-right: 1rem;
 }
 
-.checkboxMark{
+.checkboxMark {
     border-radius: 15px;
     background-color: black;
     color: black;
@@ -35,7 +42,7 @@
     margin: 0.1rem;
 }
 
-.checkedMark{
+.checkedMark {
     background-color: var(--color-green-100);
     margin-left: 1.2rem;
 }

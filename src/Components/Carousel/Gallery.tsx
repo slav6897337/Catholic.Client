@@ -5,7 +5,7 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import useWindowDimensions from "../../hookcs/useWindowDimensions";
 
 
-const specificItemWidth = 22 * 16 + 16 * 2;
+const specificItemWidth = 22 * 16 + 16 * 2 + 40;
 
 interface IProps {
   items: ReactElement[];
