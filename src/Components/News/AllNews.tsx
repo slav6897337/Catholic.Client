@@ -14,10 +14,9 @@ const AllNews: React.FC<IProps> = (props) => {
   const [news, setNews] = React.useState<INews[]>([]);
   const [hasMore, setHasMore] = React.useState<boolean>(true);
 
-  // React.useEffect(() => {
-  //   console.log('useEffect');
-  //   fetchItems().catch(Api.void);
-  // }, []);
+  React.useEffect(() => {
+    fetchItems().catch(Api.void);
+  }, []);
 
 
   const fetchItems = async () => {

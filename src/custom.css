@@ -17,6 +17,7 @@ body {
     background-image: url(../public/background.png);
     background-size: cover;
     background-position: center;
+    min-height: 880px;
 }
 
 p, h1, h2{

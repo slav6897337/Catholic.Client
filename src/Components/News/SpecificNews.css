@@ -7,6 +7,7 @@
     padding-right: 0.4rem;
     padding-left: 0.4rem;
     min-height: 14rem;
+    max-width: 24rem;
 }
 
 .newsClickable:hover{
