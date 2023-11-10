@@ -5,7 +5,7 @@ export const links : ILink[] = [
   {name: 'Choir', path: '/choir'},
   {name: 'Legion of Mary', path: '/legion-of-mary'},
   {name: 'News', path: '/news'},
-  {name: 'Contacts', path: '/contacts'}
+  {name: 'Contact', path: '/contacts'}
 ]
 
 export interface ILink {
