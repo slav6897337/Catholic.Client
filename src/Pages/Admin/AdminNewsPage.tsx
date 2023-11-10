@@ -69,7 +69,7 @@ export default class AdminNewsPage extends React.Component<{}, IState> {
           );
         })}
 
-        <AddCard title='Add News' to='new-news'/>
+        <AddCard title='Add News' to='/admin/new-news'/>
       </div>
     );
   }
