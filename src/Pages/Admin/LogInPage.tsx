@@ -58,12 +58,12 @@ export default class LogInPage extends React.Component<{}, IState> {
   render() {
 
     if (this.state.loading) return (
-      <div className={styles.body}>
+      <div className={`body center`}>
         <Loading/>
       </div>);
 
     return (
-      <div className={styles.body}>
+      <div className={`body ${styles.body}`}>
         <BlurContainer title={"Log In to Admin Panel"}>
           {this.state.error ?
             <div className={styles.blockContainer}>

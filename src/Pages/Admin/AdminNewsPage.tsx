@@ -56,12 +56,12 @@ export default class AdminNewsPage extends React.Component<{}, IState> {
   render() {
 
     if (this.state.loading) return (
-      <div className={styles.body}>
+      <div className={`body center`}>
         <Loading/>
       </div>);
 
     return (
-      <div className={styles.body}>
+      <div className={`body ${styles.body}`}>
 
         {this.state.news.map((news, index) => {
           return (
@@ -69,7 +69,7 @@ export default class AdminNewsPage extends React.Component<{}, IState> {
           );
         })}
 
-        <AddCard title='Add News' onClick={() => Actions.redirect('admin/new-news')}/>
+        <AddCard title='Add News' to='new-news'/>
       </div>
     );
   }

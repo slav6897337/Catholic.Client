@@ -11,3 +11,6 @@
     height: 2.6rem;
     border: none;
 }
+.button:visited{
+    color: black;
+}

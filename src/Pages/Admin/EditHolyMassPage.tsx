@@ -82,7 +82,7 @@ const EditHolyMassPage: FunctionComponent = () => {
   }
 
   if (loading) return (
-    <div className={styles.body}>
+    <div className={`body center`}>
       <Loading/>
     </div>);
 

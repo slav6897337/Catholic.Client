@@ -27,6 +27,27 @@ const ImageGallery: React.FC<IProps> = (props) => {
 
   const modalRef = useRef<ModalHandle | null>(null);
 
+  const Buttons: React.FC<{item:string}>  = ({item}) => (
+    <div className={styles.buttonsContainer}>
+      {props.leftButtonOnClick && props.leftButtonCondition && props.leftButtonCondition(item) &&
+          <Button
+              className={`${styles.lButton}`}
+              icon={props.leftButtonIcon}
+              text={props.leftButtonText}
+              onClick={() => props.leftButtonOnClick ? props.leftButtonOnClick(item) : null}
+          />
+      }
+      {props.rightButtonOnClick &&
+          <Button
+              className={``}
+              icon={props.rightButtonIcon}
+              text={props.rightButtonText}
+              onClick={() => props.rightButtonOnClick ? props.rightButtonOnClick(item) : null}
+          />
+      }
+    </div>
+    );
+
   if (!props.images?.length) return null;
 
   return (
@@ -41,22 +62,8 @@ const ImageGallery: React.FC<IProps> = (props) => {
                    alt={index.toString()}
                    onClick={() => modalRef?.current?.toggle()}
               />
-              {props.leftButtonOnClick && props.leftButtonCondition && props.leftButtonCondition(item) &&
-                  <Button
-                      className={`${styles.button} ${styles.leftButton}`}
-                      icon={props.leftButtonIcon}
-                      text={props.leftButtonText}
-                      onClick={() => props.leftButtonOnClick ? props.leftButtonOnClick(item) : null}
-                  />
-              }
-              {props.rightButtonOnClick &&
-                  <Button
-                      className={`${styles.button} ${styles.rightButton}`}
-                      icon={props.rightButtonIcon}
-                      text={props.rightButtonText}
-                      onClick={() => props.rightButtonOnClick ? props.rightButtonOnClick(item) : null}
-                  />
-              }
+              <Buttons item={item}/>
+
             </div>
           ))}/>
       </div>
@@ -71,22 +78,7 @@ const ImageGallery: React.FC<IProps> = (props) => {
                        src={Api.getImageUrl(item)}
                        alt={index.toString()}
                   />
-                  {props.leftButtonOnClick && props.leftButtonCondition && props.leftButtonCondition(item) &&
-                      <Button
-                          className={`${styles.button} ${styles.leftButton}`}
-                          icon={props.leftButtonIcon}
-                          text={props.leftButtonText}
-                          onClick={() => props.leftButtonOnClick ? props.leftButtonOnClick(item) : null}
-                      />
-                  }
-                  {props.rightButtonOnClick &&
-                      <Button
-                          className={`${styles.button} ${styles.rightButton}`}
-                          icon={props.rightButtonIcon}
-                          text={props.rightButtonText}
-                          onClick={() => props.rightButtonOnClick ? props.rightButtonOnClick(item) : null}
-                      />
-                  }
+                  <Buttons item={item}/>
                 </div>
               ))}
 

@@ -11,6 +11,7 @@ import {IAdmin} from "../../Domain/IAdmin";
 import AdminHelper from "../../Utiles/Admin";
 import WhiteContainer from "../../Components/PageElements/WhiteContainer";
 import AddCard from "../../Components/AdminPage/AddCard";
+import NavButton from "../../Components/StyledComponents/NavButton";
 
 interface IState {
   loading: boolean;
@@ -61,13 +62,13 @@ export default class AdminPage extends React.Component<{}, IState> {
   render() {
 
     if (this.state.loading) return (
-      <div className={styles.body}>
+      <div className={`body center`}>
         <Loading/>
       </div>);
 
 
     return (
-      <div className={styles.body}>
+      <div className={`body ${styles.body}`}>
         {this.state.pages
           .sort((p1, p2) =>
             p1.urlSegment === 'home' ? -2 :
@@ -78,16 +79,16 @@ export default class AdminPage extends React.Component<{}, IState> {
             );
           })}
         <WhiteContainer title={"News"}>
-          <Button
+          <NavButton
             className={styles.nButton}
             text='Manage news'
             textClassName={styles.nButtonText}
             icon='/icons/news.png'
-            onClick={() => Actions.redirect('admin/news')}
+            to='news'
           />
         </WhiteContainer>
 
-        <AddCard title='Create New Page' onClick={() => Actions.redirect('admin/new-page')}/>
+        <AddCard title='Create New Page' to='new-page'/>
 
       </div>
     );

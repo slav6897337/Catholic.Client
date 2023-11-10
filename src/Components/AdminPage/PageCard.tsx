@@ -6,6 +6,7 @@ import Actions from "../../Utiles/Actions";
 import Modal from "../PageElements/Modal";
 import Api from "../../Utiles/Api";
 import WhiteContainer from "../PageElements/WhiteContainer";
+import NavButton from "../StyledComponents/NavButton";
 
 const adminToken = process.env.REACT_APP_ADMIN_TOKEN ?? '';
 
@@ -40,8 +41,7 @@ const PageCard: FunctionComponent<IProps> = ({page, titleStyle, titleClassName, 
         <div className={styles.pageCardContainer}>
           <Button className={styles.button} icon='/icons/view.png' text='View'
                   onClick={() => Actions.redirect(page.urlSegment)}/>
-          <Button className={styles.button} icon='/icons/edit.png' text='Edit'
-                  onClick={() => Actions.redirect(`admin/edit/${page.urlSegment}`)}/>
+          <NavButton className={styles.button} icon='/icons/edit.png' text='Edit' to={`/admin/edit/${page.urlSegment}`}/>
           {page.urlSegment !== 'home' && page.urlSegment !== 'holy-mass'
             ? <Button className={styles.button} icon='/icons/delete.png' text='Delete'
                       onClick={() => setShowDeletePopup(true)}/>

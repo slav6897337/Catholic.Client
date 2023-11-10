@@ -1,11 +1,12 @@
 import React, {FunctionComponent, ReactNode} from "react";
 import styles from "./Button.module.css";
+import {Link} from "react-router-dom";
 
 
 interface IProps {
   icon?: string;
   text?: string;
-  onClick?: (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  to: string;
   className?: string;
   style?: React.CSSProperties;
   iconClassName?: string;
@@ -14,9 +15,9 @@ interface IProps {
 }
 
 
-const Button: FunctionComponent<IProps> = (props) => {
+const NavButton: FunctionComponent<IProps> = (props) => {
   return (
-    <button className={`${styles.sButton} ${props.className}`} style={props.style} onClick={props.onClick}>
+    <Link className={`${styles.sButton} ${props.className}`} style={props.style} to={props.to}>
       {props.icon
         ? <img className={`${styles.sButtonIcon} ${props.iconClassName}`} src={props.icon} alt={props.text}/>
         : null
@@ -26,8 +27,8 @@ const Button: FunctionComponent<IProps> = (props) => {
         : null
       }
       {props.children && props.children}
-    </button>
+    </Link>
   );
 };
 
-export default Button;
+export default NavButton;

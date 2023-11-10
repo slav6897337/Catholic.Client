@@ -39,7 +39,9 @@ export default class ListNewsPage extends React.Component<{}, IState> {
 
   render() {
 
-    if (this.state.loading) return (<div className={`body`}><Loading/></div>);
+    if (this.state.loading){
+      return (<div className={`body center`}><Loading/></div>);
+    }
 
     return (
 

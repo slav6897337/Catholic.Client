@@ -6,6 +6,7 @@ import Modal from "../PageElements/Modal";
 import Api from "../../Utiles/Api";
 import WhiteContainer from "../PageElements/WhiteContainer";
 import {INews} from "../../Domain/INews";
+import NavButton from "../StyledComponents/NavButton";
 
 interface IProps {
   news: INews
@@ -37,7 +38,7 @@ const NewsCard: FunctionComponent<IProps> = ({news, adminToken, onChange, titleS
       <WhiteContainer title={news.title}>
         <div className={styles.pageCardContainer}>
           {news.link && <Button className={styles.button} icon='/icons/view.png' text='View' onClick={() => Actions.redirect(news.link ?? '')}/>}
-          <Button className={styles.button} icon='/icons/edit.png' text='Edit' onClick={() => Actions.redirect(`admin/edit-news/${news.id}`)}/>
+          <NavButton className={styles.button} icon='/icons/edit.png' text='Edit' to={`/admin/edit-news/${news.id}`}/>
           <Button className={styles.button} icon='/icons/delete.png' text='Delete' onClick={() => setShowDeletePopup(true)}/>
         </div>
 

@@ -3,8 +3,6 @@ import styles from "./PageEditor.module.css";
 import {IPage} from "../../Domain/IPage";
 import BodyEditor from "./BodyEditor";
 import ImagePicker from "./ImagePicker";
-import admin from "../../Utiles/Admin";
-import Button from "../StyledComponents/Button";
 
 interface IProps {
   page: IPage;

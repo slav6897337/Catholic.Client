@@ -35,7 +35,7 @@ const ImagePicker: FunctionComponent<IProps> = ({
   const modalRef = useRef<ModalHandle | null>(null);
   const [popupContent, setPopupContent] = React.useState<React.JSX.Element | null>(null);
 
-  const allImages = mainImage ? [...images, mainImage] : images;
+  const allImages = mainImage ? [mainImage, ...images] : images;
 
   useEffect(() => {
     const admin = AdminHelper.getAdminCredentials();
@@ -101,7 +101,7 @@ const ImagePicker: FunctionComponent<IProps> = ({
   };
 
   if (loading) return (
-    <div className={styles.body}>
+    <div className={`body`}>
       <Loading/>
     </div>);
 

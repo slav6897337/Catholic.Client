@@ -1,6 +1,7 @@
 .title{
     color: var(--color-green-100);
     margin: 1rem;
+    font-size: 1.4rem;
 }
 
 audio{
@@ -14,6 +15,7 @@ audio{
 .song{
     display: flex;
     align-items: center;
+    font-size: 1rem;
     padding: 0.3rem;
     margin: 0.2rem;
     border-radius: 0.5rem;

@@ -48,17 +48,17 @@ const NewsPage: React.FC<IProps> = (props) => {
   if (loading) return (<Loading/>);
 
   if (!page) return (
-    <div className='body'>
+    <div className='body center'>
       <NotFound/>
     </div>
   );
 
   return (
-    <div className={styles.body}>
+    <div className={`body`}>
       {page?.title
         ? <Header>
           <div className={styles.titleContainer}>
-            <p className={styles.left}>{page.title}</p>
+            <p>{page.title}</p>
           </div>
         </Header>
         : null}

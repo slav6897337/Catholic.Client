@@ -107,12 +107,12 @@ const EditNewsPage: FunctionComponent = () => {
   }
 
   if (loading) return (
-    <div className={styles.body}>
+    <div className={`body center`}>
       <Loading/>
     </div>);
 
   return (
-    <div className={styles.body}>
+    <div className={`body padding-top`}>
 
       <div className={styles.blockContainer}>
         <p className={styles.header}>Title</p>

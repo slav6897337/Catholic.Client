@@ -39,10 +39,10 @@ export default class BibleGroupPage extends React.Component<{}, IState> {
 
   render() {
     return (
-      <div className={styles.body}>
+      <div className={`body`}>
         <Header>
           <div className={styles.titleContainer}>
-            <p className={styles.left}>English Bible group</p>
+            <p>English Bible group</p>
           </div>
         </Header>
 

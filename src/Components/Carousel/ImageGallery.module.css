@@ -14,27 +14,27 @@
     width: 100%;
 }
 
+.imageContainer{
+    margin-bottom: 2rem;
+}
+
+.buttonsContainer{
+    display: none;
+    position: absolute;
+    bottom: 3rem;
+    margin-left: 1rem;
+}
+
 .imageContainer:hover{
-    .button{
+    .buttonsContainer{
         display: flex;
     }
 }
 
-.button{
-    display: none;
-    position: absolute;
-    bottom: 6%;
-}
-
-.rightButton{
-    right:10%;
-}
-
-.leftButton{
-    left:10%;
+.lButton{
+    margin-right: 1rem;
 }
 
 .modalStyles{
-
     padding: 10px 0 0 0;
 }

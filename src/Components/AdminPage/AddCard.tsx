@@ -1,25 +1,25 @@
 import React, {FunctionComponent} from "react";
 import styles from "./AddCard.module.css";
-import Button from "../StyledComponents/Button";
 import WhiteContainer from "../PageElements/WhiteContainer";
+import NavButton from "../StyledComponents/NavButton";
 
 interface IProps {
   title: string;
-  onClick: () => void;
+  to: string;
   titleClassName?: string;
   className?: string;
 }
 
-const AddCard: FunctionComponent<IProps> = ({title, onClick, titleClassName, className}) => {
+const AddCard: FunctionComponent<IProps> = ({title, to, titleClassName, className}) => {
   return (
     <>
       <WhiteContainer title={title}>
         <div className={styles.pageCardContainer}>
-          <Button
+          <NavButton
             className={styles.button}
             icon='/icons/plus.png'
             iconClassName={styles.icon}
-            onClick={onClick}
+            to={to}
           />
         </div>
       </WhiteContainer>

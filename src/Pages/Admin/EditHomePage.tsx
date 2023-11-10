@@ -48,12 +48,12 @@ const EditHomePage: FunctionComponent = () => {
 
 
   if (loading) return (
-    <div className={styles.body}>
+    <div className={`body center`}>
       <Loading/>
     </div>);
 
   return (
-    <div className={styles.body}>
+    <div className={`body padding-top`}>
 
 
       <BodyEditor

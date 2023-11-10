@@ -21,7 +21,7 @@ export default class ChoirPage extends React.Component<{}, IState> {
 
   render() {
     return (
-      <div className={styles.body}>
+      <div className={`body`}>
         <Header>
           <div className={styles.titleContainer}>
             <p className={styles.left}>Choir at Church of St. Ladislaus</p>
