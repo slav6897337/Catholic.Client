@@ -40,7 +40,7 @@ const PageCard: FunctionComponent<IProps> = ({page, titleStyle, titleClassName, 
       <WhiteContainer title={page.title}>
         <div className={styles.pageCardContainer}>
           <Button className={styles.button} icon='/icons/view.png' text='View'
-                  onClick={() => Actions.redirect(page.urlSegment)}/>
+                  onClick={() => Actions.redirect(page.urlSegment === 'home' ? '/' :page.urlSegment)}/>
           <NavButton className={styles.button} icon='/icons/edit.png' text='Edit' to={`/admin/edit/${page.urlSegment}`}/>
           {page.urlSegment !== 'home' && page.urlSegment !== 'holy-mass'
             ? <Button className={styles.button} icon='/icons/delete.png' text='Delete'

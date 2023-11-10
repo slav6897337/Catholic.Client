@@ -35,8 +35,7 @@ export default class LogInPage extends React.Component<{}, IState> {
       if (adminInfo?.token) {
         window.open('/admin', '_self');
       }
-    }
-    catch (e) {
+    } catch (e) {
       log.info(e);
     }
   }
@@ -46,12 +45,14 @@ export default class LogInPage extends React.Component<{}, IState> {
       this.setState({loading: true});
 
       Api.login({name: this.state.name, pass: this.state.pass} as IAdmin).then((admin) => {
-       AdminHelper.setAdminCredentials(admin);
+        AdminHelper.setAdminCredentials(admin);
+
       });
     } catch (e) {
       log.info(e);
     }
-    this.setState({loading: false, error: true});
+
+    setTimeout(() => this.setState({loading: false, error: true}), 2000);
   };
 
 
@@ -76,7 +77,7 @@ export default class LogInPage extends React.Component<{}, IState> {
             <input className={styles.inputStyling}
                    type="text"
                    value={this.state.name}
-                   onChange={e => this.setState({name: e.target.value, error:false })}/>
+                   onChange={e => this.setState({name: e.target.value, error: false})}/>
           </div>
 
           <div className={styles.blockContainer}>
@@ -84,7 +85,7 @@ export default class LogInPage extends React.Component<{}, IState> {
             <input className={styles.inputStyling}
                    type="text"
                    value={this.state.pass}
-                   onChange={e => this.setState({pass: e.target.value, error:false })}/>
+                   onChange={e => this.setState({pass: e.target.value, error: false})}/>
           </div>
           <div className={styles.blockContainer}>
             <Button icon='/icons/login.png' text='Log In' onClick={this.handleSubmit}/>
