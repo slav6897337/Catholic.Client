@@ -42,7 +42,7 @@ const EditHomePage: FunctionComponent = () => {
     await Api.updatePage(page.id, page, admin?.token ?? '');
     setLoading(false);
 
-    window.close()
+    window.history.back();
   };
 
 

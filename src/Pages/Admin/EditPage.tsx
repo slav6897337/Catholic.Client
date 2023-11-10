@@ -61,7 +61,7 @@ const EditPage: FunctionComponent = () => {
 
     setLoading(false);
 
-    window.close()
+    window.history.back();
   };
 
   const updateTitle = (event: React.ChangeEvent<HTMLInputElement>) => {

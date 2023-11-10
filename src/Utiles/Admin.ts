@@ -35,7 +35,7 @@ const AdminHelper = {
     }
 
     if(closeAfterSaving){
-      window.close()
+      window.history.back();
     }
   },
   saveNews: async (news: INews, admin:string, closeAfterSaving: false) => {
@@ -48,7 +48,7 @@ const AdminHelper = {
     }
 
     if(closeAfterSaving){
-      window.close()
+      window.history.back();
     }
   },
   saveNotes: async (note: INote, admin:string, closeAfterSaving: false) => {
@@ -61,7 +61,7 @@ const AdminHelper = {
     }
 
     if(closeAfterSaving){
-      window.close()
+      window.history.back();
     }
   },
 };

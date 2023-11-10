@@ -65,7 +65,8 @@ const EditNewsPage: FunctionComponent = () => {
     await savePage(newPage);
     setLoading(false);
 
-    window.close()
+    window.history.back();
+
   };
 
   const savePage = async (pageForSaving:IPage) => {

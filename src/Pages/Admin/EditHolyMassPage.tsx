@@ -59,7 +59,7 @@ const EditHolyMassPage: FunctionComponent = () => {
     await Api.updatePage(page.id, page, admin?.token ?? '');
     setLoading(false);
 
-    window.close()
+    window.history.back();
   };
 
   const handleHolyMassUpdate = (mass: IHolyMass) => {
