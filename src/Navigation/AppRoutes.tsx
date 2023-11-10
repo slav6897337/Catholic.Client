@@ -13,6 +13,8 @@ import EditNewsPage from "../Pages/Admin/EditNewsPage";
 import EditHolyMassPage from "../Pages/Admin/EditHolyMassPage";
 import EditHomePage from "../Pages/Admin/EditHomePage";
 import ListNewsPage from "../Pages/ListNewsPage";
+import AdminNotesPage from "../Pages/Admin/AdminNotesPage";
+import EditNotesPage from "../Pages/Admin/EditNotesPage";
 
 
 interface IAppRoutes {
@@ -81,6 +83,18 @@ const AppRoutes:IAppRoutes[] = [
   {
     path: '/admin/news',
     element: <AdminNewsPage />
+  },
+  {
+    path: '/admin/notes',
+    element: <AdminNotesPage />
+  },
+  {
+    path: '/admin/edit-notes/:id',
+    element: <EditNotesPage />
+  },
+  {
+    path: '/admin/new-notes',
+    element: <EditNotesPage />
   },
   {
     path: '*',

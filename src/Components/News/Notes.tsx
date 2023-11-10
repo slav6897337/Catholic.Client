@@ -4,25 +4,26 @@ import {INote} from "../../Domain/INote";
 import Note from "./Note";
 import Carousel from "../Carousel/Carousel";
 import Api from "../../Utiles/Api";
-import {IRequestQuery} from "../../Domain/IRequestQuery";
 import Loading from "../PageElements/Loading";
 
 interface IProps {
   notesContainer?: string;
   holyMassOnly?: boolean;
+  homeNotes?: boolean;
 }
 
 const Notes: FunctionComponent<IProps> = (props) => {
   const [notesData, setNotes] = useState<INote[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const request: IRequestQuery = {holyMassOnly: props.holyMassOnly, skip: 0, take: 5};
 
   useEffect(() => {
     getNotes();
   }, []);
 
   const getNotes = () => {
-    Api.getNotes(request).then((response) => {
+    Api.getAllNotes().then((response) => {
+      if(props.homeNotes) response = response.filter(n => n.isHomeNote);
+      if(props.holyMassOnly) response = response.filter(n => n.isChurchNote);
       setNotes(response);
       setLoading(false);
     });

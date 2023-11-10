@@ -16,16 +16,19 @@ interface IProps {
   titleClassName?: string;
   className?: string;
   style?: React.CSSProperties;
+  onDelete?: () => void;
 }
 
 
-const PageCard: FunctionComponent<IProps> = ({page, titleStyle, titleClassName, className, style}) => {
+const PageCard: FunctionComponent<IProps> = ({page, onDelete, titleStyle, titleClassName, className, style}) => {
 
   const [showDeletePopup, setShowDeletePopup] = React.useState(false);
   const handleDelete = async () => {
     await Api.deletePage(page.id, adminToken);
 
-    setShowDeletePopup(false)
+    setShowDeletePopup(false);
+
+    if(onDelete) onDelete();
   };
 
 

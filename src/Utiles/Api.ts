@@ -57,6 +57,8 @@ const Api = {
     await Http.delete(`${baseUrl}/api/holy-mass/${id}`, [authHeader(adminToken)]),
 
   getNotes: async (request: IRequestQuery) => await Http.get<INote[]>(`${baseUrl}/api/notes${query(request)}`),
+  getAllNotes: async () =>
+    await Http.get<INote[]>(`${baseUrl}/api/notes/all`),
   createNote: async (note: INote, adminToken: string) =>
     await Http.post<INote>(`${baseUrl}/api/notes`, note, [authHeader(adminToken)]),
   updateNote: async (id: string, note: INote, adminToken: string) =>

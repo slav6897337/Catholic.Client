@@ -10,7 +10,6 @@ import Button from "../../Components/StyledComponents/Button";
 import AdminHelper from "../../Utiles/Admin";
 import {IAdmin} from "../../Domain/IAdmin";
 import {defaultNews, INews} from "../../Domain/INews";
-import BodyEditor from "../../Components/AdminPage/BodyEditor";
 import PageEditor from "../../Components/AdminPage/PageEditor";
 import Checkbox from "../../Components/StyledComponents/Checkbox";
 import {Collapse} from "../../Components/StyledComponents/Collapse";
@@ -32,12 +31,12 @@ const EditNewsPage: FunctionComponent = () => {
       return;
     }
     try {
-      Api.getNews({take: 1000, skip: 0, holyMassOnly: false}).then((newsResponse) => {
-        const news = newsResponse?.items?.find((item) => item.id === id);
-        if (news) {
-          setNews(news);
-          if (news?.link) {
-            Api.getPage(news.link).then((page) => {
+      Api.getAllNews().then((newsResponse) => {
+        const newsBuId = newsResponse?.find((item) => item.id === id);
+        if (newsBuId) {
+          setNews(newsBuId);
+          if (newsBuId?.link) {
+            Api.getPage(newsBuId.link).then((page) => {
               if (page) {
                 page.images ??= [];
                 setPage(page);

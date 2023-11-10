@@ -32,6 +32,10 @@ export default class AdminPage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    this.getPages();
+  }
+
+  getPages(){
     try {
       const adminInfo = AdminHelper.getAdminCredentials();
 
@@ -75,7 +79,7 @@ export default class AdminPage extends React.Component<{}, IState> {
               p1.urlSegment === 'holy-mass' ? -1 : 1)
           .map((page, index) => {
             return (
-              <PageCard page={page} key={index}/>
+              <PageCard page={page} key={index} onDelete={this.getPages}/>
             );
           })}
         <WhiteContainer title={"News"}>
@@ -85,6 +89,16 @@ export default class AdminPage extends React.Component<{}, IState> {
             textClassName={styles.nButtonText}
             icon='/icons/news.png'
             to='news'
+          />
+        </WhiteContainer>
+
+        <WhiteContainer title={"Notes"}>
+          <NavButton
+            className={styles.nButton}
+            text='Manage notes'
+            textClassName={styles.nButtonText}
+            icon='/icons/notes.png'
+            to='notes'
           />
         </WhiteContainer>
 

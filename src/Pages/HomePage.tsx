@@ -51,7 +51,7 @@ export default class HomePage extends React.Component<{}, IState> {
             <h3 className="home__welcome_title">Welcome</h3>
             <div className="home__welcome_container2">
             <Welcome text={this.state.page.body}/>
-            <Notes/>
+            <Notes homeNotes={true}/>
               </div>
           </div>
 
