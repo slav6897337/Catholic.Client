@@ -1,5 +1,5 @@
 import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
-import React, {FunctionComponent} from "react";
+import React, {FunctionComponent, useState} from "react";
 import styles from './Maps.module.css';
 
 const center = {
@@ -15,30 +15,41 @@ const handleDirectionsClick = () => {
 };
 
 const Map: FunctionComponent = () => {
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
+
+  const handleMapLoad = () => {
+    setTimeout(() => {
+    setIsMapLoaded(true);
+    }, 1000)
+  };
+
   return (
     <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_KEY}`}>
       <GoogleMap
         mapContainerClassName={styles.mapContainer}
         center={center}
         zoom={18}
+        onLoad={handleMapLoad}
       >
-        <div className={styles.infoContainer}>
-          <div className={styles.verticalLine}/>
-          <div className={styles.infoText}>
-            <h1>Church of St. Ladislaus</h1>
-            <p>Špitálska, 811 08 Staré Mesto, Slovakia</p>
-          </div>
-
-          <button className={styles.directionsButton} onClick={handleDirectionsClick}>
-            <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
-              <img className="activity__link_arrow" style={{width:18, height:14}} src='/img/arrow.png' alt='arrow'/>
-              <img src={'/img/church.png'} alt={'directions'}/>
+        {isMapLoaded ?
+          <div className={styles.infoContainer}>
+            <div className={styles.verticalLine}/>
+            <div className={styles.infoText}>
+              <h1>Church of St. Ladislaus</h1>
+              <p>Špitálska, 811 08 Staré Mesto, Slovakia</p>
             </div>
 
-            <p>Directions</p>
+            <button className={styles.directionsButton} onClick={handleDirectionsClick}>
+              <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                <img className="activity__link_arrow" style={{width: 18, height: 14}} src='/img/arrow.png' alt='arrow'/>
+                <img src={'/img/church.png'} alt={'directions'}/>
+              </div>
 
-          </button>
-        </div>
+              <p>Directions</p>
+
+            </button>
+          </div>
+          : null}
         <Marker position={center}/>
       </GoogleMap>
     </LoadScript>
