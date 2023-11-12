@@ -34,12 +34,15 @@ const NewsCard: FunctionComponent<IProps> = ({notes, adminToken, onChange, title
           okOnClick={handleDelete}
           cancelOnClick={() => setShowDeletePopup(false)}/>
         : null}
-      <WhiteContainer title={notes.title}>
+      <WhiteContainer title={notes.title} date={notes.date}>
         <div className={styles.pageCardContainer}>
           <NavButton className={styles.button} icon='/icons/edit.png' text='Edit' to={`/admin/edit-notes/${notes.id}`}/>
           <Button className={styles.button} icon='/icons/delete.png' text='Delete' onClick={() => setShowDeletePopup(true)}/>
+          <div className={styles.domain}>
+            {notes.isHomeNote ? <p className={styles.isHomeNews}>Catholic.sk</p> : null}
+            {notes.isChurchNote ? <p className={styles.isChurchNews}>Holymass.sk</p> : null}
+          </div>
         </div>
-
       </WhiteContainer>
     </>
 

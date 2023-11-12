@@ -22,7 +22,7 @@ interface IProps extends SwiperProps {
 const defaultProps: IProps = {
   items: [],
   autoplay: {
-    delay: 3000,
+    delay: 5000,
     disableOnInteraction: false
   },
   centeredSlides: true,

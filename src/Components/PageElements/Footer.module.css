@@ -22,6 +22,11 @@
     font-size: 1.875rem;
 }
 
+.footerLogo p {
+    font-size: 1rem;
+    margin-top: 0.4rem;
+}
+
 .footerLine {
     height: 0.0625rem;
     background: #BABABA;

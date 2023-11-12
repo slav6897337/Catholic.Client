@@ -25,12 +25,9 @@ const PageCard: FunctionComponent<IProps> = ({page, onDelete, titleStyle, titleC
   const [showDeletePopup, setShowDeletePopup] = React.useState(false);
   const handleDelete = async () => {
     await Api.deletePage(page.id, adminToken);
-
-    setShowDeletePopup(false);
-
     if(onDelete) onDelete();
+    setShowDeletePopup(false);
   };
-
 
   return (
     <>

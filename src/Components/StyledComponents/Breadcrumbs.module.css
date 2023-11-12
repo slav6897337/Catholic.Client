@@ -1,0 +1,38 @@
+.breadcrumbsContainer {
+    position: absolute;
+    top: 16rem;
+    left: 12rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(135, 135, 135, 0.2);
+    border-radius: 0.4rem;
+}
+
+.breadcrumb{
+    display: flex;
+    align-items: center;
+    font: var(--font-cambay);
+    text-decoration: none;
+    color: black;
+    font-size: 1.1rem;
+    padding: 0.2rem 0.4rem;
+    margin: 0.4rem 0.4rem;
+    border-radius: 0.6rem;
+
+}
+
+.arrow{
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 0.2rem;
+}
+
+.link:hover {
+    background-color: rgba(252, 252, 252, 0.4);
+}
+
+
+.breadcrumb:visited{
+    color: black;
+}

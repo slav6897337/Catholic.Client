@@ -8,20 +8,7 @@ const Note: FunctionComponent<{note: INote}> = ({note}) => {
 
   return (
     <div className={styles.noteContainer}>
-      <div className={styles.noteTitleContainer}>
-        <h1 className={styles.noteTitle}>
-          {note.title}
-        </h1>
-        <p className={styles.noteDate}>{moment(note.date).format('MMMM D, h:mm a')}</p>
-      </div>
-
-      <h1 className={styles.noteAdditionalTitle}>
-        {note.additionalTitle}
-      </h1>
-
-      <p className={styles.noteInfo}>
-        {note.info}
-      </p>
+      <div className={styles.noteInfo} dangerouslySetInnerHTML={{__html: note.info}}/>
     </div>
   );
 };

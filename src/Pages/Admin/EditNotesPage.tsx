@@ -10,6 +10,7 @@ import AdminHelper from "../../Utiles/Admin";
 import {IAdmin} from "../../Domain/IAdmin";
 import Checkbox from "../../Components/StyledComponents/Checkbox";
 import {defaultNotes, INote} from "../../Domain/INote";
+import BodyEditor from "../../Components/AdminPage/BodyEditor";
 
 const EditNotesPage: FunctionComponent = () => {
   const {id} = useParams();
@@ -66,27 +67,8 @@ const EditNotesPage: FunctionComponent = () => {
     <div className={`body padding-top`}>
 
       <div className={styles.blockContainer}>
-        <p className={styles.header}>Title</p>
-        <input className={styles.inputStyling} type="text" value={notes.title}
-               onChange={e => setNotes({...notes, title: e.target.value} as INote)}/>
-      </div>
-
-      <div className={styles.blockContainer}>
-        <p className={styles.header}>Date</p>
-        <input className={styles.inputStyling} type="text" value={notes.date}
-               onChange={e => setNotes({...notes, date: e.target.value} as INote)}/>
-      </div>
-
-      <div className={styles.blockContainer}>
-        <p className={styles.header}>Second Tittle</p>
-        <input className={styles.inputStyling} type="text" value={notes.additionalTitle}
-               onChange={e => setNotes({...notes, additionalTitle: e.target.value} as INote)}/>
-      </div>
-
-      <div className={styles.blockContainer}>
-        <p className={styles.header}>Info</p>
-        <input className={styles.inputStyling} type="text" value={notes.info}
-               onChange={e => setNotes({...notes, info: e.target.value} as INote)}/>
+        <p className={styles.header}>Note Text</p>
+        <BodyEditor body={notes.info} onBodyUpdate={i => setNotes({...notes, info: i} as INote)}/>
       </div>
 
       <Checkbox

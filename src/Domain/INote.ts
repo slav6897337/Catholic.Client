@@ -1,7 +1,7 @@
 export interface INote {
   id: string,
   title: string,
-  date: string,
+  date: Date,
   isChurchNote: boolean,
   isHomeNote: boolean,
   additionalTitle: string,
@@ -11,7 +11,7 @@ export interface INote {
 export const defaultNotes : INote = {
   id: '',
   title: '',
-  date: '',
+  date: new Date(),
   additionalTitle: '',
   info: '',
   isChurchNote: false,

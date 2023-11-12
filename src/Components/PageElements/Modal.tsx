@@ -1,6 +1,7 @@
 import {FunctionComponent, ReactNode} from "react";
 import styles from "./Modal.module.css";
 import Button from "../StyledComponents/Button";
+import Loading from "./Loading";
 
 interface IProps {
   children?: ReactNode;
@@ -11,9 +12,17 @@ interface IProps {
   style?: React.CSSProperties;
   okOnClick?: () => void;
   cancelOnClick?: () => void;
+  loading?: boolean;
 }
 
 const Modal: FunctionComponent<IProps> = (props) => {
+
+  if(props.loading) return (
+    <div className={styles.modalContainer} title={props.title}>
+        <Loading/>
+    </div>
+  );
+
   return (
     <div className={styles.modalContainer} title={props.title}>
       {props.title

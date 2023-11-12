@@ -15,3 +15,14 @@
 .button:visited{
     color: black;
 }
+
+.domain{
+    position: absolute;
+    bottom: 0.1rem;
+    display: flex;
+}
+
+.domain p{
+    margin-right: 1.8rem;
+    font-size: 1rem;
+}

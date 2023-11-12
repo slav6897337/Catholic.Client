@@ -5,13 +5,12 @@ import Api from "../../Utiles/Api";
 import {IPage} from "../../Domain/IPage";
 import Loading from "../../Components/PageElements/Loading";
 import PageCard from "../../Components/AdminPage/PageCard";
-import Button from "../../Components/StyledComponents/Button";
-import Actions from "../../Utiles/Actions";
 import {IAdmin} from "../../Domain/IAdmin";
 import AdminHelper from "../../Utiles/Admin";
 import WhiteContainer from "../../Components/PageElements/WhiteContainer";
 import AddCard from "../../Components/AdminPage/AddCard";
 import NavButton from "../../Components/StyledComponents/NavButton";
+import {Breadcrumbs} from "../../Components/StyledComponents/Breadcrumbs";
 
 interface IState {
   loading: boolean;
@@ -41,11 +40,9 @@ export default class AdminPage extends React.Component<{}, IState> {
 
       Api.getPages().then((pages) => {
         if (pages.length) {
-          Api.getNews({take: 1000, skip: 0, holyMassOnly: false}).then((news) => {
-            if (news?.items?.length) {
-
-              console.log(pages.map(p => !news.items.some(n => p.urlSegment === n.link)));
-              pages = pages.filter(p => !news.items.some(n => p.urlSegment === n.link));
+          Api.getAllNews().then((news) => {
+            if (news?.length) {
+              pages = pages.filter(p => !news.some(n => p.urlSegment === n.link));
 
               this.setState({
                 loading: false,
@@ -73,13 +70,16 @@ export default class AdminPage extends React.Component<{}, IState> {
 
     return (
       <div className={`body ${styles.body}`}>
+
+        <Breadcrumbs breadcrumbs={[{text: 'Admin'}]}/>
+
         {this.state.pages
           .sort((p1, p2) =>
             p1.urlSegment === 'home' ? -2 :
               p1.urlSegment === 'holy-mass' ? -1 : 1)
           .map((page, index) => {
             return (
-              <PageCard page={page} key={index} onDelete={this.getPages}/>
+              <PageCard page={page} key={index} onDelete={() => this.getPages()}/>
             );
           })}
         <WhiteContainer title={"News"}>

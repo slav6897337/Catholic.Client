@@ -21,27 +21,37 @@ interface IProps {
 const NewsCard: FunctionComponent<IProps> = ({news, adminToken, onChange, titleStyle, titleClassName, className, style}) => {
 
   const [showDeletePopup, setShowDeletePopup] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const handleDelete = async () => {
+    setLoading(true);
     await Api.deleteNews(news.id, adminToken);
     onChange();
     setShowDeletePopup(false);
+    setLoading(false);
   };
 
   return (
     <>
       {showDeletePopup
         ? <Modal
-          title='Are you certain you want to remove this page?'
+          title='Are you certain you want to remove this news?'
           okOnClick={handleDelete}
-          cancelOnClick={() => setShowDeletePopup(false)}/>
+          cancelOnClick={() => setShowDeletePopup(false)}
+          loading={loading}
+        />
         : null}
-      <WhiteContainer title={news.title}>
+      <WhiteContainer title={news.title} date={news.date}>
         <div className={styles.pageCardContainer}>
           {news.link && <Button className={styles.button} icon='/icons/view.png' text='View' onClick={() => Actions.redirect(news.link ?? '')}/>}
           <NavButton className={styles.button} icon='/icons/edit.png' text='Edit' to={`/admin/edit-news/${news.id}`}/>
           <Button className={styles.button} icon='/icons/delete.png' text='Delete' onClick={() => setShowDeletePopup(true)}/>
-        </div>
 
+          <div className={styles.domain}>
+            {news.isHomeNews ? <p className={styles.isHomeNews}>Catholic.sk</p> : null}
+            {news.isChurchNews ? <p className={styles.isChurchNews}>Holymass.sk</p> : null}
+          </div>
+
+        </div>
       </WhiteContainer>
     </>
 

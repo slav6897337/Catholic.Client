@@ -110,9 +110,9 @@ const ImagePicker: FunctionComponent<IProps> = ({
       <div className={styles.blockContainer}>
         <p className={styles.header}>{title}</p>
 
-        <form className={styles.inputLabel}>
-          <img className={styles.inputImage} src='/icons/upload.png' alt='Upload'/>
-          <label>
+        <form className={styles.inputLabelContainer}>
+          <label className={styles.inputLabel}>
+            <img className={styles.inputImage} src='/icons/upload.png' alt='Upload'/>
             <p>Upload New Image</p>
             <input
               type="file"

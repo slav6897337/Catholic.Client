@@ -4,12 +4,12 @@ import log from "loglevel";
 import Api from "../../Utiles/Api";
 import {IPage} from "../../Domain/IPage";
 import Loading from "../../Components/PageElements/Loading";
-import Actions from "../../Utiles/Actions";
 import {IAdmin} from "../../Domain/IAdmin";
 import AdminHelper from "../../Utiles/Admin";
 import {INews} from "../../Domain/INews";
 import NewsCard from "../../Components/AdminPage/NewsCard";
 import AddCard from "../../Components/AdminPage/AddCard";
+import {Breadcrumbs} from "../../Components/StyledComponents/Breadcrumbs";
 
 interface IState {
   loading: boolean;
@@ -63,13 +63,15 @@ export default class AdminNewsPage extends React.Component<{}, IState> {
     return (
       <div className={`body ${styles.body}`}>
 
+        <Breadcrumbs breadcrumbs={[{text: 'Admin', to: '/admin'}, {text: 'News'}]}/>
+
+        <AddCard title='Add News' to='/admin/new-news'/>
+
         {this.state.news.map((news, index) => {
           return (
             <NewsCard news={news} key={index} adminToken={this.state.admin?.token ?? ''} onChange={this.getNews}/>
           );
         })}
-
-        <AddCard title='Add News' to='/admin/new-news'/>
       </div>
     );
   }

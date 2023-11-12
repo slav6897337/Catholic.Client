@@ -8,6 +8,7 @@ import AdminHelper from "../../Utiles/Admin";
 import AddCard from "../../Components/AdminPage/AddCard";
 import {INote} from "../../Domain/INote";
 import NotesCard from "../../Components/AdminPage/NotesCard";
+import {Breadcrumbs} from "../../Components/StyledComponents/Breadcrumbs";
 
 interface IState {
   loading: boolean;
@@ -58,6 +59,7 @@ export default class AdminNotesPage extends React.Component<{}, IState> {
 
     return (
       <div className={`body ${styles.body}`}>
+        <Breadcrumbs breadcrumbs={[{text: 'Admin', to: '/admin'}, {text: 'Notes'}]}/>
 
         {this.state.notes.map((notes, index) => {
           return (
