@@ -15,11 +15,7 @@ interface IProps {
 
 }
 
-interface IState {
-  selectedDate: Date;
-}
-
-const NewsPage: React.FC<IProps> = (props) => {
+const NewsPage: React.FC<IProps> = () => {
   const location = useLocation();
   const [page, setPage] = React.useState<IPage>();
   const [loading, setLoading] = React.useState(true);
@@ -31,7 +27,7 @@ const NewsPage: React.FC<IProps> = (props) => {
       try {
         Api.getPage(pageSegment).then((pageInfo) => {
           if (pageInfo) {
-            if(pageInfo.images?.length && !pageInfo.mainImage){
+            if (pageInfo.images?.length && !pageInfo.mainImage) {
               const main = pageInfo.images.shift()
               pageInfo.mainImage = main ?? '';
             }
@@ -45,7 +41,7 @@ const NewsPage: React.FC<IProps> = (props) => {
     }
   }, [location]);
 
-  if (loading) return (<Loading/>);
+  if (loading) return (<div className='body center'><Loading/></div>);
 
   if (!page) return (
     <div className='body center'>
@@ -54,7 +50,7 @@ const NewsPage: React.FC<IProps> = (props) => {
   );
 
   return (
-    <div className={`body`}>
+    <div>
       {page?.title
         ? <Header>
           <div className={styles.titleContainer}>
@@ -63,26 +59,28 @@ const NewsPage: React.FC<IProps> = (props) => {
         </Header>
         : null}
 
-      <div className={styles.bodyContainer}>
-        {page?.mainImage
-          ? <img className={styles.image} alt='Main' src={Api.getImageUrl(page.mainImage)}/>
-          : null}
+      <div className={`body`}>
+        <div className={styles.bodyContainer}>
+          {page?.mainImage
+            ? <img className={styles.image} alt='Main' src={Api.getImageUrl(page.mainImage)}/>
+            : null}
 
-        <div className={styles.additionalBibleGroupInfoContainer}>
-          <BlurContainer
-            title={page.title}
-            className={page.mainImage ? styles.mainTextContainer : styles.mainTextContainerWithoutImage}
-          >
-            <div dangerouslySetInnerHTML={{__html: page.body}}/>
-          </BlurContainer>
+          <div className={styles.additionalBibleGroupInfoContainer}>
+            <BlurContainer
+              title={page.title}
+              className={page.mainImage ? styles.mainTextContainer : styles.mainTextContainerWithoutImage}
+            >
+              <div dangerouslySetInnerHTML={{__html: page.body}}/>
+            </BlurContainer>
+          </div>
         </div>
+
+        <ImageGallery
+          images={page.images}
+          title={'Image Gallery'}
+        />
+
       </div>
-
-      <ImageGallery
-        images={page.images}
-        title={'Image Gallery'}
-      />
-
     </div>
   );
 }

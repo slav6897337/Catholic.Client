@@ -16,14 +16,12 @@
 }
 
 .hollyMassBody{
-    background: linear-gradient(270deg, rgba(241, 241, 241, 0.70) 0%, rgba(241, 241, 241, 0.65) 46.33%, #F1F1F1 100%);
+    /*background: linear-gradient(270deg, rgba(241, 241, 241, 0.70) 0%, rgba(241, 241, 241, 0.65) 46.33%, #F1F1F1 100%);*/
 }
 
 .mainContainer{
     display: flex;
     justify-content: center;
-    margin-top: 3%;
-    margin-bottom: 3%;
 }
 
 .sideContainer{

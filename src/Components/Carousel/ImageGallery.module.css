@@ -12,6 +12,7 @@
 
 .fullImage{
     width: 100%;
+    max-height: 10%;
 }
 
 .imageContainer{
@@ -36,5 +37,6 @@
 }
 
 .modalStyles{
+    overflow: auto;
     padding: 10px 0 0 0;
 }

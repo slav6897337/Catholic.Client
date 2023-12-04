@@ -73,8 +73,9 @@ const ImageGallery: React.FC<IProps> = (props) => {
           <div className={styles.galleryWrapper}>
             <Gallery
               items={props.images.map((item, index) => (
-                <div className={styles.imageContainer} key={index}>
+                <div className={styles.imageContainer} key={index} >
                   <img className={styles.fullImage}
+                       style={{maxHeight: height/1.56}}
                        src={Api.getImageUrl(item)}
                        alt={index.toString()}
                   />

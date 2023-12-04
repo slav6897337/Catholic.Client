@@ -13,17 +13,17 @@ body {
     line-height: 1;
 }
 
-.body{
-    background: linear-gradient(270deg, rgba(241, 241, 241, 0.70) 0%, rgba(241, 241, 241, 0.65) 46.33%, #F1F1F1 100%);
-    padding-bottom: 2rem;
-    min-height: 880px;
+.body {
+    background: linear-gradient(0deg, rgba(241, 241, 241, 0.5) 10.97%, rgba(241, 241, 241, 0.65) 45.32%, #F1F1F1 90%);
+    padding: 2rem 0;
+    min-height: 240px;
 }
 
-.padding-top{
+.padding-top {
     padding-top: 2rem;
 }
 
-.center{
+.center {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +35,6 @@ body {
     background-image: url(../public/background.webp);
     background-size: cover;
     background-position: center;
-    min-height: 880px;
 }
 
 p, h1, h2 {
@@ -81,7 +80,6 @@ table {
 }
 
 
-
 @media screen and (max-width: 960px) {
     p, h1, h2, h3 {
         font-size: var(--font-size-large);
@@ -113,14 +111,12 @@ table {
 @media screen and (max-width: 414px) {
     .body-container {
         background-image: url(../public/background414.webp);
-        min-height: 605px;
     }
 }
 
 @media screen and (max-width: 320px) {
     .body-container {
         background-image: url(../public/background320.webp);
-        min-height: 468px;
     }
 }
 

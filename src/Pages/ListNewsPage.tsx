@@ -36,21 +36,20 @@ export default class ListNewsPage extends React.Component<{}, IState> {
   }
 
 
-
   render() {
 
-    if (this.state.loading){
+    if (this.state.loading) {
       return (<div className={`body center`}><Loading/></div>);
     }
 
     return (
-
+      <div>
+        <Header>
+          <div className={styles.titleContainer}>
+            <p>News</p>
+          </div>
+        </Header>
         <div className={`body`}>
-          <Header>
-            <div className={styles.titleContainer}>
-              <p>News</p>
-            </div>
-          </Header>
           <div className={styles.newsContainer}>
             {this.state.news.length ? this.state.news.map((item, index) =>
               <SpecificNews
@@ -62,9 +61,8 @@ export default class ListNewsPage extends React.Component<{}, IState> {
                 link={item.link}
               />) : null}
           </div>
-
         </div>
-
+      </div>
     );
   }
 }

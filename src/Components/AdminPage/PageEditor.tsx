@@ -13,7 +13,7 @@ interface IProps {
 const PageEditor: FunctionComponent<IProps> = ({page, onChange, showTitle = true}) => {
 
   return (
-    <div className={styles.body}>
+    <div className={`${styles.body}`}>
 
       {showTitle &&
           <div className={styles.blockContainer}>

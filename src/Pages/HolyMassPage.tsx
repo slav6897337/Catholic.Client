@@ -25,7 +25,7 @@ export default class HolyMassPage extends React.Component<{}, IState> {
     this.state = {
       selectedDate: new Date(),
       page: defaultPage,
-      holyMasses:[]
+      holyMasses: []
     };
   }
 
@@ -51,34 +51,37 @@ export default class HolyMassPage extends React.Component<{}, IState> {
 
   render() {
     return (
-      <div className={styles.hollyMassBody}>
+      <div>
+
         <Header>
           <div className={styles.titleContainer}>
             <p className={styles.left}><strong>Holly Masses</strong> at Church of St. Ladislaus</p>
             <p className={styles.right}>each <strong>Sunday at 11:00am</strong> (in English)</p>
           </div>
         </Header>
+        <div className={`${styles.hollyMassBody} body`}>
 
 
-        <div className={styles.mainContainer}>
-          <div className={styles.sideContainer}>
-            <CalendarWithEvents holyMasses={this.state.holyMasses}/>
-            <Notes notesContainer={styles.notesContainer} holyMassOnly={true}/>
+          <div className={styles.mainContainer}>
+            <div className={styles.sideContainer}>
+              <CalendarWithEvents holyMasses={this.state.holyMasses}/>
+              <Notes notesContainer={styles.notesContainer} holyMassOnly={true}/>
+            </div>
+
+            <MainInfo page={this.state.page} holyMasses={this.state.holyMasses}/>
+
           </div>
 
-          <MainInfo page={this.state.page} holyMasses={this.state.holyMasses}/>
+
+          <AllNews containerStyle={styles.newsContainerStyle} holyMassOnly={true}/>
+
+          <h1 className={styles.howToFindUs}>HOW TO FIND US</h1>
+          <div className={styles.bottomContainer}>
+            <Map/>
+            <img className={styles.churchPhoto} src={'/img/churchPhoto.png'} alt={'Church'}/>
+          </div>
 
         </div>
-
-
-        <AllNews containerStyle={styles.newsContainerStyle} holyMassOnly={true}/>
-
-        <h1 className={styles.howToFindUs}>HOW TO FIND US</h1>
-        <div className={styles.bottomContainer}>
-          <Map/>
-          <img className={styles.churchPhoto} src={'/img/churchPhoto.png'} alt={'Church'}/>
-        </div>
-
       </div>
     );
   }

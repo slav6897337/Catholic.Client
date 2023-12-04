@@ -1,3 +1,7 @@
+.collapseContainer{
+   margin: 1rem 0;
+}
+
 .collapse {
     transition-property: height;
     transition-duration: 400ms;

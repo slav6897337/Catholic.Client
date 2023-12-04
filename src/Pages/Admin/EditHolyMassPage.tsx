@@ -87,7 +87,7 @@ const EditHolyMassPage: FunctionComponent = () => {
     </div>);
 
   return (
-    <div className={styles.body}>
+    <div className={`body ${styles.body}`}>
 
       <div className={styles.blockContainer}>
         <p className={styles.header}>Upcoming Holy Masses</p>

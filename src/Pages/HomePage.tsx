@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import DailyBibleQuote from '../Components/HomePage/DailyBibleQuote';
 import './HomePage.css';
 import Welcome from '../Components/HomePage/Welcome';
@@ -40,19 +40,19 @@ export default class HomePage extends React.Component<{}, IState> {
 
   render() {
     return (
-      <div className="home">
+      <div>
         <Header>
           <PhotoCarousel images={[this.state.page.mainImage, ...this.state.page.images]}/>
           <DailyBibleQuote/>
         </Header>
 
-        <div className="home__background">
+        <div className="home__background body">
           <div className="home__welcome_container">
             <h3 className="home__welcome_title">Welcome</h3>
             <div className="home__welcome_container2">
-            <Welcome text={this.state.page.body}/>
-            <Notes homeNotes={true}/>
-              </div>
+              <Welcome text={this.state.page.body}/>
+              <Notes homeNotes={true}/>
+            </div>
           </div>
 
           <Activities/>

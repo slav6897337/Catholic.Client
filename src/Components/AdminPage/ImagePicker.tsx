@@ -25,9 +25,7 @@ const ImagePicker: FunctionComponent<IProps> = ({
                                                   onChange,
                                                   images,
                                                   mainImage,
-                                                  crop,
-                                                  titleClassName,
-                                                  className
+                                                  crop
                                                 }) => {
   const [admin, setAdmin] = React.useState<IAdmin | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -40,15 +38,28 @@ const ImagePicker: FunctionComponent<IProps> = ({
   useEffect(() => {
     const admin = AdminHelper.getAdminCredentials();
     setAdmin(admin);
+
+    const style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = `.swiper-pagination { z-index: auto !important; }`;
+    style.id = 'image-picker-style'; // Give the style tag an ID for easy removal
+
+    document.head.appendChild(style);
+
+    return () => {
+      const existingStyle = document.getElementById('image-picker-style');
+      if (existingStyle) {
+        document.head.removeChild(existingStyle);
+      }
+    };
   }, []);
 
   const pickImage = (e: HTMLInputElement) => {
     if (!e.files) return;
 
-    if(crop){
+    if (crop) {
       PoopUpContent(Cropper(e.files[0]));
-    }
-    else {
+    } else {
       saveImage(e.files[0]);
     }
   };
@@ -74,11 +85,12 @@ const ImagePicker: FunctionComponent<IProps> = ({
   };
 
   const deleteImage = async (image: string) => {
-    const newMainImage = image == mainImage ? undefined : mainImage;
+    setModalLoading(true);
+    const newMainImage = image === mainImage ? undefined : mainImage;
     const newImages = images.filter(i => i !== image);
     onChange(newImages, newMainImage);
-
     await Api.deleteImage(image, admin?.token ?? '');
+    setLoading(false);
     modalRef.current?.toggle();
   };
 
@@ -100,10 +112,7 @@ const ImagePicker: FunctionComponent<IProps> = ({
     modalRef?.current?.toggle();
   };
 
-  if (loading) return (
-    <div className={`body`}>
-      <Loading/>
-    </div>);
+  if (loading) return (<Loading/>);
 
   return (
     <>

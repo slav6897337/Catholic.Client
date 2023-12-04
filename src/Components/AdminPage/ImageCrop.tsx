@@ -72,10 +72,10 @@ const ImageCrop: FunctionComponent<IProps> = (props) => {
 
 
   return (
-    <div style={{position: 'relative', height: 650, width: 800}}>
+    <div style={{position: 'relative', height: 622, width: 800}}>
       {image && (
         <Cropper
-          style={{containerStyle: {height: 600, width: '100%'}}}
+          style={{containerStyle: {height: 570, width: '100%'}}}
           image={image}
           crop={crop}
           zoom={zoom}
@@ -87,7 +87,7 @@ const ImageCrop: FunctionComponent<IProps> = (props) => {
           cropSize={{width: props.size.width, height: props.size.height}}
         />
       )}
-      <Button style={{position:'absolute', bottom:0, left:320}} onClick={handleCropImage} text='Crop Imag'/>
+      <Button style={{position:'absolute', bottom:0, left:320}} onClick={handleCropImage} text='Crop Image'/>
     </div>
   );
 }

@@ -33,7 +33,7 @@ export const Collapse: FC<IProps> = ({
   }
 
   return (
-    <div>
+    <div className={styles.collapseContainer}>
 
       {!isExpanded
         ? <div className={styles.collapseButtonContainer} onClick={() => open()}>
