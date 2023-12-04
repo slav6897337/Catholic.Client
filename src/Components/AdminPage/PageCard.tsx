@@ -8,10 +8,10 @@ import Api from "../../Utiles/Api";
 import WhiteContainer from "../PageElements/WhiteContainer";
 import NavButton from "../StyledComponents/NavButton";
 
-const adminToken = process.env.REACT_APP_ADMIN_TOKEN ?? '';
 
 interface IProps {
   page: IPage
+  adminToken: string;
   titleStyle?: React.CSSProperties;
   titleClassName?: string;
   className?: string;
@@ -20,7 +20,7 @@ interface IProps {
 }
 
 
-const PageCard: FunctionComponent<IProps> = ({page, onDelete, titleStyle, titleClassName, className, style}) => {
+const PageCard: FunctionComponent<IProps> = ({page, onDelete, adminToken, titleStyle, titleClassName, className, style}) => {
 
   const [showDeletePopup, setShowDeletePopup] = React.useState(false);
   const handleDelete = async () => {

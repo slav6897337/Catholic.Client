@@ -69,7 +69,10 @@ const NewsPage: React.FC<IProps> = (props) => {
           : null}
 
         <div className={styles.additionalBibleGroupInfoContainer}>
-          <BlurContainer className={page.mainImage ? styles.mainTextContainer : styles.mainTextContainerWithoutImage}>
+          <BlurContainer
+            title={page.title}
+            className={page.mainImage ? styles.mainTextContainer : styles.mainTextContainerWithoutImage}
+          >
             <div dangerouslySetInnerHTML={{__html: page.body}}/>
           </BlurContainer>
         </div>

@@ -79,7 +79,7 @@ export default class AdminPage extends React.Component<{}, IState> {
               p1.urlSegment === 'holy-mass' ? -1 : 1)
           .map((page, index) => {
             return (
-              <PageCard page={page} key={index} onDelete={() => this.getPages()}/>
+              <PageCard page={page} key={index} adminToken={this.state.admin?.token ?? ''} onDelete={() => this.getPages()}/>
             );
           })}
         <WhiteContainer title={"News"}>
