@@ -32,7 +32,7 @@ body {
 }
 
 .body-container {
-    background-image: url(../public/background.png);
+    background-image: url(../public/background.webp);
     background-size: cover;
     background-position: center;
     min-height: 880px;
@@ -80,12 +80,20 @@ table {
     z-index: auto !important;
 }
 
+
+
 @media screen and (max-width: 960px) {
     p, h1, h2, h3 {
         font-size: var(--font-size-large);
         line-height: var(--line-height-large);
     }
 
+}
+
+@media screen and (max-width: 768px) {
+    .body-container {
+        background-image: url(../public/background768.webp);
+    }
 }
 
 @media screen and (max-width: 567px) {
@@ -99,6 +107,20 @@ table {
     p, h1, h2, h3 {
         font-size: var(--font-size-small);
         line-height: var(--line-height-small);
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .body-container {
+        background-image: url(../public/background414.webp);
+        min-height: 605px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .body-container {
+        background-image: url(../public/background320.webp);
+        min-height: 468px;
     }
 }
 

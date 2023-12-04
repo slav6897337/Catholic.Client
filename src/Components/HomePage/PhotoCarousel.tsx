@@ -36,7 +36,7 @@ const PhotoCarousel: FunctionComponent<IProps> = (props) => {
 };
 
 const defaultImages = [
-  '/img/reading.png',
+  '/welcome-image.webp',
 ];
 
 export default PhotoCarousel;
