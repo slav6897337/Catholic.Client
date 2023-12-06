@@ -30,6 +30,7 @@ export default class LogInPage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     try {
       const adminInfo = AdminHelper.getAdminCredentials(false);
       if (adminInfo?.token) {

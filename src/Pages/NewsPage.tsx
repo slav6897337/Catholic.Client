@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './HomePage.css';
 import {useLocation} from "react-router-dom";
 import Api from "../Utiles/Api";
@@ -10,6 +10,8 @@ import {IPage} from "../Domain/IPage";
 import Loading from "../Components/PageElements/Loading";
 import ImageGallery from "../Components/Carousel/ImageGallery";
 import {NotFound} from "../Components/StyledComponents/NotFound";
+import {Image} from "../Components/StyledComponents/Image";
+import {useScrollToTop} from "../hookcs/useScrollToTop";
 
 interface IProps {
 
@@ -19,6 +21,9 @@ const NewsPage: React.FC<IProps> = () => {
   const location = useLocation();
   const [page, setPage] = React.useState<IPage>();
   const [loading, setLoading] = React.useState(true);
+  const [containerHeight, setContainerHeight] = useState<number>( 0);
+
+  useScrollToTop();
 
   useEffect(() => {
     const pageSegment = location.pathname.split("/")[1];
@@ -27,10 +32,6 @@ const NewsPage: React.FC<IProps> = () => {
       try {
         Api.getPage(pageSegment).then((pageInfo) => {
           if (pageInfo) {
-            if (pageInfo.images?.length && !pageInfo.mainImage) {
-              const main = pageInfo.images.shift()
-              pageInfo.mainImage = main ?? '';
-            }
             setPage(pageInfo);
           }
           setLoading(false);
@@ -60,9 +61,14 @@ const NewsPage: React.FC<IProps> = () => {
         : null}
 
       <div className={`body`}>
-        <div className={styles.bodyContainer}>
+        <div className={styles.bodyContainer} style={{minHeight:containerHeight}}>
           {page?.mainImage
-            ? <img className={styles.image} alt='Main' src={Api.getImageUrl(page.mainImage)}/>
+            ? <Image
+              className={styles.image}
+              alt='Main'
+              selfSrc={page.mainImage}
+              onSizeChange={s => setContainerHeight(s.size.height)}
+            />
             : null}
 
           <div className={styles.additionalBibleGroupInfoContainer}>
@@ -77,7 +83,6 @@ const NewsPage: React.FC<IProps> = () => {
 
         <ImageGallery
           images={page.images}
-          title={'Image Gallery'}
         />
 
       </div>

@@ -2,6 +2,7 @@ import React, {forwardRef, useImperativeHandle, useState} from 'react';
 import styles from './Popup.module.css';
 import Loading from "../PageElements/Loading";
 import Button from "../StyledComponents/Button";
+import BlurContainer from "../PageElements/BlurContainer";
 
 interface ModalProps {
   children?: React.ReactNode;

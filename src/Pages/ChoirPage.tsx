@@ -19,6 +19,10 @@ export default class ChoirPage extends React.Component<{}, IState> {
     };
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <div>

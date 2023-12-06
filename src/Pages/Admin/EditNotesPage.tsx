@@ -11,13 +11,14 @@ import {IAdmin} from "../../Domain/IAdmin";
 import Checkbox from "../../Components/StyledComponents/Checkbox";
 import {defaultNotes, INote} from "../../Domain/INote";
 import BodyEditor from "../../Components/AdminPage/BodyEditor";
+import {useScrollToTop} from "../../hookcs/useScrollToTop";
 
 const EditNotesPage: FunctionComponent = () => {
   const {id} = useParams();
   const [admin, setAdmin] = React.useState<IAdmin | null>(null);
   const [notes, setNotes] = React.useState<INote>(defaultNotes);
   const [loading, setLoading] = React.useState<boolean>(true);
-
+  useScrollToTop();
 
   useEffect(() => {
     const admin = AdminHelper.getAdminCredentials();

@@ -1,4 +1,4 @@
-import {FunctionComponent, ReactNode} from "react";
+import React, {FunctionComponent, ReactNode} from "react";
 import styles from "./BlurContainer.module.css";
 
 
@@ -13,6 +13,8 @@ interface IProps {
 
 
 const BlurContainer: FunctionComponent<IProps> = (props) => {
+  if (!props.children) return null;
+
   return (
     <div className={`${styles.blurContainer} ${props.className}`} style={props.style}>
       {props.title ?

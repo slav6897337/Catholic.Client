@@ -6,6 +6,7 @@ import ImageGallery from "../Components/Carousel/ImageGallery";
 import Api from "../Utiles/Api";
 import log from "loglevel";
 import {defaultPage, IPage} from "../Domain/IPage";
+import {Image} from "../Components/StyledComponents/Image";
 
 interface IState {
   selectedDate: Date;
@@ -24,6 +25,7 @@ export default class BibleGroupPage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     try {
       Api.getPage('english-bible-group').then((page) => {
         if (page) {
@@ -46,7 +48,7 @@ export default class BibleGroupPage extends React.Component<{}, IState> {
         </Header>
         <div className={`body`}>
           <div className={styles.bibleGroupInfoContainer}>
-            <img className={styles.image} alt='Bible' src={'/img/bible-rosary.png'}/>
+            <Image className={styles.image} alt='Bible' selfSrc={this.state.page.mainImage}/>
             <div className={styles.additionalBibleGroupInfoContainer}>
               <BibleGroupInfo className={styles.bibleGroupInfo} body={this.state.page.body}/>
             </div>
@@ -54,7 +56,6 @@ export default class BibleGroupPage extends React.Component<{}, IState> {
 
           <ImageGallery
             images={this.state.page.images ?? []}
-            title={'Image Gallery'}
           />
         </div>
       </div>

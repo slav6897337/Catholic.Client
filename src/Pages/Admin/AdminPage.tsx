@@ -31,6 +31,7 @@ export default class AdminPage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.getPages();
   }
 

@@ -26,6 +26,7 @@ export default class ListNewsPage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     try {
       Api.getAllNews().then((news) => {
         this.setState({news, loading: false})

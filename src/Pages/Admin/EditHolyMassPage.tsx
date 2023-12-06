@@ -28,6 +28,7 @@ const EditHolyMassPage: FunctionComponent = () => {
   useEffect(() => {
 
     try {
+      window.scrollTo(0, 0);
       const admin = AdminHelper.getAdminCredentials();
       setAdmin(admin);
 

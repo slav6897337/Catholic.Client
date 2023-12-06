@@ -2,10 +2,11 @@ import React, {useRef, useState} from 'react';
 import styles from './ImageGallery.module.css';
 import Popup, {ModalHandle} from "../PopUp/Popup";
 import Gallery from "./Gallery";
-import Api from "../../Utiles/Api";
 import Button from "../StyledComponents/Button";
 import useWindowDimensions from "../../hookcs/useWindowDimensions";
-
+import {Image} from "../StyledComponents/Image";
+import {useSwiperPagination} from "../../hookcs/useSwiperPagination";
+import {ISize} from "../../Domain/ISize";
 
 interface IProps {
   images: string[];
@@ -24,10 +25,19 @@ interface IProps {
 
 const ImageGallery: React.FC<IProps> = (props) => {
   const {height, width} = useWindowDimensions();
-
+  const [imageWidth, setImageWidth] = useState<number>();
+  useSwiperPagination();
   const modalRef = useRef<ModalHandle | null>(null);
 
-  const Buttons: React.FC<{item:string}>  = ({item}) => (
+  const processImage = (size: ISize) => {
+    if(!size) return;
+    const width = size.width * height / 1.2 / size?.height;
+    if(!imageWidth || width > imageWidth) setImageWidth(width);
+  };
+
+  const Buttons: React.FC<{
+    item: string
+  }> = ({item}) => (
     <div className={styles.buttonsContainer}>
       {props.leftButtonOnClick && props.leftButtonCondition && props.leftButtonCondition(item) &&
           <Button
@@ -46,7 +56,7 @@ const ImageGallery: React.FC<IProps> = (props) => {
           />
       }
     </div>
-    );
+  );
 
   if (!props.images?.length) return null;
 
@@ -57,10 +67,10 @@ const ImageGallery: React.FC<IProps> = (props) => {
           title={props.title}
           items={props.images.map((item, index) => (
             <div className={styles.imageContainer} key={index}>
-              <img className={styles.galleryImage}
-                   src={Api.getImageUrl(item)}
-                   alt={index.toString()}
-                   onClick={() => modalRef?.current?.toggle()}
+              <Image className={styles.galleryImage}
+                     selfSrc={item}
+                     alt={index.toString()}
+                     onClick={() => modalRef?.current?.toggle()}
               />
               <Buttons item={item}/>
 
@@ -70,14 +80,16 @@ const ImageGallery: React.FC<IProps> = (props) => {
 
       {width > 760 ?
         <Popup ref={modalRef} modalStyle={styles.modalStyles}>
-          <div className={styles.galleryWrapper}>
+          <div className={styles.galleryWrapper} style={{width:imageWidth}}>
             <Gallery
+              className={styles.galleryContainer}
               items={props.images.map((item, index) => (
-                <div className={styles.imageContainer} key={index} >
-                  <img className={styles.fullImage}
-                       style={{maxHeight: height/1.56}}
-                       src={Api.getImageUrl(item)}
-                       alt={index.toString()}
+                <div className={styles.imageFullContainer} key={index}>
+                  <Image className={styles.fullImage}
+                         style={{maxHeight: height / 1.2}}
+                         selfSrc={item}
+                         alt={index.toString()}
+                         onSizeChange={s => processImage(s.naturalSize)}
                   />
                   <Buttons item={item}/>
                 </div>

@@ -26,6 +26,7 @@ export default class HomePage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     try {
       Api.getPage('home').then((page) => {
         if (page) {

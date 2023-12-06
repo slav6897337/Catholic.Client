@@ -38,20 +38,6 @@ const ImagePicker: FunctionComponent<IProps> = ({
   useEffect(() => {
     const admin = AdminHelper.getAdminCredentials();
     setAdmin(admin);
-
-    const style = document.createElement('style');
-    style.type = 'text/css';
-    style.innerHTML = `.swiper-pagination { z-index: auto !important; }`;
-    style.id = 'image-picker-style'; // Give the style tag an ID for easy removal
-
-    document.head.appendChild(style);
-
-    return () => {
-      const existingStyle = document.getElementById('image-picker-style');
-      if (existingStyle) {
-        document.head.removeChild(existingStyle);
-      }
-    };
   }, []);
 
   const pickImage = (e: HTMLInputElement) => {

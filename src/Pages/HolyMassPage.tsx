@@ -30,6 +30,7 @@ export default class HolyMassPage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     try {
       Api.listHollyMasses().then((masses) => {
         if (masses?.length) {

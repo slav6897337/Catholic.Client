@@ -13,6 +13,7 @@ import {defaultNews, INews} from "../../Domain/INews";
 import PageEditor from "../../Components/AdminPage/PageEditor";
 import Checkbox from "../../Components/StyledComponents/Checkbox";
 import {Collapse} from "../../Components/StyledComponents/Collapse";
+import {useScrollToTop} from "../../hookcs/useScrollToTop";
 
 const EditNewsPage: FunctionComponent = () => {
   const {id} = useParams();
@@ -21,6 +22,7 @@ const EditNewsPage: FunctionComponent = () => {
   const [page, setPage] = React.useState<IPage>(defaultPage);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [collapse, setCollapse] = React.useState<boolean>(false);
+  useScrollToTop();
 
   useEffect(() => {
     const admin = AdminHelper.getAdminCredentials();

@@ -10,6 +10,7 @@ interface IProps {
   items: ReactJSXElement[];
   title?: string;
   containerStyle?: string;
+  className?: string;
   onReachEnd?: () => void;
   onClick?: () => void;
   singleSlidePerView?: boolean;
@@ -61,7 +62,7 @@ const Gallery: React.FC<IProps> = (props) => {
   );
 
   return (
-    <div className={`${styles.gallery} ${props.containerStyle}`}>
+    <div className={`${styles.gallery} ${props.className}`}>
       {props.title
         ? <h1 className={styles.galleryTitle}>{props.title}</h1>
         : null}

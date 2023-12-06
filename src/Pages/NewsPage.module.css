@@ -1,53 +1,59 @@
 .titleContainer {
-  padding: 2rem;
-  color: white;
-  font-family: var(--font-cambay);
-  font-size: 0.5rem;
+    padding: 2rem;
+    color: white;
+    font-family: var(--font-cambay);
+    font-size: 0.5rem;
 }
 
-.mainTextContainer{
-  position: relative;
-  margin-left: 6%;
-  width: 60%;
+.mainTextContainer {
+    position: relative;
+    margin-left: 6%;
+    width: 60%;
 }
 
-.mainTextContainerWithoutImage{
-  width: 86%;
+.mainTextContainerWithoutImage {
+    width: 86%;
 }
 
-.image{
-  position: absolute;
-  margin-top: 1rem;
-  margin-left: 50%;
-  width: 46%;
+.image {
+    position: absolute;
+    margin-top: 1rem;
+    margin-left: 50%;
+    width: 46%;
+}
+
+.bodyContainer {
+    position: relative;
 }
 
 @media screen and (max-width: 1200px) {
-  .mainTextContainer{
-    width: 70%;
-  }
+    .mainTextContainer {
+        width: 70%;
+    }
 }
 
 @media screen and (max-width: 960px) {
-  .mainTextContainer{
-    width: 78%;
-  }
+    .mainTextContainer {
+        width: 78%;
+    }
 }
 
 @media screen and (max-width: 768px) {
-  .mainTextContainer{
-    width: 88%;
-  }
-  .image{
-    position: relative;
-    margin: 0;
-    width: 88%;
-  }
-  .bodyContainer{
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-  }
+    .mainTextContainer {
+        width: 88%;
+    }
+
+    .image {
+        position: relative;
+        margin: 0;
+        width: 88%;
+    }
+
+    .bodyContainer {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 }
 
 @media screen and (max-width: 480px) {

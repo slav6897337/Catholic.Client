@@ -10,6 +10,7 @@ import Button from "../../Components/StyledComponents/Button";
 import AdminHelper from "../../Utiles/Admin";
 import {IAdmin} from "../../Domain/IAdmin";
 import PageEditor from "../../Components/AdminPage/PageEditor";
+import {useScrollToTop} from "../../hookcs/useScrollToTop";
 
 const EditPage: FunctionComponent = () => {
 
@@ -17,6 +18,7 @@ const EditPage: FunctionComponent = () => {
   const [admin, setAdmin] = React.useState<IAdmin | null>(null);
   const [page, setPage] = React.useState<IPage | null>(null);
   const [loading, setLoading] = React.useState<boolean>(true);
+  useScrollToTop();
 
   useEffect(() => {
     const admin = AdminHelper.getAdminCredentials();
