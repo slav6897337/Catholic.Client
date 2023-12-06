@@ -25,7 +25,6 @@ export default class LogInPage extends React.Component<{}, IState> {
       name: '',
       pass: '',
       error: false,
-
     };
   }
 

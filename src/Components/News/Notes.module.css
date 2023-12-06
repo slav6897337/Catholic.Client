@@ -1,5 +1,5 @@
 .notesContainer {
-    max-width: 16%;
+    max-width: 18%;
     margin-right: 5%;
     margin-top: 6rem;
     max-height: 16rem;
@@ -13,7 +13,7 @@
 
 @media screen and (max-width: 1200px) {
     .notesContainer {
-        max-width: 22%;
+        max-width: 25%;
     }
 }
 

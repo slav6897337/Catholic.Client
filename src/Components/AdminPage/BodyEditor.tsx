@@ -23,6 +23,8 @@ const BodyEditor: FunctionComponent<IProps> = (props) => {
 
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);
+    const body = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    props.onBodyUpdate(body);
   };
 
   const onBlur = (event: SyntheticEvent) =>{

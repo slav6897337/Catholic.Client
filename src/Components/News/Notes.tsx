@@ -1,6 +1,6 @@
 import {FunctionComponent, useEffect, useState} from "react";
 import styles from "./Notes.module.css";
-import {INote} from "../../Domain/INote";
+import {defaultNotes, INote} from "../../Domain/INote";
 import Note from "./Note";
 import Carousel from "../Carousel/Carousel";
 import Api from "../../Utiles/Api";
@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const Notes: FunctionComponent<IProps> = (props) => {
-  const [notesData, setNotes] = useState<INote[]>([]);
+  const [notesData, setNotes] = useState<INote[]>([{...defaultNotes, info:'<div></div>'}]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -29,9 +29,7 @@ const Notes: FunctionComponent<IProps> = (props) => {
     });
   };
 
-  const notes = notesData.map(noteData => <Note note={noteData}/>);
-
-  if(loading) return (<Loading />);
+  const notes = notesData.map(noteData => <Note note={noteData} loading={loading}/>);
 
   return (
     <Carousel
