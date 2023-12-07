@@ -19,7 +19,6 @@
 
 .activity img{
     width: 100%;
-    height: 15rem;
     transition: transform 0.3s;
     object-fit: cover;
 }

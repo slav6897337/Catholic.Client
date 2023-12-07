@@ -4,7 +4,6 @@ import {defaultNotes, INote} from "../../Domain/INote";
 import Note from "./Note";
 import Carousel from "../Carousel/Carousel";
 import Api from "../../Utiles/Api";
-import Loading from "../PageElements/Loading";
 
 interface IProps {
   notesContainer?: string;

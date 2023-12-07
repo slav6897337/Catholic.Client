@@ -1,12 +1,16 @@
 import React from 'react';
 import styles from "./ChoirPage.module.css";
 import Header from "../Components/PageElements/Header";
-import Gallery from "../Components/Carousel/Gallery";
 import ChoirInfo from "../Components/ChoirPage/ChoirInfo";
 import Player from "../Components/Player/Player";
+import Api from "../Utiles/Api";
+import log from "loglevel";
+import {defaultPage, IPage} from "../Domain/IPage";
+import ImageGallery from "../Components/Carousel/ImageGallery";
 
 interface IState {
   selectedDate: Date;
+  page: IPage
 }
 
 export default class ChoirPage extends React.Component<{}, IState> {
@@ -15,12 +19,23 @@ export default class ChoirPage extends React.Component<{}, IState> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      selectedDate: new Date()
+      selectedDate: new Date(),
+      page: defaultPage
     };
   }
 
   componentDidMount() {
     window.scrollTo(0, 0);
+    try {
+      Api.getPage('choir').then((page) => {
+        if (page) {
+          page.images ??= [];
+          this.setState({page})
+        }
+      });
+    } catch (e) {
+      log.info(e);
+    }
   }
 
   render() {
@@ -40,33 +55,12 @@ export default class ChoirPage extends React.Component<{}, IState> {
 
           </div>
 
-          <Gallery
-            title={'Image Gallery'}
-            items={imagesData.map((item, index) => (
-              <img key={index} src={item.imgPath} alt={item.label}/>
-            ))}/>
+          <ImageGallery
+            images={this.state.page.images ?? []}
+          />
+
         </div>
       </div>
     );
   }
 }
-
-const imagesData = [
-  {
-    label: 'Holly Mass',
-    imgPath: '/img/reading.png',
-  },
-  {
-    label: 'Bible',
-    imgPath: '/img/bible.png',
-  },
-  {
-    label: 'Bible',
-    imgPath:
-      '/img/bible-rosary.png',
-  },
-  {
-    label: 'Reading',
-    imgPath: '/img/reading.png',
-  },
-];
