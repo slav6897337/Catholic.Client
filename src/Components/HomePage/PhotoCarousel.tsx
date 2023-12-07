@@ -2,6 +2,7 @@ import {FunctionComponent, useEffect, useState} from "react";
 import styles from "./PhotoCarousel.module.css";
 import Carousel from "../Carousel/Carousel";
 import Api from "../../Utiles/Api";
+import {Image} from "../StyledComponents/Image";
 
 interface IProps {
   images: (string | undefined)[];
@@ -28,7 +29,7 @@ const PhotoCarousel: FunctionComponent<IProps> = (props) => {
   }, [props.images]);
 
   const images = imagesData.map((image, index) =>
-    <img className={styles.photoCarouselImage} src={image} alt={index.toString()}/>);
+    <Image className={styles.photoCarouselImage} src={image} alt={index.toString()}/>);
 
   return (
     <Carousel items={images}/>

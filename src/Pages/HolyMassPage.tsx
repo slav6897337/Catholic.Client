@@ -10,6 +10,7 @@ import Header from "../Components/PageElements/Header";
 import Api from "../Utiles/Api";
 import log from "loglevel";
 import {defaultPage, IPage} from "../Domain/IPage";
+import ImageGallery from "../Components/Carousel/ImageGallery";
 
 interface IState {
   selectedDate: Date;
@@ -76,10 +77,12 @@ export default class HolyMassPage extends React.Component<{}, IState> {
 
           <AllNews containerStyle={styles.newsContainerStyle} holyMassOnly={true}/>
 
+          <ImageGallery images={this.state.page.images ?? []}/>
+
           <h1 className={styles.howToFindUs}>HOW TO FIND US</h1>
           <div className={styles.bottomContainer}>
             <Map/>
-            <img className={styles.churchPhoto} src={'/img/churchPhoto.png'} alt={'Church'}/>
+            <img className={styles.churchPhoto} src={'/img/churchPhoto.webp'} alt={'Church'}/>
           </div>
 
         </div>

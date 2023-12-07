@@ -77,7 +77,7 @@ const Api = {
   deleteNews: async (id: string, adminToken: string) =>
     await Http.delete<INews>(`${baseUrl}/api/news/${id}`, [authHeader(adminToken)]),
 
-  getImageUrl: (route: string) => `${baseUrl}/api${route}`,
+  getImageUrl: (route: string) => `${baseUrl}${route}`,
   uploadImage: async (formData: FormData, adminToken: string) =>
     await Http.uploadFile(`${baseUrl}/api/images`, formData, [authHeader(adminToken)]),
   listImages: async () => await Http.get<string[]>(`${baseUrl}/api/images`),

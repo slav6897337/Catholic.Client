@@ -76,6 +76,7 @@ export default class LogInPage extends React.Component<{}, IState> {
             <p className={styles.header}>Name</p>
             <input className={styles.inputStyling}
                    type="text"
+                   name="username"
                    value={this.state.name}
                    onChange={e => this.setState({name: e.target.value, error: false})}/>
           </div>
@@ -83,7 +84,8 @@ export default class LogInPage extends React.Component<{}, IState> {
           <div className={styles.blockContainer}>
             <p className={styles.header}>Password</p>
             <input className={styles.inputStyling}
-                   type="text"
+                   type="password"
+                   name="password"
                    value={this.state.pass}
                    onChange={e => this.setState({pass: e.target.value, error: false})}/>
           </div>
