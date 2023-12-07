@@ -4,14 +4,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './custom-swiper.css';
-import {Swiper, SwiperSlide} from "swiper/react";
-import {
-  Autoplay,
-  Pagination,
-  Navigation,
-} from "swiper";
-import {SwiperProps} from "swiper/react/swiper-react";
+import {Swiper, SwiperProps, SwiperSlide} from "swiper/react";
 import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
+import { Navigation, Pagination, Autoplay} from 'swiper/modules';
 
 interface IProps extends SwiperProps {
   items: ReactJSXElement[];

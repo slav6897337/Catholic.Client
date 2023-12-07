@@ -1,4 +1,4 @@
-FROM node:18.18.1-alpine as build
+FROM node:18.19-alpine as build
 WORKDIR /app
 ARG REACT_APP_MAPS_KEY
 ENV REACT_APP_MAPS_KEY=$REACT_APP_MAPS_KEY
@@ -6,7 +6,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-FROM node:18.18.1-alpine
+FROM node:18.19-alpine
 WORKDIR /app
 RUN npm install -g serve
 COPY --from=build /app/build .

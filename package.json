@@ -3,34 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/traverse": "^7.23.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.13.6",
+    "@mui/material": "^5.14.20",
     "@react-google-maps/api": "^2.18.1",
-    "@types/react": "^18.2.13",
-    "@types/react-dom": "^18.2.6",
-    "css-what": "^5.0.1",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
     "draft-js": "^0.11.7",
-    "draft-js-export-html": "^1.4.1",
     "draft-js-import-html": "^1.4.1",
     "draftjs-to-html": "^0.9.1",
     "eslint-config-react-app": "^7.0.1",
+    "lodash": "^4.17.21",
     "loglevel": "^1.8.1",
     "moment": "^2.29.4",
-    "nth-check": "^2.1.1",
-    "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-calendar": "^4.3.0",
+    "react-clock": "^4.5.1",
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
     "react-easy-crop": "^5.0.2",
     "react-loading": "^2.0.3",
-    "react-router-dom": "^6.14.0",
+    "react-router-dom": "^6.20.1",
     "react-scripts": "^5.0.1",
     "react-time-picker": "^6.5.2",
-    "swiper": "^9.4.1",
-    "typescript": "^4.9.5",
+    "swiper": "^11.0.5",
+    "typescript": "^5.3.3",
     "web-vitals": "^3.4.0"
   },
   "scripts": {
@@ -58,13 +55,8 @@
     ]
   },
   "devDependencies": {
-    "@types/draft-js": "^0.11.12",
-    "@types/draftjs-to-html": "^0.8.1",
-    "@types/react-draft-wysiwyg": "^1.13.4"
-  },
-  "resolutions": {
-    "react-scripts/**/postcss": "8.4.31",
-    "react-scripts/**/css-what": "5.0.1",
-    "react-scripts/**/nth-check": "2.1.1"
+    "@types/draft-js": "^0.11.14",
+    "@types/draftjs-to-html": "^0.8.4",
+    "@types/react-draft-wysiwyg": "^1.13.7"
   }
 }

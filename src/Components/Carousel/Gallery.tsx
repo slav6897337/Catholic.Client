@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Gallery.module.css';
-import SwiperCore, {Navigation, Pagination} from 'swiper';
+import SwiperCore from 'swiper';
+import {Navigation, Pagination} from 'swiper/modules';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import useWindowDimensions from "../../hookcs/useWindowDimensions";
 import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
@@ -82,7 +83,7 @@ const Gallery: React.FC<IProps> = (props) => {
         >
           {props.items.map((item, index) => (
             <SwiperSlide key={index}>
-                {item}
+              {item}
               <div className={styles.paginationSpase}/>
             </SwiperSlide>
           ))}
