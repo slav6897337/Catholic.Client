@@ -13,11 +13,11 @@ interface IProps {
   images: string[];
   leftButtonText?: string;
   leftButtonIcon?: string;
-  leftButtonOnClick?: (image: string) => void;
-  leftButtonCondition?: (image: string) => boolean;
+  leftButtonOnClick?: (image?: string) => void;
+  leftButtonCondition?: (image?: string) => boolean;
   rightButtonText?: string;
   rightButtonIcon?: string;
-  rightButtonOnClick?: (image: string) => void;
+  rightButtonOnClick?: (image?: string) => void;
   containerStyle?: string;
   onReachEnd?: () => void;
   onClick?: (index: number) => void;
@@ -59,7 +59,7 @@ const ImageViewer: React.FC<IProps> = (props) => {
                      alt={index.toString()}
                      onSizeChange={s => processImage(s.naturalSize)}
               />
-              <ImageButtons image={item}/>
+              <ImageButtons {...props} image={item}/>
             </div>
           ))}
           singleSlidePerView={true}

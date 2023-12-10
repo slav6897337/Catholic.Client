@@ -9,7 +9,7 @@ import AdminHelper from "../../Utiles/Admin";
 import ImageGallery from "../Carousel/ImageGallery";
 import ImageCrop from "./ImageCrop";
 import {ISize} from "../../Domain/ISize";
-import {EventEmitter, POPUP_HIDDEN, POPUP_SHOWN} from "../../Utiles/EventEmitter";
+import {EventEmitter, POPUP_HIDDEN} from "../../Utiles/EventEmitter";
 
 interface IProps {
   title: string;
@@ -36,6 +36,7 @@ const ImagePicker: FunctionComponent<IProps> = ({
   const [loading, setLoading] = React.useState<boolean>(false);
   const [modalLoading, setModalLoading] = React.useState<boolean>(false);
   const [popupContent, setPopupContent] = React.useState<React.JSX.Element | null>(null);
+  const [textPopupShown, setTextPopupShown] = React.useState<boolean>(false);
 
   const allImages = mainImage ? [mainImage, ...images] : images;
 
@@ -74,32 +75,33 @@ const ImagePicker: FunctionComponent<IProps> = ({
     }).finally(() => setLoading(false));
   };
 
-  const deleteImage = async (image: string) => {
+  const deleteImage = async (image?: string) => {
     setModalLoading(true);
     const newMainImage = image === mainImage ? undefined : mainImage;
     const newImages = images.filter(i => i !== image);
     onChange(newImages, newMainImage);
-    await Api.deleteImage(image, admin?.token ?? '');
+    if(image) await Api.deleteImage(image, admin?.token ?? '');
     setLoading(false);
     EventEmitter.trigger(POPUP_HIDDEN);
+    setTextPopupShown(false);
   };
 
-  const makeManeImage = (image: string) => {
+  const makeManeImage = (image?: string) => {
     const newImages = allImages.filter(i => i !== image);
     onChange(newImages, image);
   };
 
-  const DeleteImage = (image: string) => (
+  const DeleteImage = (image?: string) => (
     <Modal
       title='Are you certain you want to remove photo?'
       okOnClick={() => deleteImage(image)}
-      cancelOnClick={() => EventEmitter.trigger(POPUP_HIDDEN)}
+      cancelOnClick={() => setTextPopupShown(false)}
     />
   );
 
   const PoopUpContent = (content: React.JSX.Element) => {
     setPopupContent(content);
-    EventEmitter.trigger(POPUP_SHOWN);
+    setTextPopupShown(true);
   };
 
   if (loading) return (<Loading/>);
@@ -138,7 +140,7 @@ const ImagePicker: FunctionComponent<IProps> = ({
 
       </div>
 
-      <Popup loading={modalLoading}>
+      <Popup show={textPopupShown} loading={modalLoading}>
         {popupContent}
       </Popup>
     </>

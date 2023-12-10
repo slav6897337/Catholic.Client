@@ -2,28 +2,40 @@ import React, {useEffect, useRef, useState} from 'react';
 import styles from './Popup.module.css';
 import Loading from "../PageElements/Loading";
 import Button from "../StyledComponents/Button";
-import EventListener from "../../Utiles/EventListener";
-import {POPUP_HIDDEN, POPUP_SHOWN} from "../../Utiles/EventEmitter";
+import {EventEmitter, POPUP_HIDDEN, POPUP_SHOWN} from "../../Utiles/EventEmitter";
 
 interface ModalProps {
   children?: React.ReactNode;
   loading?: boolean;
   modalStyle?: string;
+  show?: boolean;
 }
 
-const Popup: React.FC<ModalProps> =(props) => {
+const Popup: React.FC<ModalProps> = (props) => {
   const [show, setShow] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('keydown', handleKeyDown);
+    if (props.show === undefined) {
+      EventEmitter.on(POPUP_SHOWN, () => setShow(true));
+      EventEmitter.on(POPUP_HIDDEN, () => setShow(false));
+    }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
+      if (props.show === undefined) {
+        EventEmitter.off(POPUP_SHOWN);
+        EventEmitter.off(POPUP_HIDDEN);
+      }
     };
   }, []);
+
+  useEffect(() => {
+    setShow(props.show ?? false);
+  }, [props.show]);
 
   const handleClose = () => {
     setShow(false);
@@ -43,12 +55,6 @@ const Popup: React.FC<ModalProps> =(props) => {
 
   return (
     <>
-      <EventListener event={POPUP_SHOWN} callback={() => {
-        setShow(true);
-      }} />
-      <EventListener event={POPUP_HIDDEN} callback={() => {
-        setShow(false);
-      }} />
       {show ?
         <div className={styles.overlayStyle}>
           <div
@@ -67,7 +73,7 @@ const Popup: React.FC<ModalProps> =(props) => {
             }
           </div>
         </div>
-      : null}
+        : null}
     </>
 
   );

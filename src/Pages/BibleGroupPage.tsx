@@ -20,7 +20,7 @@ export default class BibleGroupPage extends React.Component<{}, IState> {
     super(props);
     this.state = {
       selectedDate: new Date(),
-      page: defaultPage
+      page: {...defaultPage, title: 'Bible group'}
     };
   }
 
@@ -43,14 +43,17 @@ export default class BibleGroupPage extends React.Component<{}, IState> {
       <div>
         <Header>
           <div className={styles.titleContainer}>
-            <p>English Bible group</p>
+            <p>{this.state.page.title}</p>
           </div>
         </Header>
         <div className={`body`}>
           <div className={styles.bibleGroupInfoContainer}>
             <Image className={styles.image} alt='Bible' selfSrc={this.state.page.mainImage}/>
             <div className={styles.additionalBibleGroupInfoContainer}>
-              <BibleGroupInfo className={styles.bibleGroupInfo} body={this.state.page.body}/>
+              <BibleGroupInfo
+                className={styles.bibleGroupInfo}
+                body={this.state.page.body}
+                title={this.state.page.title}/>
             </div>
           </div>
 

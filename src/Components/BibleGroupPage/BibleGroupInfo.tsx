@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./BibleGroupPage.module.css";
 import BlurContainer from "../PageElements/BlurContainer";
 
 interface IProps {
@@ -8,12 +7,13 @@ interface IProps {
   className?: string;
   style?: React.CSSProperties;
   body: string;
+  title?: string;
 }
 
 const BibleGroupInfo: React.FC<IProps> = (props) => {
   return (
     <BlurContainer
-      title='English Bible group'
+      title={props.title}
       {...props}
     >
       {props.body ?

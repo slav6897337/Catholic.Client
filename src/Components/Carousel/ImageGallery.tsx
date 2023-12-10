@@ -11,11 +11,11 @@ interface IProps {
   images: string[];
   leftButtonText?: string;
   leftButtonIcon?: string;
-  leftButtonOnClick?: (image: string) => void;
-  leftButtonCondition?: (image: string) => boolean;
+  leftButtonOnClick?: (image?: string) => void;
+  leftButtonCondition?: (image?: string) => boolean;
   rightButtonText?: string;
   rightButtonIcon?: string;
-  rightButtonOnClick?: (image: string) => void;
+  rightButtonOnClick?: (image?: string) => void;
   containerStyle?: string;
   onReachEnd?: () => void;
   onClick?: () => void;
@@ -39,13 +39,17 @@ const ImageGallery: React.FC<IProps> = (props) => {
                      alt={index.toString()}
                      onClick={() => EventEmitter.trigger(POPUP_SHOWN, index)}
               />
-              <ImageButtons image={item}/>
+              <ImageButtons
+                {...props}
+                image={item}
+                leftButtonCondition={props.leftButtonCondition}
+              />
 
             </div>
           ))}/>
       </div>
 
-      <ImageViewer images={props.images}/>
+      <ImageViewer {...props} images={props.images}/>
 
     </div>
   );
