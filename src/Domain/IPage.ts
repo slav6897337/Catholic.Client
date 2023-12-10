@@ -4,6 +4,7 @@ export interface IPage {
   urlSegment: string,
   title: string,
   body: string,
+  bodyText?: string,
   images: string[],
   mainImage?: string,
 }

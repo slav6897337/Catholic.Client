@@ -9,7 +9,7 @@ import Button from "../StyledComponents/Button";
 interface IProps {
   body: string;
   title?: string;
-  onBodyUpdate: (body: string) => void
+  onBodyUpdate: (body: string, bodyText: string) => void;
   titleClassName?: string;
   className?: string;
   wrapperClassName?: string;
@@ -30,7 +30,11 @@ const BodyEditor: FunctionComponent<IProps> = (props) => {
 
   const onBlur = (event: SyntheticEvent) =>{
     const body = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-    props.onBodyUpdate(body);
+    const bodyText = convertToRaw(editorState.getCurrentContent())
+      .blocks
+      .map(b => b.text)
+      .join(' ');
+    props.onBodyUpdate(body, bodyText);
     setSave(false);
   }
 

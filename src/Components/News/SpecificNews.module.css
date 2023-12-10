@@ -3,11 +3,25 @@
     background: #FFFFFF;
     border-radius: 0.25rem;
     margin: 0.4rem 0.8rem 1.6rem 0.8rem;
-    padding-bottom: 0.4rem;
-    padding-right: 0.4rem;
-    padding-left: 0.4rem;
-    min-height: 14rem;
-    max-width: 24rem;
+    padding-bottom: 0.6rem;
+    padding-right: 0.6rem;
+    padding-left: 0.6rem;
+    height: 19.4rem;
+    width: 27rem;
+}
+
+.bodyContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.separate{
+    max-width: 50%;
+    margin-bottom: auto;
 }
 
 .newsClickable:hover{
@@ -18,7 +32,7 @@
     box-shadow: none;
 }
 
-.news__title{
+.newsTitle{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -31,7 +45,6 @@
     font-weight: 700;
     font-size: 1rem;
     line-height: 1.6rem;
-    margin: 1rem;
     color: #000000;
 }
 
@@ -47,6 +60,7 @@
 
 @media screen and (max-width: 420px) {
     .news{
+        max-width: 24rem;
 
         margin: 0.2rem;
     }

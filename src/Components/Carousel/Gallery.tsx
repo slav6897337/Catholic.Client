@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Gallery.module.css';
 import SwiperCore from 'swiper';
 import {Navigation, Pagination} from 'swiper/modules';
-import {Swiper, SwiperSlide} from 'swiper/react';
+import {Swiper, SwiperRef, SwiperSlide} from 'swiper/react';
 import useWindowDimensions from "../../hookcs/useWindowDimensions";
 import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 import Loading from "../PageElements/Loading";
@@ -15,10 +15,18 @@ interface IProps {
   onReachEnd?: () => void;
   onClick?: () => void;
   singleSlidePerView?: boolean;
+  slideTo?: number;
 }
 
 const Gallery: React.FC<IProps> = (props) => {
-  const {height, width} = useWindowDimensions();
+  const {width} = useWindowDimensions();
+  const ref = React.useRef<SwiperRef>(null);
+
+  useEffect(() => {
+    if (props.slideTo && ref.current) {
+      ref.current.swiper.slideTo(props.slideTo);
+    }
+  }, []);
 
   const updateSlidesPerView = () => {
     if (width < 420) {
@@ -42,7 +50,6 @@ const Gallery: React.FC<IProps> = (props) => {
     return 6;
   };
 
-
   const handleSwiperSlideChange = async (swiper: SwiperCore) => {
     const {isEnd} = swiper;
     if (isEnd && props.onReachEnd) {
@@ -63,33 +70,36 @@ const Gallery: React.FC<IProps> = (props) => {
   );
 
   return (
-    <div className={`${styles.gallery} ${props.className}`}>
-      {props.title
-        ? <h1 className={styles.galleryTitle}>{props.title}</h1>
-        : null}
+    <>
+      <div className={`${styles.gallery} ${props.className}`}>
+        {props.title
+          ? <h1 className={styles.galleryTitle}>{props.title}</h1>
+          : null}
 
-      <div className={styles.galleryContainer}>
-        <Swiper
-          slidesPerView={updateSlidesPerView()}
-          spaceBetween={20}
-          navigation={true}
-          modules={[Pagination, Navigation]}
-          pagination={{
-            clickable: true,
-            horizontalClass: styles.swiperPagination
-          }}
-          onReachEnd={handleSwiperSlideChange}
-          wrapperClass={styles.swiperWrapper}
-        >
-          {props.items.map((item, index) => (
-            <SwiperSlide key={index}>
-              {item}
-              <div className={styles.paginationSpase}/>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className={styles.galleryContainer}>
+          <Swiper
+            ref={ref}
+            slidesPerView={updateSlidesPerView()}
+            spaceBetween={20}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            pagination={{
+              clickable: true,
+              horizontalClass: styles.swiperPagination
+            }}
+            onReachEnd={handleSwiperSlideChange}
+            wrapperClass={styles.swiperWrapper}
+          >
+            {props.items.map((item, index) => (
+              <SwiperSlide key={index}>
+                {item}
+                <div className={styles.paginationSpase}/>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -6,11 +6,13 @@ import ImagePicker from "./ImagePicker";
 
 interface IProps {
   page: IPage;
-  onChange: (page: IPage) => void,
-  showTitle?: boolean
+  onChange: (page: IPage) => void;
+  showTitle?: boolean;
+  resizeWidth?: number;
+  resizeHeight?: number;
 }
 
-const PageEditor: FunctionComponent<IProps> = ({page, onChange, showTitle = true}) => {
+const PageEditor: FunctionComponent<IProps> = ({page, onChange, showTitle = true, resizeWidth, resizeHeight}) => {
 
   return (
     <div className={`${styles.body}`}>
@@ -30,7 +32,7 @@ const PageEditor: FunctionComponent<IProps> = ({page, onChange, showTitle = true
       <BodyEditor
         body={page.body}
         title='Page Main Text'
-        onBodyUpdate={body => onChange({...page, body} as IPage)}
+        onBodyUpdate={(body, bodyText) => onChange({...page, body, bodyText} as IPage)}
       />
 
       <ImagePicker
@@ -38,6 +40,8 @@ const PageEditor: FunctionComponent<IProps> = ({page, onChange, showTitle = true
         images={page.images}
         mainImage={page.mainImage}
         onChange={(images, mainImage) => onChange({...page, images, mainImage})}
+        resizeWidth={resizeWidth}
+        resizeHeight={resizeHeight}
       />
     </div>
   );

@@ -24,6 +24,17 @@ const query = (request: IRequestQuery): string => {
   return query ? `?${query}` : '';
 };
 
+const resizeQuery = (resizeWidth: number | null, resizeHeight: number | null): string => {
+  if (!resizeWidth && !resizeHeight) {
+    return '';
+  }
+
+  const width = resizeWidth ? `resizeWidth=${resizeWidth}` : '';
+  const height = resizeHeight ? `resizeHeight=${resizeHeight}` : '';
+  const query = [width,height].filter(q => q).join('&');
+  return query ? `?${query}` : '';
+};
+
 const Api = {
 
   getDailyBibleQuote: async () => await Http.get<IBibleQuote>(`${baseUrl}/api/daily-bible-quote`),
@@ -78,8 +89,14 @@ const Api = {
     await Http.delete<INews>(`${baseUrl}/api/news/${id}`, [authHeader(adminToken)]),
 
   getImageUrl: (route: string) => `${baseUrl}${route}`,
-  uploadImage: async (formData: FormData, adminToken: string) =>
-    await Http.uploadFile(`${baseUrl}/api/images`, formData, [authHeader(adminToken)]),
+  uploadImage: async (
+    formData: FormData,
+    adminToken: string,
+    resizeWidth: number | null = null,
+    resizeHeight: number | null = null) =>
+    await Http.uploadFile(`${baseUrl}/api/images${resizeQuery(resizeWidth, resizeHeight)}`,
+      formData,
+      [authHeader(adminToken)]),
   listImages: async () => await Http.get<string[]>(`${baseUrl}/api/images`),
   deleteImage: async (fileName: string, adminToken: string) =>
     await Http.delete<string>(`${baseUrl}/api${fileName}`, [authHeader(adminToken)]),

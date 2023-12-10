@@ -6,6 +6,7 @@ export interface INews {
   isChurchNews: boolean,
   isHomeNews: boolean,
   link?: string,
+  image?: string,
 }
 
 export const defaultNews : INews = {
@@ -16,4 +17,5 @@ export const defaultNews : INews = {
   isChurchNews: false,
   isHomeNews: true,
   link: undefined,
+  image: undefined
 }

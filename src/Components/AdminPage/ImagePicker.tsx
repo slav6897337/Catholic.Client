@@ -1,14 +1,15 @@
-import React, {FunctionComponent, useEffect, useRef} from "react";
+import React, {FunctionComponent, useEffect} from "react";
 import styles from "./ImagePicker.module.css";
 import Loading from "../PageElements/Loading";
 import Api from "../../Utiles/Api";
 import {IAdmin} from "../../Domain/IAdmin";
-import Popup, {ModalHandle} from "../PopUp/Popup";
+import Popup from "../PopUp/Popup";
 import Modal from "../PageElements/Modal";
 import AdminHelper from "../../Utiles/Admin";
 import ImageGallery from "../Carousel/ImageGallery";
 import ImageCrop from "./ImageCrop";
 import {ISize} from "../../Domain/ISize";
+import {EventEmitter, POPUP_HIDDEN, POPUP_SHOWN} from "../../Utiles/EventEmitter";
 
 interface IProps {
   title: string;
@@ -18,6 +19,8 @@ interface IProps {
   titleClassName?: string;
   className?: string;
   crop?: ISize;
+  resizeWidth?: number;
+  resizeHeight?: number;
 }
 
 const ImagePicker: FunctionComponent<IProps> = ({
@@ -25,12 +28,13 @@ const ImagePicker: FunctionComponent<IProps> = ({
                                                   onChange,
                                                   images,
                                                   mainImage,
-                                                  crop
+                                                  crop,
+                                                  resizeWidth,
+                                                  resizeHeight
                                                 }) => {
   const [admin, setAdmin] = React.useState<IAdmin | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [modalLoading, setModalLoading] = React.useState<boolean>(false);
-  const modalRef = useRef<ModalHandle | null>(null);
   const [popupContent, setPopupContent] = React.useState<React.JSX.Element | null>(null);
 
   const allImages = mainImage ? [mainImage, ...images] : images;
@@ -64,7 +68,7 @@ const ImagePicker: FunctionComponent<IProps> = ({
     const formData = new FormData();
     formData.append(f.name, f);
 
-    Api.uploadImage(formData, admin?.token ?? '').then((image) => {
+    Api.uploadImage(formData, admin?.token ?? '', resizeWidth, resizeHeight).then((image) => {
       if (!image) return;
       onChange([...images, image], mainImage);
     }).finally(() => setLoading(false));
@@ -77,7 +81,7 @@ const ImagePicker: FunctionComponent<IProps> = ({
     onChange(newImages, newMainImage);
     await Api.deleteImage(image, admin?.token ?? '');
     setLoading(false);
-    modalRef.current?.toggle();
+    EventEmitter.trigger(POPUP_HIDDEN);
   };
 
   const makeManeImage = (image: string) => {
@@ -89,13 +93,13 @@ const ImagePicker: FunctionComponent<IProps> = ({
     <Modal
       title='Are you certain you want to remove photo?'
       okOnClick={() => deleteImage(image)}
-      cancelOnClick={() => modalRef?.current?.toggle()}
+      cancelOnClick={() => EventEmitter.trigger(POPUP_HIDDEN)}
     />
   );
 
   const PoopUpContent = (content: React.JSX.Element) => {
     setPopupContent(content);
-    modalRef?.current?.toggle();
+    EventEmitter.trigger(POPUP_SHOWN);
   };
 
   if (loading) return (<Loading/>);
@@ -134,7 +138,7 @@ const ImagePicker: FunctionComponent<IProps> = ({
 
       </div>
 
-      <Popup ref={modalRef} loading={modalLoading}>
+      <Popup loading={modalLoading}>
         {popupContent}
       </Popup>
     </>

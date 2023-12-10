@@ -41,6 +41,7 @@ const AllNews: React.FC<IProps> = (props) => {
             date={item.date}
             description={item.description}
             link={item.link}
+            image={item.image}
           />
         ))
       }

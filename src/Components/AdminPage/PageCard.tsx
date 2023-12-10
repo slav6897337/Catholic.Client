@@ -25,6 +25,9 @@ const PageCard: FunctionComponent<IProps> = ({page, onDelete, adminToken, titleS
   const [showDeletePopup, setShowDeletePopup] = React.useState(false);
   const handleDelete = async () => {
     await Api.deletePage(page.id, adminToken);
+    const images = [...page.images, page.mainImage];
+    images.map(image => image ? Api.deleteImage(image, adminToken) : null);
+    if(page.mainImage)
     if(onDelete) onDelete();
     setShowDeletePopup(false);
   };

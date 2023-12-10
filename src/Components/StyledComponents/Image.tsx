@@ -17,13 +17,19 @@ interface IProps {
 
 export const Image: FunctionComponent<IProps> = (props) => {
   const [loading, setLoading] = useState(true);
+  const imgRef = React.useRef<HTMLImageElement>(null);
 
   const afterLoad = (image: HTMLImageElement) => {
-    const newSize = {width: image.width, height: image.height};
-    const naturalSize = {width: image.naturalWidth, height: image.naturalHeight};
     setLoading(false);
-    props.onSizeChange?.({naturalSize: naturalSize, size: newSize});
+    setTimeout(() => {
+      if (!imgRef.current) return;
+      const newSize = {width: imgRef.current.width, height: imgRef.current.height};
+      const naturalSize = {width: imgRef.current.naturalWidth, height: imgRef.current.naturalHeight};
+      props.onSizeChange?.({naturalSize: naturalSize, size: newSize});
+    }, 100);
   };
+
+  if (!props.selfSrc && !props.src) return null;
 
   return (
     <>{
@@ -36,6 +42,7 @@ export const Image: FunctionComponent<IProps> = (props) => {
         </div>
         : null}
       <img
+        ref={imgRef}
         className={`${styles.image} ${props.className}`}
         style={{...props.style, display: loading ? 'none' : 'block'}}
         alt={props.alt ?? 'image'}

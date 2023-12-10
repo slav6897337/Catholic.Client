@@ -60,7 +60,6 @@ const ImageCrop: FunctionComponent<IProps> = (props) => {
           image,
           cropArea
         );
-        console.log(croppedImage);
         props.saveImage(croppedImage);
       }
 

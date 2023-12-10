@@ -12,7 +12,7 @@
 }
 
 .mainTextContainerWithoutImage {
-    width: 86%;
+    width: 74%;
 }
 
 .image {
@@ -24,6 +24,24 @@
 
 .bodyContainer {
     position: relative;
+}
+
+.singleImage{
+    max-height: 680px;
+}
+
+.imagesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.smallImage{
+    height: 9rem;
+    margin-right: 1rem;
+    margin-bottom: 0.6rem;
 }
 
 @media screen and (max-width: 1200px) {

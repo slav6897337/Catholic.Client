@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useRef, useState} from "react";
+import React, {FunctionComponent, useState} from "react";
 import styles from "./HolyMassEditor.module.css";
 import Button from "../StyledComponents/Button";
 import IHolyMass from "../../Domain/IHolyMass";
@@ -6,11 +6,12 @@ import moment from "moment/moment";
 import Api from "../../Utiles/Api";
 import Loading from "../PageElements/Loading";
 import {IAdmin} from "../../Domain/IAdmin";
-import Popup, {ModalHandle} from "../PopUp/Popup";
+import Popup from "../PopUp/Popup";
 import Calendar from "react-calendar";
 import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
+import {EventEmitter, POPUP_SHOWN} from "../../Utiles/EventEmitter";
 
 
 interface IProps {
@@ -24,7 +25,6 @@ const HolyMassEditor: FunctionComponent<IProps> = ({holyMass, admin, className, 
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [hideElement, setHideElement] = React.useState<boolean>(false);
-  const modalRef = useRef<ModalHandle | null>(null);
   const [currentMass, setCurrentMass] = useState<IHolyMass>(holyMass);
 
   const upsertHolyMass = async (mass: IHolyMass) => {
@@ -53,7 +53,7 @@ const HolyMassEditor: FunctionComponent<IProps> = ({holyMass, admin, className, 
   };
 
   const changeDate = () => {
-    modalRef?.current?.toggle();
+    EventEmitter.trigger(POPUP_SHOWN);
   }
 
   const handleTimeChange = (timeString: string) => {
@@ -110,7 +110,7 @@ const HolyMassEditor: FunctionComponent<IProps> = ({holyMass, admin, className, 
         }
       </div>
 
-      <Popup ref={modalRef} modalStyle={styles.modalStyles}>
+      <Popup modalStyle={styles.modalStyles}>
         <div className={styles.pickerContainer}>
           <Calendar
             onChange={e => setCurrentMass({...currentMass, schedule: e as Date})}

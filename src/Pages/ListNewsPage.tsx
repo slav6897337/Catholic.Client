@@ -55,11 +55,11 @@ export default class ListNewsPage extends React.Component<{}, IState> {
             {this.state.news.length ? this.state.news.map((item, index) =>
               <SpecificNews
                 key={index}
-                style={{width: '100%'}}
                 title={item.title}
                 date={item.date}
                 description={item.description}
                 link={item.link}
+                image={item.image}
               />) : null}
           </div>
         </div>

@@ -12,7 +12,6 @@ import {IAdmin} from "../../Domain/IAdmin";
 import {defaultNews, INews} from "../../Domain/INews";
 import PageEditor from "../../Components/AdminPage/PageEditor";
 import Checkbox from "../../Components/StyledComponents/Checkbox";
-import {Collapse} from "../../Components/StyledComponents/Collapse";
 import {useScrollToTop} from "../../hookcs/useScrollToTop";
 
 const EditNewsPage: FunctionComponent = () => {
@@ -21,7 +20,6 @@ const EditNewsPage: FunctionComponent = () => {
   const [news, setNews] = React.useState<INews>(defaultNews);
   const [page, setPage] = React.useState<IPage>(defaultPage);
   const [loading, setLoading] = React.useState<boolean>(true);
-  const [collapse, setCollapse] = React.useState<boolean>(false);
   useScrollToTop();
 
   useEffect(() => {
@@ -42,7 +40,6 @@ const EditNewsPage: FunctionComponent = () => {
               if (page) {
                 page.images ??= [];
                 setPage(page);
-                setCollapse(true);
               }
               setLoading(false);
             });
@@ -59,9 +56,10 @@ const EditNewsPage: FunctionComponent = () => {
   const save = async () => {
     setLoading(true);
     const title = news.title ? news.title : page.title;
-    const urlSegment = page.urlSegment ? page.urlSegment : page.body ? generateUrlSegment(title) : '';
+    const image = resizedImage();
+    const urlSegment = page.urlSegment ? page.urlSegment : page.body || image ? generateUrlSegment(title) : '';
     const newPage:IPage = {...page, title, urlSegment};
-    const newNews:INews = {...news, title, link: urlSegment};
+    const newNews:INews = {...news, title, description: page.bodyText ?? '', link: urlSegment, image: image};
     await saveNews(newNews);
     await savePage(newPage);
     setLoading(false);
@@ -71,7 +69,7 @@ const EditNewsPage: FunctionComponent = () => {
   };
 
   const savePage = async (pageForSaving:IPage) => {
-    if (!pageForSaving || !pageForSaving.body) return;
+    if (!pageForSaving || !(pageForSaving.body || pageForSaving.mainImage || pageForSaving.images)) return;
     let newPage: IPage;
     if (!pageForSaving.id) {
       newPage = await Api.createPage(pageForSaving, admin?.token ?? '');
@@ -108,6 +106,13 @@ const EditNewsPage: FunctionComponent = () => {
     return title.toLowerCase().trim().replace(/ /g, '-');
   }
 
+  const resizedImage = () => {
+    if(!page || !(page.mainImage || page.images?.length)) return;
+    const image = page.mainImage ? page.mainImage : page.images[0];
+    const lastIndex = image.lastIndexOf("/");
+    return image.substring(0, lastIndex + 1) + 'min_' + image.substring(lastIndex + 1);
+  };
+
   if (loading) return (
     <div className={`body center`}>
       <Loading/>
@@ -122,15 +127,7 @@ const EditNewsPage: FunctionComponent = () => {
                onChange={e => updateTitle(e)}/>
       </div>
 
-      <div className={styles.blockContainer}>
-        <p className={styles.header}>News Description</p>
-        <textarea
-          className={styles.inputDescriptionStyling}
-          maxLength={200}
-          value={news.description}
-          onChange={e => setNews({...news, description: e.target.value} as INews)}
-        />
-      </div>
+      <PageEditor page={page ?? {} as IPage} onChange={updatePage} showTitle={false} resizeHeight={240}/>
 
       <Checkbox
         value={news.isHomeNews}
@@ -143,10 +140,6 @@ const EditNewsPage: FunctionComponent = () => {
         text='Show on Hollymass.sk'
         onClick={isChurchNews => setNews({...news, isChurchNews} as INews)}
       />
-
-      <Collapse isExpanded={collapse} text='Add Page for News' onClick={value => setCollapse(value)}>
-        <PageEditor page={page ?? {} as IPage} onChange={updatePage} showTitle={false}/>
-      </Collapse>
 
       <Button
         className={styles.saveButton}
