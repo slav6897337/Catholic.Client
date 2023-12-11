@@ -34,7 +34,9 @@ const Popup: React.FC<ModalProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    setShow(props.show ?? false);
+    if(props.show !== undefined){
+      setShow(props.show);
+    }
   }, [props.show]);
 
   const handleClose = () => {

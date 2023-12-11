@@ -1,0 +1,56 @@
+.titleContainer {
+    padding: 2rem;
+    color: white;
+    font-family: var(--font-cambay);
+    font-size: 0.5rem;
+}
+
+.bodyAdditionalPadding {
+    position: relative;
+    padding: 3%;
+}
+
+.backgroundImage {
+    position: absolute;
+    top: 2rem;
+    right: 4rem;
+    width: 46%;
+}
+
+.bodyBlurContainer {
+    max-width: 78%;
+}
+
+.bodyBlurContainerWithImageOnBack {
+    max-width: 60%;
+}
+
+.bodyImageGallery {
+    padding-top: 2rem;
+}
+
+@media screen and (max-width: 1200px) {
+
+}
+
+@media screen and (max-width: 960px) {
+
+}
+
+@media screen and (max-width: 768px) {
+    .backgroundImage{
+        display: none!important;
+    }
+    .bodyBlurContainerWithImageOnBack {
+        max-width: 78%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .bodyBlurContainerWithImageOnBack {
+        max-width: 100%;
+    }
+    .bodyBlurContainer {
+        max-width: 100%;
+    }
+}

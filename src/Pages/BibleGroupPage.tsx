@@ -1,67 +1,47 @@
 import React from 'react';
-import styles from "./BibleGroupPage.module.css";
-import Header from "../Components/PageElements/Header";
-import BibleGroupInfo from "../Components/BibleGroupPage/BibleGroupInfo";
-import ImageGallery from "../Components/Carousel/ImageGallery";
-import Api from "../Utiles/Api";
-import log from "loglevel";
 import {defaultPage, IPage} from "../Domain/IPage";
-import {Image} from "../Components/StyledComponents/Image";
+import {Page} from "./Page";
 
-interface IState {
-  selectedDate: Date;
-  page: IPage
+const BibleGroupPage: React.FC = () => {
+  const [page, setPage] = React.useState<IPage>(preloadPage);
+  const [loading, setLoading] = React.useState(false);
+
+  return (
+    <Page onPageLoad={p => setPage(p)} onLoading={l => setLoading(l)} preloadPage={page}>
+      <div dangerouslySetInnerHTML={{__html: page.body}}/>
+    </Page>
+  );
 }
 
-export default class BibleGroupPage extends React.Component<{}, IState> {
-  static displayName = BibleGroupPage.name;
+export default BibleGroupPage;
 
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      selectedDate: new Date(),
-      page: {...defaultPage, title: 'Bible group'}
-    };
-  }
+const preloadBody = '<div>\n' +
+  '          <p>\n' +
+  '            Welcome to English Bible group!\n' +
+  '            We are a group of enthusiastic Christians who come together once a week to pray, read, reflect and discuss the\n' +
+  '            Old and New Testament in English language.\n' +
+  '          </p>\n' +
+  '          <p>\n' +
+  '            Over the years we have had more than 300 people pass through our group, some just for one visit, others who\n' +
+  '            continue to participate.\n' +
+  '            Presently we have about 10 individuals participating regularly.\n' +
+  '            Whether you are just visiting us one time, or intend to participate regularly, you are most cordially welcome!\n' +
+  '          </p>\n' +
+  '          <p>\n' +
+  '            We are sponsored by Dom Quo Vadis , and meet there each Thursday at 18:00 throughout the year, except for holy\n' +
+  '            days when Dom Quo Vadis is closed. (summer months we usually meet at Centrum Salvator, Jakubovo nam. 5,\n' +
+  '            Bratislava at 18:00).\n' +
+  '          </p>\n' +
+  '          <p>\n' +
+  '            For more information contact us at: info@catholic.sk\n' +
+  '          </p>\n' +
+  '          <p>\n' +
+  '            Looking forward to seeing you!\n' +
+  '          </p>\n' +
+  '        </div>'
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
-    try {
-      Api.getPage('english-bible-group').then((page) => {
-        if (page) {
-          page.images ??= [];
-          this.setState({page})
-        }
-      });
-    } catch (e) {
-      log.info(e);
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <Header>
-          <div className={styles.titleContainer}>
-            <p>{this.state.page.title}</p>
-          </div>
-        </Header>
-        <div className={`body`}>
-          <div className={styles.bibleGroupInfoContainer}>
-            <Image className={styles.image} alt='Bible' selfSrc={this.state.page.mainImage}/>
-            <div className={styles.additionalBibleGroupInfoContainer}>
-              <BibleGroupInfo
-                className={styles.bibleGroupInfo}
-                body={this.state.page.body}
-                title={this.state.page.title}/>
-            </div>
-          </div>
-
-          <ImageGallery
-            images={this.state.page.images ?? []}
-          />
-        </div>
-      </div>
-    );
-  }
-}
+const preloadPage: IPage = {
+  ...defaultPage,
+  title: 'Bible group',
+  body: preloadBody
+};

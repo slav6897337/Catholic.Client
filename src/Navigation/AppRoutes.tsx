@@ -3,7 +3,6 @@ import BibleQuotes from '../Components/HomePage/DailyBibleQuote';
 import HomePage from '../Pages/HomePage';
 import HolyMassPage from "../Pages/HolyMassPage";
 import NewsPage from "../Pages/NewsPage";
-import BibleGroupPage from "../Pages/BibleGroupPage";
 import ChoirPage from "../Pages/ChoirPage";
 import AdminPage from "../Pages/Admin/AdminPage";
 import EditPage from "../Pages/Admin/EditPage";
@@ -15,7 +14,7 @@ import EditHomePage from "../Pages/Admin/EditHomePage";
 import ListNewsPage from "../Pages/ListNewsPage";
 import AdminNotesPage from "../Pages/Admin/AdminNotesPage";
 import EditNotesPage from "../Pages/Admin/EditNotesPage";
-
+import BibleGroupPage from "../Pages/BibleGroupPage";
 
 interface IAppRoutes {
   element: ReactNode,

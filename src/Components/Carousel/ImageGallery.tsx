@@ -16,7 +16,7 @@ interface IProps {
   rightButtonText?: string;
   rightButtonIcon?: string;
   rightButtonOnClick?: (image?: string) => void;
-  containerStyle?: string;
+  className?: string;
   onReachEnd?: () => void;
   onClick?: () => void;
   title?: string;
@@ -28,7 +28,7 @@ const ImageGallery: React.FC<IProps> = (props) => {
   if (!props.images?.length) return null;
 
   return (
-    <div className={`${styles.gallery} ${props.containerStyle}`}>
+    <div className={`${styles.gallery} ${props.className}`}>
       <div className={styles.galleryWrapper}>
         <Gallery
           title={props.title}
@@ -42,7 +42,6 @@ const ImageGallery: React.FC<IProps> = (props) => {
               <ImageButtons
                 {...props}
                 image={item}
-                leftButtonCondition={props.leftButtonCondition}
               />
 
             </div>

@@ -1,25 +1,19 @@
-.titleContainer {
-    padding: 2rem;
-    color: white;
-    font-family: Cambay;
-    font-size: 0.5rem;
-    min-width: 34%;
-}
 
 .choirInfoContainer{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
 
-.image{
+.backgroundImage{
     position: absolute;
     margin-top: 1rem;
     margin-left: 50%;
     width: 46%;
 }
 
-.bibleGroupInfo{
+.bodyBlurContainerChoir{
     width: 66%;
 }
 
@@ -29,19 +23,19 @@
 }
 
 @media screen and (max-width: 1200px) {
-    .bibleGroupInfo{
+    .bodyBlurContainerChoir{
         width: 70%;
     }
 }
 
 @media screen and (max-width: 960px) {
-    .bibleGroupInfo{
+    .bodyBlurContainerChoir{
         width: 78%;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .choirInfoContainer{
+    .bodyBlurContainerChoir{
         flex-wrap: wrap;
         flex-direction: column-reverse;
         align-items: center;
