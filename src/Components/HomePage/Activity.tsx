@@ -25,15 +25,8 @@ const Activity = (props: IActivity) => {
         <div className="activity__link">
           <p>Read More</p>
           <img className="activity__link_arrow" style={{width:25, height:10}} src='/img/arrow.png' alt='arrow'/>
-          {/*<p className="activity__link_arrow">{`-->`}</p>*/}
         </div>
       </div>
-      {/*<div className="activityImageContainer">*/}
-      {/*  {!props.isImageTop ?*/}
-      {/*    <img className="activityImage" style={{borderBottomLeftRadius: '0.5rem', borderBottomRightRadius: '0.5rem'}}*/}
-      {/*         src={props.image} alt={props.title}/> : null}*/}
-      {/*</div>*/}
-
     </Link>
   );
 }

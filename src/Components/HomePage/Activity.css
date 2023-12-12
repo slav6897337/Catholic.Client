@@ -22,8 +22,12 @@
     overflow: hidden
 }
 
+.activityImage{
+    width: 24rem;
+    height: 16rem;
+}
+
 .activity img{
-    width: 100%;
     transition: transform 0.3s;
     object-fit: cover;
 }
