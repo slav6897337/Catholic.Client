@@ -12,6 +12,7 @@ import {NotFound} from "../Components/StyledComponents/NotFound";
 import BlurContainer from "../Components/PageElements/BlurContainer";
 import {links} from "../Navigation/Lincks";
 import ImageViewer from "../Components/Carousel/ImageViewer";
+import useWindowDimensions from "../hookcs/useWindowDimensions";
 
 interface IPageProps {
   preloadPage?: IPage;
@@ -34,6 +35,7 @@ export const Page: React.FC<IPageProps> = (
     blurContainer = true
   }) => {
   useScrollToTop();
+  const {width} = useWindowDimensions();
   const location = useLocation();
   const [page, setPage] = React.useState<IPage>(preloadPage ?? defaultPage);
   const [containerHeight, setContainerHeight] = useState<number>( 0);
@@ -61,9 +63,7 @@ export const Page: React.FC<IPageProps> = (
 
   const pagePath = location.pathname.split("/")[1];
   const isNotNewsPage = !links.some(l => l.path === `/${pagePath}`);
-  console.log(pagePath);
-
-  console.log(isNotNewsPage);
+  const hasBackgroundImage = page?.mainImage && width > 760;
 
   if (!page) return (
     <div className='body center'>
@@ -79,7 +79,7 @@ export const Page: React.FC<IPageProps> = (
         </div>
       </Header>
       <div className={`body ${styles.bodyAdditionalPadding}`}>
-        {page.mainImage ?
+        {hasBackgroundImage ?
           <Image
             className={styles.backgroundImage}
             alt='Bacground Image'
@@ -90,11 +90,11 @@ export const Page: React.FC<IPageProps> = (
 
         {blurContainer ?
           <BlurContainer
-            className={`${page.mainImage
+            className={`${hasBackgroundImage
               ? styles.bodyBlurContainerWithImageOnBack
               : styles.bodyBlurContainer} ${className}`}
             title={page.title}
-            style={{minHeight: page.mainImage ?containerHeight : undefined}}>
+            style={{minHeight: hasBackgroundImage ? containerHeight : undefined}}>
             {children}
           </BlurContainer>
           : children}

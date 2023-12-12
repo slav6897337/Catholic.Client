@@ -38,12 +38,6 @@
 }
 
 @media screen and (max-width: 768px) {
-    .backgroundImage{
-        display: none!important;
-    }
-    .bodyBlurContainerWithImageOnBack {
-        max-width: 78%;
-    }
 }
 
 @media screen and (max-width: 480px) {
