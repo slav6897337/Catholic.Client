@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import styles from "./Page.module.css";
 import Header from "../Components/PageElements/Header";
@@ -11,11 +11,13 @@ import {useScrollToTop} from "../hookcs/useScrollToTop";
 import {NotFound} from "../Components/StyledComponents/NotFound";
 import BlurContainer from "../Components/PageElements/BlurContainer";
 import {links} from "../Navigation/Lincks";
+import ImageViewer from "../Components/Carousel/ImageViewer";
 
 interface IPageProps {
   preloadPage?: IPage;
   onPageLoad: (page: IPage) => void;
   onLoading: (loading: boolean) => void;
+  isNotNewsPageFlag?: (flag: boolean) => void;
   className?: string;
   blurContainer?: boolean;
   children: React.ReactNode;
@@ -28,14 +30,19 @@ export const Page: React.FC<IPageProps> = (
     onPageLoad,
     onLoading,
     className,
+    isNotNewsPageFlag,
     blurContainer = true
   }) => {
   useScrollToTop();
   const location = useLocation();
   const [page, setPage] = React.useState<IPage>(preloadPage ?? defaultPage);
+  const [containerHeight, setContainerHeight] = useState<number>( 0);
 
   useEffect(() => {
     onLoading(true);
+    if (isNotNewsPageFlag) {
+      isNotNewsPageFlag(isNotNewsPage);
+    }
 
     if (pagePath) {
       try {
@@ -53,7 +60,10 @@ export const Page: React.FC<IPageProps> = (
   }, [location]);
 
   const pagePath = location.pathname.split("/")[1];
-  const isNotNewsPage = !links.some(l => l.path === `/${location.pathname}`);
+  const isNotNewsPage = !links.some(l => l.path === `/${pagePath}`);
+  console.log(pagePath);
+
+  console.log(isNotNewsPage);
 
   if (!page) return (
     <div className='body center'>
@@ -65,12 +75,17 @@ export const Page: React.FC<IPageProps> = (
     <>
       <Header>
         <div className={styles.titleContainer}>
-          <p>{isNotNewsPage ? page.title : 'News'}</p>
+          <p>{isNotNewsPage ? 'News' : page.title}</p>
         </div>
       </Header>
       <div className={`body ${styles.bodyAdditionalPadding}`}>
         {page.mainImage ?
-          <Image className={styles.backgroundImage} alt='Bacground Image' selfSrc={page.mainImage}/>
+          <Image
+            className={styles.backgroundImage}
+            alt='Bacground Image'
+            selfSrc={page.mainImage}
+            onSizeChange={s => setContainerHeight(s.size.height)}
+          />
           : null}
 
         {blurContainer ?
@@ -78,16 +93,19 @@ export const Page: React.FC<IPageProps> = (
             className={`${page.mainImage
               ? styles.bodyBlurContainerWithImageOnBack
               : styles.bodyBlurContainer} ${className}`}
-            title={page.title}>
+            title={page.title}
+            style={{minHeight: page.mainImage ?containerHeight : undefined}}>
             {children}
           </BlurContainer>
           : children}
 
-        {page.images.length && isNotNewsPage ?
-          <ImageGallery
-            className={styles.bodyImageGallery}
-            images={page.images ?? []}
-          />
+        {page.images.length ?
+          isNotNewsPage ?
+            <ImageViewer images={page?.images}/> :
+            <ImageGallery
+              className={styles.bodyImageGallery}
+              images={page.images ?? []}
+            />
           : null}
       </div>
     </>
