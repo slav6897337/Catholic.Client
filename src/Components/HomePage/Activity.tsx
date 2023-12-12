@@ -17,7 +17,7 @@ const Activity = (props: IActivity) => {
   return (
     <Link className={`activity ${props.isImageTop ? null : 'activity_reverse'}`} to={props.link}>
       <div className="activityImageContainer">
-         <img className="activityImage" src={props.image} alt={props.title}/>
+         <img className="activityImage" src={props.image} alt={props.title} width='388' height='270'/>
       </div>
       <div>
         <h2>{props.title}</h2>
