@@ -6,12 +6,10 @@ import moment from "moment/moment";
 import Api from "../../Utiles/Api";
 import Loading from "../PageElements/Loading";
 import {IAdmin} from "../../Domain/IAdmin";
-import Popup from "../PopUp/Popup";
-import Calendar from "react-calendar";
-import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
-import {EventEmitter, POPUP_SHOWN} from "../../Utiles/EventEmitter";
+import {EventEmitter, POPUP_HIDDEN, POPUP_SHOWN} from "../../Utiles/EventEmitter";
+import HolyMassTimePicker from "./HolyMassTimePicker";
 
 
 interface IProps {
@@ -53,16 +51,17 @@ const HolyMassEditor: FunctionComponent<IProps> = ({holyMass, admin, className, 
   };
 
   const changeDate = () => {
-    EventEmitter.trigger(POPUP_SHOWN);
-  }
-
-  const handleTimeChange = (timeString: string) => {
-    if (!timeString) return;
-
-    const [hours, minutes] = timeString.split(':').map(Number);
-    const date = currentMass.schedule;
-    date.setHours(hours, minutes, 0, 0);
-    setCurrentMass({...currentMass, schedule: date});
+    EventEmitter.trigger(POPUP_SHOWN,
+      <HolyMassTimePicker
+        holyMass={currentMass}
+        admin={admin}
+        onChange={h =>{
+          setCurrentMass(h);
+          onChange(h);
+          EventEmitter.trigger(POPUP_HIDDEN);
+        }}
+        setLoading={l => setLoading(l)}
+      />);
   };
 
   if (hideElement) return null;
@@ -109,31 +108,6 @@ const HolyMassEditor: FunctionComponent<IProps> = ({holyMass, admin, className, 
           />
         }
       </div>
-
-      <Popup modalStyle={styles.modalStyles}>
-        <div className={styles.pickerContainer}>
-          <Calendar
-            onChange={e => setCurrentMass({...currentMass, schedule: e as Date})}
-            value={currentMass.schedule}
-            tileDisabled={({activeStartDate, date, view}) => {
-              return false;
-            }}
-          />
-          <TimePicker onChange={e => handleTimeChange(e as string)}
-                      value={currentMass.schedule}/>
-        </div>
-
-        <button className={styles.dateButton}>
-            <span>
-              {moment(currentMass.schedule).format('dddd, MMMM DD')} at {moment(currentMass.schedule).format('h:mm a')}.
-            </span>
-        </button>
-
-        <Button
-          icon='/icons/save.png'
-          text='Save'
-          onClick={() => upsertHolyMass(currentMass)}/>
-      </Popup>
     </div>
   );
 }

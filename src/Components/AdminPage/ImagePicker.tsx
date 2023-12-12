@@ -9,7 +9,7 @@ import AdminHelper from "../../Utiles/Admin";
 import ImageGallery from "../Carousel/ImageGallery";
 import ImageCrop from "./ImageCrop";
 import {ISize} from "../../Domain/ISize";
-import {EventEmitter, POPUP_HIDDEN} from "../../Utiles/EventEmitter";
+import {EventEmitter, POPUP_HIDDEN, POPUP_SHOWN} from "../../Utiles/EventEmitter";
 
 interface IProps {
   title: string;
@@ -21,22 +21,23 @@ interface IProps {
   crop?: ISize;
   resizeWidth?: number;
   resizeHeight?: number;
+  takeMinImage?: boolean;
 }
 
-const ImagePicker: FunctionComponent<IProps> = ({
-                                                  title,
-                                                  onChange,
-                                                  images,
-                                                  mainImage,
-                                                  crop,
-                                                  resizeWidth,
-                                                  resizeHeight
-                                                }) => {
+const ImagePicker: FunctionComponent<IProps> = (
+  {
+    title,
+    onChange,
+    images,
+    mainImage,
+    crop,
+    resizeWidth,
+    resizeHeight,
+    takeMinImage,
+  }) => {
   const [admin, setAdmin] = React.useState<IAdmin | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [modalLoading, setModalLoading] = React.useState<boolean>(false);
-  const [popupContent, setPopupContent] = React.useState<React.JSX.Element | null>(null);
-  const [textPopupShown, setTextPopupShown] = React.useState<boolean>(false);
 
   const allImages = mainImage ? [mainImage, ...images] : images;
 
@@ -47,32 +48,41 @@ const ImagePicker: FunctionComponent<IProps> = ({
 
   const pickImage = (e: HTMLInputElement) => {
     if (!e.files) return;
+    console.log('pickImage');
+    console.log(e.files[0].name);
 
     if (crop) {
       PoopUpContent(Cropper(e.files[0]));
     } else {
-      saveImage(e.files[0]);
+      saveImage(e.files[0], e.files[0].name);
     }
   };
 
   const Cropper = (image: File) => (
     <ImageCrop image={image}
                size={crop ?? {width: 1000, height: 500}}
-               saveImage={(i) => saveImage(i)}
+               saveImage={(i, name) => saveImage(i, name)}
     />
   );
 
-  const saveImage = (f: File | null) => {
+  const saveImage = (f: File | null, name?: string) => {
     if (!f) return;
+    name = name ? name : `img_${Math.random().toString(36).substring(2)}.jpg`;
     setLoading(true);
 
     const formData = new FormData();
-    formData.append(f.name, f);
+    formData.append(name, f);
 
     Api.uploadImage(formData, admin?.token ?? '', resizeWidth, resizeHeight).then((image) => {
       if (!image) return;
-      onChange([...images, image], mainImage);
-    }).finally(() => setLoading(false));
+      const lastIndex = image.lastIndexOf("/");
+      const min = image.substring(0, lastIndex + 1) + 'min_' + image.substring(lastIndex + 1);
+      onChange([...images, takeMinImage ? min : image], mainImage);
+    }).finally(() => {
+      setLoading(false);
+      EventEmitter.trigger(POPUP_HIDDEN);
+    });
+
   };
 
   const deleteImage = async (image?: string) => {
@@ -80,10 +90,9 @@ const ImagePicker: FunctionComponent<IProps> = ({
     const newMainImage = image === mainImage ? undefined : mainImage;
     const newImages = images.filter(i => i !== image);
     onChange(newImages, newMainImage);
-    if(image) await Api.deleteImage(image, admin?.token ?? '');
+    if (image) await Api.deleteImage(image, admin?.token ?? '');
     setLoading(false);
     EventEmitter.trigger(POPUP_HIDDEN);
-    setTextPopupShown(false);
   };
 
   const makeManeImage = (image?: string) => {
@@ -95,13 +104,13 @@ const ImagePicker: FunctionComponent<IProps> = ({
     <Modal
       title='Are you certain you want to remove photo?'
       okOnClick={() => deleteImage(image)}
-      cancelOnClick={() => setTextPopupShown(false)}
+      loading={modalLoading}
+      cancelButton={true}
     />
   );
 
   const PoopUpContent = (content: React.JSX.Element) => {
-    setPopupContent(content);
-    setTextPopupShown(true);
+    EventEmitter.trigger(POPUP_SHOWN, content);
   };
 
   if (loading) return (<Loading/>);
@@ -139,10 +148,6 @@ const ImagePicker: FunctionComponent<IProps> = ({
         />
 
       </div>
-
-      <Popup show={textPopupShown} loading={modalLoading}>
-        {popupContent}
-      </Popup>
     </>
 
   );

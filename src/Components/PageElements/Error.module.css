@@ -1,0 +1,17 @@
+.errorContainer {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 20rem;
+    background: rgb(255,0,0,0.8);
+    color: var(--color-green-100);
+    box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.errorText{
+    color: white;
+    font-size: var(--font-size-extra-large);
+}
+

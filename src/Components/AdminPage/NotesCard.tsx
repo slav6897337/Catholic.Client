@@ -6,6 +6,7 @@ import Api from "../../Utiles/Api";
 import WhiteContainer from "../PageElements/WhiteContainer";
 import NavButton from "../StyledComponents/NavButton";
 import {INote} from "../../Domain/INote";
+import {EventEmitter, POPUP_HIDDEN, POPUP_SHOWN} from "../../Utiles/EventEmitter";
 
 interface IProps {
   notes: INote;
@@ -17,27 +18,37 @@ interface IProps {
   onChange: () => void;
 }
 
-const NewsCard: FunctionComponent<IProps> = ({notes, adminToken, onChange, titleStyle, titleClassName, className, style}) => {
-
-  const [showDeletePopup, setShowDeletePopup] = React.useState(false);
+const NewsCard: FunctionComponent<IProps> = (
+  {
+    notes,
+    adminToken,
+    onChange,
+    titleStyle,
+    titleClassName,
+    className,
+    style
+  }) => {
   const handleDelete = async () => {
     await Api.deleteNews(notes.id, adminToken);
     onChange();
-    setShowDeletePopup(false);
+    EventEmitter.trigger(POPUP_HIDDEN);
   };
 
   return (
     <>
-      {showDeletePopup
-        ? <Modal
-          title='Are you certain you want to remove this page?'
-          okOnClick={handleDelete}
-          cancelOnClick={() => setShowDeletePopup(false)}/>
-        : null}
       <WhiteContainer title={notes.title} date={notes.date}>
         <div className={styles.pageCardContainer}>
           <NavButton className={styles.button} icon='/icons/edit.png' text='Edit' to={`/admin/edit-notes/${notes.id}`}/>
-          <Button className={styles.button} icon='/icons/delete.png' text='Delete' onClick={() => setShowDeletePopup(true)}/>
+          <Button
+            className={styles.button}
+            icon='/icons/delete.png'
+            text='Delete'
+            onClick={() => EventEmitter.trigger(POPUP_SHOWN,
+              <Modal
+                title='Are you certain you want to remove this page?'
+                okOnClick={handleDelete}
+                cancelButton={true}/>
+            )}/>
           <div className={styles.domain}>
             {notes.isHomeNote ? <p className={styles.isHomeNews}>Catholic.sk</p> : null}
             {notes.isChurchNote ? <p className={styles.isChurchNews}>Holymass.sk</p> : null}

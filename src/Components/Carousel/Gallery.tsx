@@ -26,7 +26,7 @@ const Gallery: React.FC<IProps> = (props) => {
     if (props.slideTo && ref.current) {
       ref.current.swiper.slideTo(props.slideTo);
     }
-  }, []);
+  }, [props.slideTo]);
 
   const updateSlidesPerView = () => {
     if (width < 420) {

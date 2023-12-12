@@ -37,7 +37,7 @@ const ImageGallery: React.FC<IProps> = (props) => {
               <Image className={styles.galleryImage}
                      selfSrc={item}
                      alt={index.toString()}
-                     onClick={() => EventEmitter.trigger(POPUP_SHOWN, index)}
+                     onClick={() => EventEmitter.trigger(POPUP_SHOWN, <ImageViewer index={index} {...props} images={props.images}/>)}
               />
               <ImageButtons
                 {...props}
@@ -48,7 +48,7 @@ const ImageGallery: React.FC<IProps> = (props) => {
           ))}/>
       </div>
 
-      <ImageViewer {...props} images={props.images}/>
+
 
     </div>
   );

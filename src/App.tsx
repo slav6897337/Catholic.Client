@@ -5,7 +5,8 @@ import Navigation from './Navigation/Navigation';
 import Logo from "./Components/PageElements/Logo";
 import NavMenu from "./Components/PageElements/NavMenu";
 import Footer from "./Components/PageElements/Footer";
-import ErrorBoundary from "./ErrorBoundary";
+import Error from "./Components/PageElements/Error";
+import Popup from "./Components/PopUp/Popup";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -17,7 +18,8 @@ export default class App extends Component {
         <NavMenu/>
         <Navigation/>
         <Footer/>
-        <ErrorBoundary/>
+        <Popup />
+        <Error/>
       </div>
     );
   }

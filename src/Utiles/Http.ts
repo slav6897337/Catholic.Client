@@ -1,5 +1,6 @@
 import {IHeader} from '../Domain/IHeader';
 import log from './Logging';
+import {ERROR, EventEmitter} from "./EventEmitter";
 
 function getHeaders(additionalHeaders?: IHeader[], json: boolean = true): Headers {
   const headers = new Headers();
@@ -38,7 +39,9 @@ async function request<T>(url: string, method: string, body?: any, additionalHea
   }
   log.error(`Error ${response.status} (${response.statusText}) while sending ${method} request to ${url} 
               with options ${JSON.stringify(options)}`);
-  log.error(response.text());
+  const errorText = await response.text();
+  log.error(errorText);
+  EventEmitter.trigger(ERROR, `Error ${response.status} (${response.statusText})`);
   return undefined as unknown as Promise<T>;
 }
 

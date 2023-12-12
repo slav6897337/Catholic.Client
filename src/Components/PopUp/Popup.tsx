@@ -1,43 +1,34 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from './Popup.module.css';
-import Loading from "../PageElements/Loading";
 import Button from "../StyledComponents/Button";
 import {EventEmitter, POPUP_HIDDEN, POPUP_SHOWN} from "../../Utiles/EventEmitter";
 
 interface ModalProps {
-  children?: React.ReactNode;
-  loading?: boolean;
-  modalStyle?: string;
-  show?: boolean;
 }
 
 const Popup: React.FC<ModalProps> = (props) => {
   const [show, setShow] = useState(false);
+  const [content, setContent] = useState<React.ReactNode | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('keydown', handleKeyDown);
-    if (props.show === undefined) {
-      EventEmitter.on(POPUP_SHOWN, () => setShow(true));
-      EventEmitter.on(POPUP_HIDDEN, () => setShow(false));
-    }
+    EventEmitter.on(POPUP_HIDDEN, () => setShow(false));
+    EventEmitter.on(POPUP_SHOWN, (c) => {
+      setContent(c);
+      setShow(true);
+    });
+
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
-      if (props.show === undefined) {
-        EventEmitter.off(POPUP_SHOWN);
-        EventEmitter.off(POPUP_HIDDEN);
-      }
+      EventEmitter.off(POPUP_HIDDEN);
+      EventEmitter.off(POPUP_SHOWN);
     };
   }, []);
 
-  useEffect(() => {
-    if(props.show !== undefined){
-      setShow(props.show);
-    }
-  }, [props.show]);
 
   const handleClose = () => {
     setShow(false);
@@ -61,7 +52,7 @@ const Popup: React.FC<ModalProps> = (props) => {
         <div className={styles.overlayStyle}>
           <div
             ref={modalRef}
-            className={`${styles.modalStyle} ${props.modalStyle}`}
+            className={`${styles.modalStyle}`}
           >
             <Button
               className={styles.mButton}
@@ -69,15 +60,11 @@ const Popup: React.FC<ModalProps> = (props) => {
               icon='/icons/cancel.png'
               onClick={() => setShow(prevShow => !prevShow)}
             />
-            {props.loading
-              ? <div className={styles.loading}><Loading/></div>
-              : props.children
-            }
+            {content ? content : null}
           </div>
         </div>
         : null}
     </>
-
   );
 };
 

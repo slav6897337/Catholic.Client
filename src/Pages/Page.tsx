@@ -101,7 +101,8 @@ export const Page: React.FC<IPageProps> = (
 
         {page.images.length ?
           isNotNewsPage ?
-            <ImageViewer images={page?.images}/> :
+            null:
+            //<ImageViewer images={page?.images}/> :
             <ImageGallery
               className={styles.bodyImageGallery}
               images={page.images ?? []}

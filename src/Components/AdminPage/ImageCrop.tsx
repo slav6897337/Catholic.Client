@@ -7,7 +7,7 @@ import {ISize} from "../../Domain/ISize";
 interface IProps {
   image: File | undefined;
   size: ISize;
-  saveImage: (image: File | null) => void;
+  saveImage: (image: File | null, name?: string) => void;
 }
 
 
@@ -34,7 +34,6 @@ const ImageCrop: FunctionComponent<IProps> = (props) => {
     setZoom(zoom);
   };
 
-
   function readFile(file: File): Promise<string> {
     return new Promise((resolve) => {
       const reader = new FileReader();
@@ -45,27 +44,29 @@ const ImageCrop: FunctionComponent<IProps> = (props) => {
 
   const setupImage = async () => {
     if (props.image) {
-
       let imageDataUrl = await readFile(props.image)
-
-        setImage(imageDataUrl);
-
+      setImage(imageDataUrl);
     }
   }
 
   const handleCropImage = async () => {
-    try {
-      if (cropArea) {
-        const croppedImage = await getCroppedImg(
-          image,
-          cropArea
-        );
-        props.saveImage(croppedImage);
+    if (cropArea) {
+      const croppedImage = await getCroppedImg(
+        image,
+        cropArea
+      );
+
+      const extension = props.image?.name.split('.').pop();
+      let mimeType = 'image/jpeg';
+      if (extension === 'png') {
+        mimeType = 'image/png';
       }
 
+      const croppedFile = croppedImage
+        ? new File([croppedImage], props.image?.name ?? '', { type: mimeType })
+        : null;
 
-    } catch (e) {
-      console.error(e)
+      props.saveImage(croppedFile, props.image?.name);
     }
   }
 
@@ -86,7 +87,7 @@ const ImageCrop: FunctionComponent<IProps> = (props) => {
           cropSize={{width: props.size.width, height: props.size.height}}
         />
       )}
-      <Button style={{position:'absolute', bottom:0, left:320}} onClick={handleCropImage} text='Crop Image'/>
+      <Button style={{position: 'absolute', bottom: 0, left: 320}} onClick={handleCropImage} text='Crop Image'/>
     </div>
   );
 }

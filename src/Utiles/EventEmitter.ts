@@ -4,6 +4,7 @@ const events: { [key: string]: EventCallback[] } = {};
 
 export const POPUP_SHOWN = 'POPUP_SHOWN';
 export const POPUP_HIDDEN = 'POPUP_HIDDEN';
+export const ERROR = 'ERROR';
 
 export const EventEmitter = {
   on: (event: string, callback: EventCallback): (() => void) => {
