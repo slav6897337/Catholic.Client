@@ -3,16 +3,19 @@
     font-style: normal;
     font-weight: normal;
     src: local('BellotaText'), url(./fonts/BellotaText-Regular.ttf) format('truetype');
+    font-display: swap;
 }
 @font-face {
     font-family: 'Cambay';
     font-style: normal;
     font-weight: normal;
     src: local('Cambay'), url(./fonts/Cambay-Regular.ttf) format('truetype');
+    font-display: swap;
 }
 @font-face {
     font-family: 'Cardo';
     font-style: normal;
     font-weight: normal;
     src: local('Cardo'), url(./fonts/Cardo-Regular.ttf) format('truetype');
+    font-display: swap;
 }

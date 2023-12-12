@@ -11,7 +11,7 @@ const Logo: FunctionComponent = () => {
             The place where the community meets
           </div>
         </button>
-        <button className={styles.crosslogo} onClick={() => window.location.href = '/'}>
+        <button className={styles.crosslogo} onClick={() => window.location.href = '/'} aria-label="Catholic.sk">
           <img
             className={styles.crosslogoChild}
             alt=""

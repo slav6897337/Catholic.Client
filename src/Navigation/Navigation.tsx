@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {Suspense, useEffect} from 'react';
 import {Routes, Route, useLocation} from 'react-router-dom';
-import AppRoutes from './AppRoutes';
+import {AppRoutes, AdminRoutes} from './AppRoutes';
 import HolyMassPage from "../Pages/HolyMassPage";
+import Loading from "../Components/PageElements/Loading";
 
 const catholicDomain = 'www.catholic-dev.store';
 const churchDomain = 'www.holymass-dev.store';
@@ -27,9 +28,20 @@ const Navigation = () => {
       <Routes>
         {window.location.hostname === churchDomain && <Route index={true} element={<HolyMassPage/>}/>}
         {AppRoutes.map((route, index) => {
-          const {element, ...rest} = route;
+          const {element, component, ...rest} = route;
           return <Route key={index} {...rest} element={element}/>;
         })}
+        {AdminRoutes.map((route, index) => (
+          <Route
+            key={index}
+            {...route}
+            element={
+              <Suspense fallback={<Loading/>}>
+                {route.component}
+              </Suspense>
+            }
+          />
+        ))}
       </Routes>
     </div>
   );
