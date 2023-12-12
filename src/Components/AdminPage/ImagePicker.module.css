@@ -42,7 +42,6 @@ input[type="file"] {
 .inputLabel{
     display: flex;
     align-items: center;
-    font-family: 'Cambay';
     text-decoration: none;
     font-style: normal;
     font-weight: 400;

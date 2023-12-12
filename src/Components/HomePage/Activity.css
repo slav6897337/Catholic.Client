@@ -1,6 +1,7 @@
 .activity{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 24rem;
     height: auto;
     background: #FFFFFF;
@@ -10,6 +11,10 @@
     margin-right: 1.2rem;
     margin-left: 1.2rem;
     overflow: hidden
+}
+
+.activity_reverse{
+    flex-direction: column-reverse;
 }
 
 .activityImageContainer{
@@ -37,21 +42,14 @@
     width: 100%;
 }
 
-.activity h1{
-    font-family: 'Cambay', sans-serif;
-    font-style: normal;
-    font-size: 1.3rem;
-    font-weight: 500;
+.activity h2{
     margin: 1.6rem 1rem 1rem;
-    color: #000000;
 }
 
 .activity p{
-    font-family: 'Cambay', sans-serif;
-    font-style: normal;
+    font-size: var(--font-size-medium);
     margin-left: 1rem;
     margin-right: 1rem;
-    color: #000000;
     padding-top: 0.4rem;
 }
 
@@ -65,6 +63,12 @@
 .activity__link p{
     display: flex;
     color: #016066;
+}
+
+@media screen and (max-width: 840px) {
+    .activity_reverse{
+        flex-direction: column;
+    }
 }
 
 @media screen and (max-width: 420px) {

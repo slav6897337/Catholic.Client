@@ -18,9 +18,9 @@ const BlurContainer: FunctionComponent<IProps> = (props) => {
   return (
     <div className={`${styles.blurContainer} ${props.className}`} style={props.style}>
       {props.title ?
-        <h3 className={`${styles.title} ${props.titleClassName}`} style={props.titleStyle}>
+        <h2 className={`${styles.title} ${props.titleClassName}`} style={props.titleStyle}>
           {props.title}
-        </h3>
+        </h2>
         : null}
       {props.children}
     </div>

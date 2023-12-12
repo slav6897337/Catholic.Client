@@ -28,7 +28,7 @@ const MainInfo: FunctionComponent<IProps> = ({holyMasses, page}) => {
         :
         <>
           <p> DEAR SISTERS AND BROTHERS,DEAR FRIENDS, </p>
-          <h1>Upcoming Holy Masses and/or devotions at St. Ladislav church:</h1>
+          <h2>Upcoming Holy Masses and/or devotions at St. Ladislav church:</h2>
         </>
       }
 

@@ -37,12 +37,14 @@ body {
     background-position: center;
 }
 
-p, h1, h2 {
+p, h3, h2 {
+    font-family: var(--font-cambay);
     font-size: var(--font-size-extra-large);
     line-height: var(--line-height-extra-large);
 }
 
-h3 {
+h1 {
+    font-family: var(--font-cambay);
     font-size: var(--font-size-extra-large-h);
     line-height: var(--line-height-extra-large-h);
 }
@@ -50,6 +52,7 @@ h3 {
 
 a {
     text-decoration: none;
+    color: black;
 }
 
 ol, ul {
@@ -81,7 +84,7 @@ table {
 
 
 @media screen and (max-width: 960px) {
-    p, h1, h2, h3 {
+    p, h2, h3 {
         font-size: var(--font-size-large);
         line-height: var(--line-height-large);
     }
@@ -95,16 +98,25 @@ table {
 }
 
 @media screen and (max-width: 567px) {
-    p, h1, h2, h3 {
+    p, h3, h2 {
         font-size: var(--font-size-medium);
         line-height: var(--line-height-medium);
+    }
+    h1 {
+        font-size: var(--font-size-large);
+        line-height: var(--line-height-large);
     }
 }
 
 @media screen and (max-width: 420px) {
-    p, h1, h2, h3 {
+    p, h2, h3 {
         font-size: var(--font-size-small);
         line-height: var(--line-height-small);
+    }
+
+    h1 {
+        font-size: var(--font-size-medium);
+        line-height: var(--line-height-medium);
     }
 }
 

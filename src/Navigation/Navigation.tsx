@@ -36,7 +36,7 @@ const Navigation = () => {
             key={index}
             {...route}
             element={
-              <Suspense fallback={<Loading/>}>
+              <Suspense fallback={<div className={`body center`}><Loading/></div>}>
                 {route.component}
               </Suspense>
             }

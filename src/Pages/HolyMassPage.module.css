@@ -2,17 +2,17 @@
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    color: white;
-    font-family: Cambay;
     font-size: 0.5rem;
     min-width: 34%;
 }
 
-.left{
+.titleContainer .left{
     text-align: left;
+    color: white;
 }
-.right{
+.titleContainer .right{
     text-align: right;
+    color: white;
 }
 
 .hollyMassBody{

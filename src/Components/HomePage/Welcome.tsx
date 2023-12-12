@@ -20,7 +20,7 @@ const Welcome: FunctionComponent<IProps> = ({text}) => {
             relationship with Our Lord Jesus Christ. "Click" on the above icons
             for more information on our varous programs. Again, welcome!
           </p>
-          <h1>Who we are: yesterday and today</h1>
+          <h2>Who we are: yesterday and today</h2>
           <p>
             It all started in 1993, when a retired Divine Word missionary,
             Father Frantisek Sirovic SVD, started saying masses in English.

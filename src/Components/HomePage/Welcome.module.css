@@ -1,9 +1,7 @@
-
 .welcome {
     width: 100%;
     text-align: left;
     color: var(--color-black);
-    font-family: var(--font-cambay);
     margin: 0 8rem 2rem;
 }
 .welcomeTitle{
