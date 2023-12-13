@@ -10,7 +10,6 @@ interface IActivity {
   isImageTop: boolean;
 }
 
-
 const Activity = (props: IActivity) => {
   if (!props.title || !props.description || !props.image || !props.link) return null;
 
