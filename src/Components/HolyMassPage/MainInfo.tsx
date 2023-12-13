@@ -32,6 +32,8 @@ const MainInfo: FunctionComponent<IProps> = ({holyMasses, page}) => {
         </>
       }
 
+      {page.date && <p>Updated on {moment(page.date).format('DD.MM.yyyy')}</p>}
+
       <p>
         {holyMasses
           .filter(m => m.schedule >= new Date())
