@@ -31,6 +31,7 @@ const ImageGallery: React.FC<IProps> = (props) => {
     <div className={`${styles.gallery} ${props.className}`}>
       <div className={styles.galleryWrapper}>
         <Gallery
+          className={styles.galleryMargin}
           title={props.title}
           items={props.images.map((item, index) => (
             <div className={styles.imageContainer} key={index}>

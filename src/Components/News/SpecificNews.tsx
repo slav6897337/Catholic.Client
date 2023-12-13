@@ -19,11 +19,11 @@ const SpecificNews = (props: ISpecificNews) => {
   const Content = () => (
     <>
       <div className={styles.newsTitle}>
-        <h1>{props.title}</h1>
-        <p>{moment(props.date).format('DD.MM.yyyy')}</p>
+        <h1 className={styles.newsTitleText}>{props.title}</h1>
+        <p className={styles.newsDate}>{moment(props.date).format('DD.MM.yyyy')}</p>
       </div>
       <div className={styles.bodyContainer}>
-        {props.description && <p>{props.description}</p>}
+        {props.description && <p className={styles.newsBody}>{props.description}</p>}
         {props.image && <Image className={props.description ? styles.separate : ''} selfSrc={props.image} alt={props.title}/>}
       </div>
     </>);
