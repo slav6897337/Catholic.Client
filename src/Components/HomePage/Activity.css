@@ -1,4 +1,4 @@
-.activity{
+.activity {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -13,65 +13,72 @@
     overflow: hidden
 }
 
-.activity_reverse{
+.activity__text_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 19rem;
+}
+
+.activity_reverse {
     flex-direction: column-reverse;
 }
 
-.activityImageContainer{
+.activityImageContainer {
     display: flex;
     overflow: hidden
 }
 
-.activity img{
+.activity img {
     transition: transform 0.3s;
     object-fit: cover;
 }
 
-.activity:hover{
+.activity:hover {
     box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
 }
 
-.activity:hover .activity__link_arrow{
+.activity:hover .activity__link_arrow {
     margin-left: 1rem;
 }
 
-.activity:hover img{
+.activity:hover img {
     transform: translate3d(0, 0, 0) scale3d(1.2, 1.2, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
     transform-style: preserve-3d;
     width: 100%;
 }
 
-.activity h2{
+.activity h2 {
     margin: 1.6rem 1rem 1rem;
 }
 
-.activity p{
+.activity p {
     font-size: var(--font-size-medium);
     margin-left: 1rem;
     margin-right: 1rem;
     padding-top: 0.4rem;
 }
 
-.activity__link{
+.activity__link {
     display: flex;
     align-items: center;
     margin: 1rem 1rem 1.8rem 0;
     color: #016066;
 }
 
-.activity__link p{
+.activity__link p {
     display: flex;
     color: #016066;
 }
 
 @media screen and (max-width: 840px) {
-    .activity_reverse{
+    .activity_reverse {
         flex-direction: column;
     }
 }
 
 @media screen and (max-width: 420px) {
-    .activity{
+    .activity {
         width: 90%;
         margin-right: 0;
         margin-left: 0;
