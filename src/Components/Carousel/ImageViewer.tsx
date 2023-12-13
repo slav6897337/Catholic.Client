@@ -6,7 +6,7 @@ import useWindowDimensions from "../../hookcs/useWindowDimensions";
 import {Image} from "../StyledComponents/Image";
 import {useSwiperPagination} from "../../hookcs/useSwiperPagination";
 import {ISize} from "../../Domain/ISize";
-import {EventEmitter, POPUP_SHOWN} from "../../Utiles/EventEmitter";
+import {EventEmitter, POPUP_HIDDEN, POPUP_SHOWN} from "../../Utiles/EventEmitter";
 import ImageButtons from "./ImageButtons";
 
 interface IProps {
@@ -41,7 +41,9 @@ const ImageViewer: React.FC<IProps> = (props) => {
     if (!imageWidth || width > imageWidth) setImageWidth(width);
   };
 
-  if (!props.images?.length || width < 760) return null;
+  if (!props.images?.length || width < 760){
+    EventEmitter.trigger(POPUP_HIDDEN);
+  }
 
   return (
     <div className={styles.galleryWrapper} style={{width: imageWidth}}>

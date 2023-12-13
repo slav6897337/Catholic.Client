@@ -9,8 +9,8 @@
 }
 
 .bodyContainer {
-    display: flex;
-    flex-direction: row;
+    /*display: flex;*/
+    /*flex-direction: row;*/
     justify-content: center;
     height: 15rem;
     overflow: hidden;
@@ -19,10 +19,17 @@
 }
 
 .separate {
+    float: right;
     max-width: 50%;
-    margin-bottom: auto;
+    height: auto;
     margin-left: 0.4rem;
+    margin-bottom: 0.1rem;
 }
+
+.center {
+    margin: 0 auto;
+}
+
 
 .newsClickable:hover {
     box-shadow: 0 0 1rem rgba(1, 96, 102, 0.8);
@@ -60,7 +67,6 @@
 @media screen and (max-width: 420px) {
     .news {
         max-width: 24rem;
-
         margin: 0.2rem;
     }
 
@@ -68,3 +74,5 @@
         box-shadow: 0 0 0.2rem rgba(1, 96, 102, 0.8);
     }
 }
+
+

@@ -23,8 +23,10 @@ const SpecificNews = (props: ISpecificNews) => {
         <p className={styles.newsDate}>{moment(props.date).format('DD.MM.yyyy')}</p>
       </div>
       <div className={styles.bodyContainer}>
-        {props.description && <p className={styles.newsBody}>{props.description}</p>}
-        {props.image && <Image className={props.description ? styles.separate : ''} selfSrc={props.image} alt={props.title}/>}
+        {props.image && <Image className={props.description ? styles.separate : styles.center} selfSrc={props.image} alt={props.title}/>}
+        <div>
+          {props.description && <p className={styles.newsBody}>{props.description}</p>}
+        </div>
       </div>
     </>);
 
