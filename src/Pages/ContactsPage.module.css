@@ -1,0 +1,57 @@
+.contactsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 36rem;
+    margin: 3rem auto;
+}
+
+.contactsTitle{
+    width: 100%;
+    text-align: left;
+}
+
+.contactsText{
+    padding-top: 0.6rem;
+    color: #828282;
+}
+
+.contactsTextContainer .contactsItemContainer p{
+    margin-top: 0;
+    margin-bottom: 0.4rem;
+}
+
+.contactsTextContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.contactsItemContainer{
+    width: 13rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: auto;
+}
+
+@media screen and (max-width: 1200px) {
+    .bodyBlurContainerChoir{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 960px) {
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 480px) {
+
+}

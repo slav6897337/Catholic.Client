@@ -6,6 +6,7 @@ import BibleQuotes from '../Components/HomePage/DailyBibleQuote';
 import NewsPage from "../Pages/NewsPage";
 import ChoirPage from "../Pages/ChoirPage";
 import ListNewsPage from "../Pages/ListNewsPage";
+import ContactsPage from "../Pages/ContactsPage";
 
 interface IAppRoutes {
   element?: ReactNode,
@@ -48,6 +49,10 @@ export const AppRoutes:IAppRoutes[] = [
   {
     path: '/news',
     element: <ListNewsPage />
+  },
+  {
+    path: '/contacts',
+    element: <ContactsPage />
   },
   {
     path: '*',
