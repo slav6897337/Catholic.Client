@@ -31,7 +31,7 @@ export default class HolyMassPage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
-    document.title = 'Schedule and locations of English Catholic Holy Masses in Bratislava, Slovakia.';
+    document.title = 'Catholic Holy Masses in English, Schedule and locations in Bratislava, Slovakia.';
     const description = 'Holy Mass is offered in English each Sunday at 11:00am at Sv. Ladislav Catholic Church ... If you cannot attend the 11:00am English mass, attend mass in Slovak ...';
     document.querySelector('meta[name="description"]')?.setAttribute("content", description);
     const script = document.createElement('script');

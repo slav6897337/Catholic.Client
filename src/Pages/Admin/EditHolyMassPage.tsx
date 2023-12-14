@@ -144,16 +144,6 @@ const EditHolyMassPage: FunctionComponent = () => {
               />
             )}
 
-          <ImagePicker
-            title='Image Gallery'
-            images={page.images}
-            mainImage={page.mainImage}
-            crop={{width: 790, height: 520}}
-            resizeWidth={790}
-            onChange={(images, mainImage) => setPage({...page, images, mainImage})}
-            takeMinImage={true}
-          />
-
           <Button
             className={styles.button}
             icon='/icons/add.png'
@@ -182,6 +172,16 @@ const EditHolyMassPage: FunctionComponent = () => {
         wrapperClassName={styles.wrapperClassName}
         body={pageSelections?.body ?? ''}
         onBodyUpdate={body => setPageSections({...pageSelections, body} as IHolyMassSections)}
+      />
+
+      <ImagePicker
+        title='Image Gallery'
+        images={page.images}
+        mainImage={page.mainImage}
+        crop={{width: 790, height: 520}}
+        resizeWidth={790}
+        onChange={(images, mainImage) => setPage({...page, images, mainImage})}
+        takeMinImage={true}
       />
 
       <Button
