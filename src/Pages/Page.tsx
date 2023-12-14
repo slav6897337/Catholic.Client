@@ -42,17 +42,31 @@ export const Page: React.FC<IPageProps> = (
   const [containerHeight, setContainerHeight] = useState<number>( 0);
   const [notFound, setNotFound] = useState<boolean>(false);
 
+  const pagePath = location.pathname.split("/")[1];
+  const isNotNewsPage = !links.some(l => l.path === `/${pagePath}`);
+  const hasBackgroundImage = page?.mainImage && width > 760;
+
   useEffect(() => {
     onLoading(true);
     if (isNotNewsPageFlag) {
       isNotNewsPageFlag(isNotNewsPage);
     }
+    const script = document.createElement('script');
 
     if (pagePath) {
       try {
         Api.getPage(pagePath).then((pageInfo) => {
           if (pageInfo) {
-            document.title = pageInfo.title;
+            document.title = defaultPage.title + pageInfo.title;
+            script.type = 'application/ld+json';
+            const type = isNotNewsPage ? 'Article' : 'NewsArticle';
+            script.innerHTML = JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": type,
+              "headline": pageInfo.title,
+              "datePublished": pageInfo.date
+            });
+            document.head.appendChild(script);
             setPage(pageInfo);
             onPageLoad(pageInfo);
           } else if(showNotFound)
@@ -65,11 +79,13 @@ export const Page: React.FC<IPageProps> = (
         log.info(e);
       }
     }
+
+    return () => {
+      document.head.removeChild(script);
+    };
   }, [location]);
 
-  const pagePath = location.pathname.split("/")[1];
-  const isNotNewsPage = !links.some(l => l.path === `/${pagePath}`);
-  const hasBackgroundImage = page?.mainImage && width > 760;
+
 
   if (notFound) return (
     <div className='body center'>

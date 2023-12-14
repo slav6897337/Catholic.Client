@@ -26,16 +26,32 @@ export default class HomePage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
     window.scrollTo(0, 0);
     try {
       Api.getPage('home').then((page) => {
         if (page) {
           page.images ??= [];
-          this.setState({page})
+          this.setState({page});
+          script.innerHTML = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "English Catholic Community in Bratislava, Slovakia",
+            "datePublished": page.date,
+          });
+          document.head.appendChild(script);
         }
       });
     } catch (e) {
       log.info(e);
+    }
+  }
+
+  componentWillUnmount() {
+    const script = document.querySelector('script[type="application/ld+json"]');
+    if (script) {
+      document.head.removeChild(script);
     }
   }
 

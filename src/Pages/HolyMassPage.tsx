@@ -31,9 +31,12 @@ export default class HolyMassPage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
-    document.title = 'Holly Masses';
+    document.title = 'Schedule and locations of English Catholic Holy Masses in Bratislava, Slovakia.';
     const description = 'Holy Mass is offered in English each Sunday at 11:00am at Sv. Ladislav Catholic Church ... If you cannot attend the 11:00am English mass, attend mass in Slovak ...';
     document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+
     window.scrollTo(0, 0);
     try {
       Api.listHollyMasses().then((masses) => {
@@ -47,10 +50,24 @@ export default class HolyMassPage extends React.Component<{}, IState> {
         if (page) {
           page.images ??= [];
           this.setState({page})
+          script.innerHTML = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "English Catholic Holy Masses in Bratislava, Slovakia",
+            "datePublished": page.date,
+          });
+          document.head.appendChild(script);
         }
       });
     } catch (e) {
       log.info(e);
+    }
+  }
+
+  componentWillUnmount() {
+    const script = document.querySelector('script[type="application/ld+json"]');
+    if (script) {
+      document.head.removeChild(script);
     }
   }
 
