@@ -52,6 +52,7 @@ export const Page: React.FC<IPageProps> = (
       try {
         Api.getPage(pagePath).then((pageInfo) => {
           if (pageInfo) {
+            document.title = pageInfo.title;
             setPage(pageInfo);
             onPageLoad(pageInfo);
           } else if(showNotFound)

@@ -9,7 +9,8 @@
     font-family: var(--font-cambay);
 }
 
-.title{
+.blurContainer .title{
+    margin-top: 0;
     color: var(--color-green-100);
     font-size: var(--font-size-extra-large-h);
 }

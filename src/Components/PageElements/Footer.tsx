@@ -18,7 +18,7 @@ const Footer = () => {
       )}</div>
 
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={styles.footerTopContainer}>
         <div className={styles.footerLogo}>
           <h2>Catholic.sk</h2>
@@ -32,7 +32,7 @@ const Footer = () => {
       <div className={styles.footerBottom}>
         <p>© Catholic.sk. All rights reserved</p>
       </div>
-    </div>
+    </footer>
   );
 };
 export default Footer;

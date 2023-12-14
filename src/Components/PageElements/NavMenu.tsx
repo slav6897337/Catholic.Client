@@ -36,7 +36,7 @@ export default function NavMenu() {
     </>
 
   return (
-    <div style={{
+    <nav style={{
       display: "flex",
       flexDirection: "row",
       flexWrap: "nowrap",
@@ -68,7 +68,7 @@ export default function NavMenu() {
           </Menu>
         </div>
       }
-    </div>
+    </nav>
 
   );
 }

@@ -31,6 +31,9 @@ export default class HolyMassPage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    document.title = 'Holly Masses';
+    const description = 'Holy Mass is offered in English each Sunday at 11:00am at Sv. Ladislav Catholic Church ... If you cannot attend the 11:00am English mass, attend mass in Slovak ...';
+    document.querySelector('meta[name="description"]')?.setAttribute("content", description);
     window.scrollTo(0, 0);
     try {
       Api.listHollyMasses().then((masses) => {

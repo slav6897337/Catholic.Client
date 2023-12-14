@@ -20,7 +20,10 @@ const ChoirPage: React.FC = () => {
         onLoading={l => {    }}
       >
         <div className={styles.choirInfoContainer}>
-          <ChoirInfo className={styles.bodyBlurContainerChoir} images={['/img/songs.png', '/img/choir.png']}/>
+          <ChoirInfo
+            className={styles.bodyBlurContainerChoir}
+            titleClassName={styles.titleBlurContainerChoir}
+            images={['/img/songs.png', '/img/choir.png']}/>
           <Player title="Some Choir Recordings"/>
         </div>
       </Page>

@@ -7,9 +7,9 @@ interface IProps {
 
 const Header: React.FC<IProps> = ({children}) => {
   return (
-    <div className={styles.headerContainer}>
+    <header className={styles.headerContainer}>
       {children}
-    </div>
+    </header>
   );
 };
 export default Header;

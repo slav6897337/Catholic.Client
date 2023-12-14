@@ -16,14 +16,14 @@ const BlurContainer: FunctionComponent<IProps> = (props) => {
   if (!props.children) return null;
 
   return (
-    <div className={`${styles.blurContainer} ${props.className}`} style={props.style}>
+    <article className={`${styles.blurContainer} ${props.className}`} style={props.style}>
       {props.title ?
-        <h2 className={`${styles.title} ${props.titleClassName}`} style={props.titleStyle}>
+        <h1 className={`${styles.title} ${props.titleClassName}`} style={props.titleStyle}>
           {props.title}
-        </h2>
+        </h1>
         : null}
       {props.children}
-    </div>
+    </article>
   );
 };
 
