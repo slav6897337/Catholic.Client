@@ -11,7 +11,7 @@ export interface IPage {
 
 export const defaultPage : IPage = {
   id: '',
-  title: 'English speaking Catholic community in Slovakia Bratislava. ',
+  title: ' Catholic community in Slovakia Bratislava.',
   body: '',
   urlSegment: '',
   mainImage: '',

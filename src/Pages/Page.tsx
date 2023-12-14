@@ -57,7 +57,7 @@ export const Page: React.FC<IPageProps> = (
       try {
         Api.getPage(pagePath).then((pageInfo) => {
           if (pageInfo) {
-            document.title = defaultPage.title + pageInfo.title;
+            document.title = pageInfo.title + defaultPage.title;
             script.type = 'application/ld+json';
             const type = isNotNewsPage ? 'Article' : 'NewsArticle';
             script.innerHTML = JSON.stringify({
