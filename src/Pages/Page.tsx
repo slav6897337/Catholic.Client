@@ -11,7 +11,6 @@ import {useScrollToTop} from "../hookcs/useScrollToTop";
 import {NotFound} from "../Components/StyledComponents/NotFound";
 import BlurContainer from "../Components/PageElements/BlurContainer";
 import {links} from "../Navigation/Lincks";
-import ImageViewer from "../Components/Carousel/ImageViewer";
 import useWindowDimensions from "../hookcs/useWindowDimensions";
 
 interface IPageProps {
@@ -22,6 +21,7 @@ interface IPageProps {
   className?: string;
   blurContainer?: boolean;
   children: React.ReactNode;
+  showNotFound?: boolean;
 }
 
 export const Page: React.FC<IPageProps> = (
@@ -32,13 +32,15 @@ export const Page: React.FC<IPageProps> = (
     onLoading,
     className,
     isNotNewsPageFlag,
-    blurContainer = true
+    blurContainer = true,
+    showNotFound = true
   }) => {
   useScrollToTop();
   const {width} = useWindowDimensions();
   const location = useLocation();
   const [page, setPage] = React.useState<IPage>(preloadPage ?? defaultPage);
   const [containerHeight, setContainerHeight] = useState<number>( 0);
+  const [notFound, setNotFound] = useState<boolean>(false);
 
   useEffect(() => {
     onLoading(true);
@@ -52,6 +54,9 @@ export const Page: React.FC<IPageProps> = (
           if (pageInfo) {
             setPage(pageInfo);
             onPageLoad(pageInfo);
+          } else if(showNotFound)
+          {
+            setNotFound(true);
           }
           onLoading(false);
         });
@@ -65,7 +70,7 @@ export const Page: React.FC<IPageProps> = (
   const isNotNewsPage = !links.some(l => l.path === `/${pagePath}`);
   const hasBackgroundImage = page?.mainImage && width > 760;
 
-  if (!page) return (
+  if (notFound) return (
     <div className='body center'>
       <NotFound/>
     </div>
