@@ -53,6 +53,37 @@
     margin: 0.4rem;
 }
 .text{
-
     margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 680px) {
+    .container {
+        min-height: 420px;
+    }
+
+    .circle {
+        border-radius: 24rem;
+        width: 24rem;
+        height: 24rem;
+    }
+
+    .numbers {
+        font-size: 3rem;
+        font-weight: 600;
+        margin: 4rem 0 1rem 0;
+    }
+
+    .sorryText{
+        font-size: 1rem;
+        margin: 1rem;
+    }
+
+    .text p{
+        font-size: 0.8rem;
+        letter-spacing: 0.00625rem;
+        margin: 0.4rem;
+    }
+    .text{
+        margin-bottom: 1rem;
+    }
 }

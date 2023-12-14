@@ -16,6 +16,7 @@ import BodyEditor from "../../Components/AdminPage/BodyEditor";
 import IHolyMassSections from "../../Domain/IHolyMass";
 import Actions from "../../Utiles/Actions";
 import Constants from "../../Domain/Constants";
+import ImagePicker from "../../Components/AdminPage/ImagePicker";
 
 const EditHolyMassPage: FunctionComponent = () => {
   const [admin, setAdmin] = React.useState<IAdmin | null>(null);
@@ -142,6 +143,16 @@ const EditHolyMassPage: FunctionComponent = () => {
                 onChange={holyMass => handleHolyMassUpdate(holyMass)}
               />
             )}
+
+          <ImagePicker
+            title='Image Gallery'
+            images={page.images}
+            mainImage={page.mainImage}
+            crop={{width: 790, height: 520}}
+            resizeWidth={790}
+            onChange={(images, mainImage) => setPage({...page, images, mainImage})}
+            takeMinImage={true}
+          />
 
           <Button
             className={styles.button}

@@ -64,13 +64,6 @@ export default class HolyMassPage extends React.Component<{}, IState> {
     }
   }
 
-  componentWillUnmount() {
-    const script = document.querySelector('script[type="application/ld+json"]');
-    if (script) {
-      document.head.removeChild(script);
-    }
-  }
-
   render() {
     return (
       <div>
