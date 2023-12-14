@@ -80,9 +80,6 @@ export const Page: React.FC<IPageProps> = (
       }
     }
 
-    return () => {
-      document.head.removeChild(script);
-    };
   }, [location]);
 
 
