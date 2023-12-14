@@ -26,6 +26,7 @@ export default class HomePage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    document.title = 'English speaking Catholic community in Slovakia Bratislava.';
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     window.scrollTo(0, 0);
