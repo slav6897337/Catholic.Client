@@ -1,0 +1,82 @@
+.fixedLogoContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    background: rgba(253, 253, 253, 0.94);
+    box-shadow: -4px 0 8px 4px rgba(0, 0, 0, 0.15);
+}
+.hiddenLogo {
+    transform: translateY(-100%);
+}
+
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.catholicsk {
+    position: relative;
+    text-align: left;
+    font-family: var(--font-bellota-text);
+    background: linear-gradient(91.65deg, #dbbf9a, #c7af8d 46.88%, #977458);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: var(--font-size-9xl);
+}
+.logotext {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    top: 2.4rem;
+    left: 2.6rem;
+}
+.crosslogo,
+.crosslogoChild {
+    position: absolute;
+    top: -0.2rem;
+    left: 0;
+    margin-left: 0.4rem;
+    width: 2.28rem;
+    height: 5.94rem;
+}
+.crosslogo {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+}
+.logo {
+    position: relative;
+    height: 5.4rem;
+
+}
+
+
+.navWrapper{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 5.4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 1000px) {
+    .navWrapper{
+        justify-content: flex-end;
+        margin-right: 2rem;
+    }
+}
+

@@ -1,3 +1,17 @@
+.fixedLogoContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255,255,255, 1);
+    border-bottom: 1px solid #BABABA;
+    transition: transform 0.3s ease;
+}
+.hiddenLogo {
+    transform: translateY(-100%);
+}
+
 .logoContainer {
     display: flex;
     flex-direction: column;
@@ -63,6 +77,16 @@
     height: 8rem;
     margin: 1rem;
 }
+
+@media screen and (max-width: 1000px) {
+    .logoHorizontalLine{
+        display: none;
+    }
+    .logoContainer{
+        padding: 0 0 1rem 0;
+    }
+}
+
 @media screen and (max-width: 960px) {
     .catholicsk {
         font-size: var(--font-size-13xl);
@@ -86,7 +110,13 @@
         height: 7rem;
     }
 }
-@media screen and (max-width: 420px) {
+
+@media screen and (max-width: 820px) {
+    .logoContainer{
+        align-items: flex-start;
+        padding: 0 0 1rem 0;
+    }
+
     .catholicsk {
         font-size: var(--font-size-9xl);
     }
@@ -97,10 +127,10 @@
     .logotext {
         flex-direction: column;
         top: 2.8rem;
-        left: 4.4rem;
+        left: 3rem;
     }
     .crosslogoChild {
-        margin-left: 2rem;
+        margin-left: 0.6rem;
         width: 3.28rem;
         height: 6.94rem;
     }

@@ -3,6 +3,8 @@ import {defaultPage, IPage} from "../Domain/IPage";
 import {Page} from "./Page";
 import styles from "./ContactsPage.module.css";
 
+const email = 'info@catholic.sk';
+
 const ContactsPage: React.FC = () => {
   const [page, setPage] = React.useState<IPage>(preloadPage);
   const [loading, setLoading] = React.useState(false);
@@ -17,7 +19,7 @@ const ContactsPage: React.FC = () => {
           <div className={styles.contactsItemContainer}>
             <img src={'/icons/email.png'} alt='email'/>
             <p className={`${styles.contactsText}`}>EMAIL</p>
-            <p>info@catholic.sk</p>
+            <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">{email}</a>
           </div>
 
           <div className={styles.contactsItemContainer}>

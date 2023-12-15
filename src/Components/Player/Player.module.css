@@ -1,3 +1,7 @@
+.goldContainerAdjustment{
+    min-width: 20.4rem;
+}
+
 .title{
     color: var(--color-green-100);
     margin: 1rem;

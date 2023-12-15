@@ -1,0 +1,112 @@
+.navContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+.menuButton{
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobileMenuContainer .menuButtonIcon{
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.mobileMenuContainer .menuButton:hover{
+    box-shadow: none;
+}
+
+.menuContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-decoration: none;
+    list-style: none;
+}
+
+.navLink {
+    font-family: var(--font-cambay);
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: #016066;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0 0.7rem;
+    flex: none;
+    flex-grow: 0;
+}
+
+.currentLink{
+    font-weight: bold;
+}
+
+.navLink:hover {
+    background: linear-gradient(91.65deg, #DBBF9A 4.69%, #C7AF8D 45.41%, #977458 91.55%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+@media (max-width: 1000px) {
+    .navContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .mobileMenuContainer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 2rem 4rem;
+        display: block;
+        flex-direction: column;
+        align-items: flex-end;
+        text-decoration: none;
+        list-style: none;
+        z-index: 20;
+    }
+
+    .mobileMenuContainerDecoration {
+        background: rgba(253, 253, 253, 0.92);
+        box-shadow: -4px 0 8px 4px rgba(0, 0, 0, 0.15);
+        height: 100vh;
+    }
+
+    .navLink{
+        margin: 0.4rem;
+    }
+
+    @keyframes slideDown {
+        from {
+            max-width: 0;
+            opacity: 0;
+        }
+        to {
+            max-width: 500px;
+            opacity: 1;
+        }
+    }
+
+    .navContainer {
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+
+    .navContainer.open {
+        animation-name: slideDown;
+        animation-duration: 1s;
+    }
+}
+

@@ -36,7 +36,7 @@ const Player: FunctionComponent<IProps> = (props) => {
   };
 
   return (
-    <GoldBorder>
+    <GoldBorder container={styles.goldContainerAdjustment}>
       {props.title && <h1 className={styles.title}>{props.title}</h1>}
 
       <audio controls ref={audioRef} className={styles.player}>
