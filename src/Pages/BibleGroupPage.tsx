@@ -1,6 +1,9 @@
 import React from 'react';
 import {defaultPage, IPage} from "../Domain/IPage";
 import {Page} from "./Page";
+import GoldLine from "../Components/PageElements/GoldLine";
+import Avatar from "../Components/StyledComponents/Avatar";
+
 
 const BibleGroupPage: React.FC = () => {
   const [page, setPage] = React.useState<IPage>(preloadPage);
@@ -9,6 +12,10 @@ const BibleGroupPage: React.FC = () => {
   return (
     <Page onPageLoad={p => setPage(p)} onLoading={l => setLoading(l)} preloadPage={page}>
       <div dangerouslySetInnerHTML={{__html: page.body}}/>
+
+      <GoldLine style={{width: '65%'}}/>
+
+      <Avatar name={"David Reichardt"} photo={"/photo/Dave.png"} position={"Leader"}/>
     </Page>
   );
 }

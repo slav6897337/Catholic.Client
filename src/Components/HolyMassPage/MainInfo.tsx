@@ -8,6 +8,7 @@ import Actions from "../../Utiles/Actions";
 import Constants from "../../Domain/Constants";
 import {IPage} from "../../Domain/IPage";
 import IHolyMassSections from "../../Domain/IHolyMass";
+import Avatar from "../StyledComponents/Avatar";
 
 interface IProps {
   holyMasses: IHolyMass[];
@@ -79,6 +80,10 @@ const MainInfo: FunctionComponent<IProps> = ({holyMasses, page}) => {
           <p>Fr. Ben Kosnac, your chaplain</p>
         </>
       }
+
+      <GoldLine style={{width: '65%'}}/>
+
+      <Avatar name={"Fr. Ben Kosnac"} photo={"/photo/Ben.png"} position={"Your Chaplain"}/>
 
     </BlurContainer>
 

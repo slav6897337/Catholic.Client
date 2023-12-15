@@ -2,6 +2,14 @@
     width: 100%;
 }
 
+.imageGalleryTopLine{
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-color: var(--color-green-40);
+    margin: 0 auto 2rem auto;
+    width: 34%;
+}
+
 .galleryWrapper{
     width: 100%;
 }

@@ -1,5 +1,6 @@
 .news {
-    display: block;
+    display: flex;
+    flex-direction: column;
     background: #FFFFFF;
     border-radius: 0.25rem;
     margin: 0.4rem 0.8rem 1.6rem 0.8rem;
@@ -12,10 +13,11 @@
     /*display: flex;*/
     /*flex-direction: row;*/
     justify-content: center;
-    height: 15rem;
+    /*height: 15rem;*/
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: 0.6rem;
+    height: 100%;
 }
 
 .separate {
@@ -66,8 +68,7 @@
 
 @media screen and (max-width: 420px) {
     .news {
-        max-width: 24rem;
-        margin: 0.6rem;
+        margin: 0 0 1rem 0;
     }
 
     .newsClickable:hover {

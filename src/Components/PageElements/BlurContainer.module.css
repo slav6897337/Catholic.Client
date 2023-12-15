@@ -35,4 +35,8 @@
         margin-top: 0.6rem;
         margin-bottom: 0.6rem;
     }
+
+    .blurContainer .title{
+        margin-top: 1rem;
+    }
 }

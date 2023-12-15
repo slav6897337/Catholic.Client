@@ -92,7 +92,7 @@ export default class HolyMassPage extends React.Component<{}, IState> {
 
           <ImageGallery images={this.state.page.images ?? []}/>
 
-          <h1 className={styles.howToFindUs}>HOW TO FIND US</h1>
+          <h1 className={styles.howToFindUs}>How to find us</h1>
           <div className={styles.bottomContainer}>
             <Map/>
             <img className={styles.churchPhoto} src={'/img/churchPhoto.webp'} alt={'Church'}/>
