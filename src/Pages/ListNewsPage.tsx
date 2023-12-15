@@ -7,6 +7,7 @@ import {INews} from "../Domain/INews";
 import styles from "./ListNewsPage.module.css";
 import SpecificNews from "../Components/News/SpecificNews";
 import Loading from "../Components/PageElements/Loading";
+import {defaultPage} from "../Domain/IPage";
 
 
 interface IState {
@@ -26,6 +27,7 @@ export default class ListNewsPage extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
+    document.title = 'News' + defaultPage.title;
     window.scrollTo(0, 0);
     try {
       Api.getAllNews().then((news) => {

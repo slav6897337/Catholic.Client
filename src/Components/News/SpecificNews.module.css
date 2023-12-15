@@ -67,7 +67,7 @@
 @media screen and (max-width: 420px) {
     .news {
         max-width: 24rem;
-        margin: 0.2rem;
+        margin: 0.6rem;
     }
 
     .newsClickable:hover {
