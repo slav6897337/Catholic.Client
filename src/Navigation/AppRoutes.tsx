@@ -1,12 +1,4 @@
 import React, {lazy, ReactNode} from "react";
-import HomePage from '../Pages/HomePage';
-import HolyMassPage from "../Pages/HolyMassPage";
-import BibleGroupPage from "../Pages/BibleGroupPage";
-import BibleQuotes from '../Components/HomePage/DailyBibleQuote';
-import NewsPage from "../Pages/NewsPage";
-import ChoirPage from "../Pages/ChoirPage";
-import ListNewsPage from "../Pages/ListNewsPage";
-import ContactsPage from "../Pages/ContactsPage";
 
 interface IAppRoutes {
   element?: ReactNode,
@@ -14,6 +6,15 @@ interface IAppRoutes {
   index?: boolean,
   path?: string
 }
+
+const HomePage = lazy(() => import("../Pages/HomePage"));
+const HolyMassPage = lazy(() => import("../Pages/HolyMassPage"));
+const BibleGroupPage = lazy(() => import("../Pages/BibleGroupPage"));
+const BibleQuotes = lazy(() => import('../Components/HomePage/DailyBibleQuote'));
+const NewsPage = lazy(() => import("../Pages/NewsPage"));
+const ChoirPage = lazy(() => import("../Pages/ChoirPage"));
+const ListNewsPage = lazy(() => import("../Pages/ListNewsPage"));
+const ContactsPage = lazy(() => import("../Pages/ContactsPage"));
 
 const AdminPage = lazy(() => import('../Pages/Admin/AdminPage'));
 const LogInPage = lazy(() => import("../Pages/Admin/LogInPage"));
@@ -25,88 +26,88 @@ const EditHolyMassPage = lazy(() => import("../Pages/Admin/EditHolyMassPage"));
 const EditHomePage = lazy(() => import("../Pages/Admin/EditHomePage"));
 const EditNotesPage = lazy(() => import("../Pages/Admin/EditNotesPage"));
 
-export const AppRoutes:IAppRoutes[] = [
+export const AppRoutes: IAppRoutes[] = [
   {
     index: true,
-    element: <HomePage />
+    element: <HomePage/>
   },
   {
     path: '/holy-mass',
-    element: <HolyMassPage />
+    element: <HolyMassPage/>
   },
   {
     path: '/english-bible-group',
-    element: <BibleGroupPage />
+    element: <BibleGroupPage/>
   },
   {
     path: '/bible-quotes',
-    element: <BibleQuotes />
+    element: <BibleQuotes/>
   },
   {
     path: '/choir',
-    element: <ChoirPage />
+    element: <ChoirPage/>
   },
   {
     path: '/news',
-    element: <ListNewsPage />
+    element: <ListNewsPage/>
   },
   {
     path: '/contacts',
-    element: <ContactsPage />
+    element: <ContactsPage/>
   },
   {
     path: '*',
-    element: <NewsPage />
+    element: <NewsPage/>
   },
 ];
 
-export const AdminRoutes:IAppRoutes[] = [
+export const AdminRoutes: IAppRoutes[] = [
   {
     path: '/admin',
-    component: <AdminPage />
+    component: <AdminPage/>
   },
   {
     path: '/admin/edit/home',
-    component: <EditHomePage />
+    component: <EditHomePage/>
   },
   {
     path: '/admin/edit/holy-mass',
-    component: <EditHolyMassPage />
+    component: <EditHolyMassPage/>
   },
   {
     path: '/admin/edit/:id',
-    component: <EditPage />
+    component: <EditPage/>
   },
   {
     path: '/admin/edit-news/:id',
-    component: <EditNewsPage />
+    component: <EditNewsPage/>
   },
   {
     path: '/admin/new-news',
-    component: <EditNewsPage />
+    component: <EditNewsPage/>
   },
   {
     path: '/admin/new-page',
-    component: <EditPage />
+    component: <EditPage/>
   },
   {
     path: '/admin/log-in',
-    component: <LogInPage />
+    component: <LogInPage/>
   },
   {
     path: '/admin/news',
-    component: <AdminNewsPage />
+    component: <AdminNewsPage/>
   },
   {
     path: '/admin/notes',
-    component: <AdminNotesPage />
+    component: <AdminNotesPage/>
   },
   {
     path: '/admin/edit-notes/:id',
-    component: <EditNotesPage />
+    component: <EditNotesPage/>
   },
   {
     path: '/admin/new-notes',
-    component: <EditNotesPage />
+    component: <EditNotesPage/>
   }
 ];

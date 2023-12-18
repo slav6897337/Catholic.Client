@@ -1,8 +1,10 @@
-import React, {Suspense, useEffect} from 'react';
+import React, {lazy, Suspense, useEffect} from 'react';
 import {Routes, Route, useLocation} from 'react-router-dom';
 import {AppRoutes, AdminRoutes} from './AppRoutes';
-import HolyMassPage from "../Pages/HolyMassPage";
 import Loading from "../Components/PageElements/Loading";
+
+const HolyMassPage = lazy(() => import("../Pages/HolyMassPage"));
+
 
 const catholicDomain = 'www.catholic-dev.store';
 const churchDomain = 'www.holymass-dev.store';
@@ -26,11 +28,23 @@ const Navigation = () => {
   return (
     <div className="body-container">
       <Routes>
-        {window.location.hostname === churchDomain && <Route index={true} element={<HolyMassPage/>}/>}
-        {AppRoutes.map((route, index) => {
-          const {element, component, ...rest} = route;
-          return <Route key={index} {...rest} element={element}/>;
-        })}
+        {window.location.hostname === churchDomain && <Route index={true} element={
+          <Suspense fallback={<div className={`body center`}><Loading/></div>}>
+            <HolyMassPage/>
+          </Suspense>
+        }/>}
+        {/*{window.location.hostname !== churchDomain && <Route index={true} element={<HomePage/>}/>}*/}
+        {AppRoutes.map((route, index) => (
+          <Route
+            key={index}
+            {...route}
+            element={
+              <Suspense fallback={<div className={`body center`}><Loading/></div>}>
+                {route.element}
+              </Suspense>
+            }
+          />
+        ))}
         {AdminRoutes.map((route, index) => (
           <Route
             key={index}
