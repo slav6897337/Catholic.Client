@@ -9,7 +9,6 @@ interface IProps {
 }
 
 const getImages = (images: (string | undefined)[]) => {
-  // eslint-disable-next-line eqeqeq
   const newImages = images.filter(Boolean);
   if (newImages.length) {
     return newImages.map(i => Api.getImageUrl(i ?? ''));
@@ -29,7 +28,7 @@ const PhotoCarousel: FunctionComponent<IProps> = (props) => {
   }, [props.images]);
 
   const images = imagesData.map((image, index) =>
-    <Image className={styles.photoCarouselImage} src={image} alt={index.toString()}/>);
+    <Image className={styles.photoCarouselImage} src={image} alt={index.toString()} rel={index === 0 ? 'preload' : undefined}/>);
 
   return (
     <Carousel items={images}/>

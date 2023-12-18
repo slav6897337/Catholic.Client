@@ -18,7 +18,7 @@ const Button: FunctionComponent<IProps> = (props) => {
   return (
     <button className={`${styles.sButton} ${props.className}`} style={props.style} onClick={props.onClick}>
       {props.icon
-        ? <img className={`${styles.sButtonIcon} ${props.iconClassName}`} src={props.icon} alt={props.text}/>
+        ? <img className={`${styles.sButtonIcon} ${props.iconClassName}`} src={props.icon} alt={props.text ?? 'Button'}/>
         : null
       }
       {props.text

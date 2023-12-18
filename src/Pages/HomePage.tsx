@@ -52,7 +52,7 @@ export default class HomePage extends React.Component<{}, IState> {
   render() {
     return (
       <div>
-        <Header>
+        <Header className='home__mobile_header'>
           <PhotoCarousel images={[this.state.page.mainImage, ...this.state.page.images]}/>
           <DailyBibleQuote/>
         </Header>

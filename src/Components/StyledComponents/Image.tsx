@@ -13,6 +13,7 @@ interface IProps {
   style?: React.CSSProperties;
   onSizeChange?: (size: { naturalSize: ISize, size: ISize }) => void;
   onClick?: MouseEventHandler<HTMLImageElement> | undefined;
+  rel?: string | undefined;
 }
 
 export const Image: FunctionComponent<IProps> = (props) => {
@@ -46,6 +47,7 @@ export const Image: FunctionComponent<IProps> = (props) => {
         className={`${styles.image} ${props.className}`}
         style={{...props.style, display: loading ? 'none' : 'block'}}
         alt={props.alt ?? 'image'}
+        rel={props.rel}
         src={props.selfSrc ? Api.getImageUrl(props.selfSrc) : (props.src ?? '')}
         onLoad={(e) => afterLoad(e.target as HTMLImageElement)}
         onClick={props.onClick}
