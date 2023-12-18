@@ -33,18 +33,10 @@ const Navigation = () => {
             <HolyMassPage/>
           </Suspense>
         }/>}
-        {/*{window.location.hostname !== churchDomain && <Route index={true} element={<HomePage/>}/>}*/}
-        {AppRoutes.map((route, index) => (
-          <Route
-            key={index}
-            {...route}
-            element={
-              <Suspense fallback={<div className={`body center`}><Loading/></div>}>
-                {route.element}
-              </Suspense>
-            }
-          />
-        ))}
+        {AppRoutes.map((route, index) => {
+          const {element, component, ...rest} = route;
+          return <Route key={index} {...rest} element={element}/>;
+        })}
         {AdminRoutes.map((route, index) => (
           <Route
             key={index}

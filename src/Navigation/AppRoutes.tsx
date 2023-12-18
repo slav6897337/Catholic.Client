@@ -1,4 +1,12 @@
 import React, {lazy, ReactNode} from "react";
+import HomePage from '../Pages/HomePage';
+import HolyMassPage from "../Pages/HolyMassPage";
+import BibleGroupPage from "../Pages/BibleGroupPage";
+import BibleQuotes from '../Components/HomePage/DailyBibleQuote';
+import NewsPage from "../Pages/NewsPage";
+import ChoirPage from "../Pages/ChoirPage";
+import ListNewsPage from "../Pages/ListNewsPage";
+import ContactsPage from "../Pages/ContactsPage";
 
 interface IAppRoutes {
   element?: ReactNode,
@@ -6,15 +14,6 @@ interface IAppRoutes {
   index?: boolean,
   path?: string
 }
-
-const HomePage = lazy(() => import("../Pages/HomePage"));
-const HolyMassPage = lazy(() => import("../Pages/HolyMassPage"));
-const BibleGroupPage = lazy(() => import("../Pages/BibleGroupPage"));
-const BibleQuotes = lazy(() => import('../Components/HomePage/DailyBibleQuote'));
-const NewsPage = lazy(() => import("../Pages/NewsPage"));
-const ChoirPage = lazy(() => import("../Pages/ChoirPage"));
-const ListNewsPage = lazy(() => import("../Pages/ListNewsPage"));
-const ContactsPage = lazy(() => import("../Pages/ContactsPage"));
 
 const AdminPage = lazy(() => import('../Pages/Admin/AdminPage'));
 const LogInPage = lazy(() => import("../Pages/Admin/LogInPage"));
