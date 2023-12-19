@@ -17,6 +17,7 @@ import IHolyMassSections from "../../Domain/IHolyMass";
 import Actions from "../../Utiles/Actions";
 import Constants from "../../Domain/Constants";
 import ImagePicker from "../../Components/AdminPage/ImagePicker";
+import Body from "../../Components/PageElements/Body";
 
 const EditHolyMassPage: FunctionComponent = () => {
   const [admin, setAdmin] = React.useState<IAdmin | null>(null);
@@ -84,12 +85,12 @@ const EditHolyMassPage: FunctionComponent = () => {
   }
 
   if (loading) return (
-    <div className={`body center`}>
+    <Body center={true}>
       <Loading/>
-    </div>);
+    </Body>);
 
   return (
-    <div className={`body ${styles.body}`}>
+    <Body className={`${styles.body}`}>
 
       <div className={styles.blockContainer}>
         <p className={styles.header}>Upcoming Holy Masses</p>
@@ -190,7 +191,7 @@ const EditHolyMassPage: FunctionComponent = () => {
         text='Save'
         onClick={save}/>
 
-    </div>
+    </Body>
   );
 }
 

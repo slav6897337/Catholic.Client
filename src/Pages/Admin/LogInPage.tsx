@@ -7,6 +7,7 @@ import BlurContainer from "../../Components/PageElements/BlurContainer";
 import Button from "../../Components/StyledComponents/Button";
 import {IAdmin} from "../../Domain/IAdmin";
 import AdminHelper from "../../Utiles/Admin";
+import Body from "../../Components/PageElements/Body";
 
 interface IState {
   loading: boolean;
@@ -59,12 +60,12 @@ export default class LogInPage extends React.Component<{}, IState> {
   render() {
 
     if (this.state.loading) return (
-      <div className={`body center`}>
+      <Body center={true}>
         <Loading/>
-      </div>);
+      </Body>);
 
     return (
-      <div className={`body ${styles.body}`}>
+      <Body className={`${styles.body}`}>
         <BlurContainer title={"Log In to Admin Panel"}>
           {this.state.error ?
             <div className={styles.blockContainer}>
@@ -94,7 +95,7 @@ export default class LogInPage extends React.Component<{}, IState> {
           </div>
 
         </BlurContainer>
-      </div>
+      </Body>
     );
   }
 }

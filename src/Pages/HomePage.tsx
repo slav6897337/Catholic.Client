@@ -5,11 +5,11 @@ import Welcome from '../Components/HomePage/Welcome';
 import Activities from '../Components/HomePage/Activities';
 import AllNews from '../Components/News/AllNews';
 import PhotoCarousel from "../Components/HomePage/PhotoCarousel";
-import Header from "../Components/PageElements/Header";
 import Notes from "../Components/News/Notes";
 import {defaultPage, IPage} from "../Domain/IPage";
 import Api from "../Utiles/Api";
 import log from "loglevel";
+import Body from "../Components/PageElements/Body";
 
 interface IState {
   page: IPage;
@@ -51,25 +51,27 @@ export default class HomePage extends React.Component<{}, IState> {
 
   render() {
     return (
-      <div>
-        <Header className='home__mobile_header'>
-          <PhotoCarousel images={[this.state.page.mainImage, ...this.state.page.images]}/>
-          <DailyBibleQuote/>
-        </Header>
-
-        <div className="home__background body">
-          <div className="home__welcome_container">
-            <h1 className="home__welcome_title">Welcome</h1>
-            <div className="home__welcome_container2">
-              <Welcome text={this.state.page.body}/>
-              <Notes homeNotes={true}/>
-            </div>
+      <Body
+        headerContent={
+          <>
+            <PhotoCarousel images={[this.state.page.mainImage, ...this.state.page.images]}/>
+            <DailyBibleQuote/>
+          </>
+        }
+        headerClassName='home__mobile_header'
+        className='home__background'
+      >
+        <div className="home__welcome_container">
+          <h1 className="home__welcome_title">Welcome</h1>
+          <div className="home__welcome_container2">
+            <Welcome text={this.state.page.body}/>
+            <Notes homeNotes={true}/>
           </div>
-
-          <Activities/>
-          <AllNews homeOnly={true}/>
         </div>
-      </div>
+
+        <Activities/>
+        <AllNews homeOnly={true}/>
+      </Body>
     );
   }
 }

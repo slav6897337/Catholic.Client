@@ -12,6 +12,7 @@ import Checkbox from "../../Components/StyledComponents/Checkbox";
 import {defaultNotes, INote} from "../../Domain/INote";
 import BodyEditor from "../../Components/AdminPage/BodyEditor";
 import {useScrollToTop} from "../../hookcs/useScrollToTop";
+import Body from "../../Components/PageElements/Body";
 
 const EditNotesPage: FunctionComponent = () => {
   const {id} = useParams();
@@ -60,12 +61,12 @@ const EditNotesPage: FunctionComponent = () => {
   };
 
   if (loading) return (
-    <div className={`body center`}>
+    <Body center={true}>
       <Loading/>
-    </div>);
+    </Body>);
 
   return (
-    <div className={`body padding-top`}>
+    <Body className={`padding-top`}>
 
       <div className={styles.blockContainer}>
         <p className={styles.header}>Note Text</p>
@@ -90,7 +91,7 @@ const EditNotesPage: FunctionComponent = () => {
         text='Save'
         onClick={save}/>
 
-    </div>
+    </Body>
   );
 }
 

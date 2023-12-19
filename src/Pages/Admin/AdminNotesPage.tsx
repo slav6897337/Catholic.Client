@@ -9,6 +9,7 @@ import AddCard from "../../Components/AdminPage/AddCard";
 import {INote} from "../../Domain/INote";
 import NotesCard from "../../Components/AdminPage/NotesCard";
 import {Breadcrumbs} from "../../Components/StyledComponents/Breadcrumbs";
+import Body from "../../Components/PageElements/Body";
 
 interface IState {
   loading: boolean;
@@ -54,12 +55,12 @@ export default class AdminNotesPage extends React.Component<{}, IState> {
   render() {
 
     if (this.state.loading) return (
-      <div className={`body center`}>
+      <Body center={true}>
         <Loading/>
-      </div>);
+      </Body>);
 
     return (
-      <div className={`body ${styles.body}`}>
+      <Body className={`${styles.body}`}>
         <Breadcrumbs breadcrumbs={[{text: 'Admin', to: '/admin'}, {text: 'Notes'}]}/>
 
         {this.state.notes.map((notes, index) => {
@@ -69,7 +70,7 @@ export default class AdminNotesPage extends React.Component<{}, IState> {
         })}
 
         <AddCard title='Add News' to='/admin/new-notes'/>
-      </div>
+      </Body>
     );
   }
 }

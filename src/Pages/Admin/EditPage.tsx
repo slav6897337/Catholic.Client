@@ -11,6 +11,7 @@ import AdminHelper from "../../Utiles/Admin";
 import {IAdmin} from "../../Domain/IAdmin";
 import PageEditor from "../../Components/AdminPage/PageEditor";
 import {useScrollToTop} from "../../hookcs/useScrollToTop";
+import Body from "../../Components/PageElements/Body";
 
 const EditPage: FunctionComponent = () => {
 
@@ -75,12 +76,12 @@ const EditPage: FunctionComponent = () => {
   }
 
   if (loading) return (
-    <div className={`body center`}>
+    <Body center={true}>
       <Loading/>
-    </div>);
+    </Body>);
 
   return (
-    <div className={`body padding-top`}>
+    <Body className={`padding-top`}>
 
       <div className={styles.blockContainer}>
         <p className={styles.header}>Title</p>
@@ -94,7 +95,7 @@ const EditPage: FunctionComponent = () => {
         icon='/icons/save.png'
         text='Save'
         onClick={savePage}/>
-    </div>
+    </Body>
   );
 }
 

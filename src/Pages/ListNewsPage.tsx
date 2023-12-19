@@ -1,6 +1,5 @@
 import React from 'react';
 import './HomePage.css';
-import Header from "../Components/PageElements/Header";
 import Api from "../Utiles/Api";
 import log from "loglevel";
 import {INews} from "../Domain/INews";
@@ -8,6 +7,7 @@ import styles from "./ListNewsPage.module.css";
 import SpecificNews from "../Components/News/SpecificNews";
 import Loading from "../Components/PageElements/Loading";
 import {defaultPage} from "../Domain/IPage";
+import Body from "../Components/PageElements/Body";
 
 
 interface IState {
@@ -42,30 +42,29 @@ export default class ListNewsPage extends React.Component<{}, IState> {
   render() {
 
     if (this.state.loading) {
-      return (<div className={`body center`}><Loading/></div>);
+      return (<Body center={true}><Loading/></Body>);
     }
 
     return (
-      <div>
-        <Header>
+      <Body
+        headerContent={
           <div className={styles.titleContainer}>
             <p>News</p>
           </div>
-        </Header>
-        <div className={`body`}>
-          <div className={styles.newsContainer}>
-            {this.state.news.length ? this.state.news.map((item, index) =>
-              <SpecificNews
-                key={index}
-                title={item.title}
-                date={item.date}
-                description={item.description}
-                link={item.link}
-                image={item.image}
-              />) : null}
-          </div>
+        }
+      >
+        <div className={styles.newsContainer}>
+          {this.state.news.length ? this.state.news.map((item, index) =>
+            <SpecificNews
+              key={index}
+              title={item.title}
+              date={item.date}
+              description={item.description}
+              link={item.link}
+              image={item.image}
+            />) : null}
         </div>
-      </div>
+      </Body>
     );
   }
 }

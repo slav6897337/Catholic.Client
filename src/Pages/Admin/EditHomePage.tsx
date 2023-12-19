@@ -10,6 +10,7 @@ import AdminHelper from "../../Utiles/Admin";
 import {IAdmin} from "../../Domain/IAdmin";
 import BodyEditor from "../../Components/AdminPage/BodyEditor";
 import ImagePicker from "../../Components/AdminPage/ImagePicker";
+import Body from "../../Components/PageElements/Body";
 
 const EditHomePage: FunctionComponent = () => {
   const [admin, setAdmin] = React.useState<IAdmin | null>(null);
@@ -49,14 +50,12 @@ const EditHomePage: FunctionComponent = () => {
 
 
   if (loading) return (
-    <div className={`body center`}>
+    <Body center={true}>
       <Loading/>
-    </div>);
+    </Body>);
 
   return (
-    <div className={`body padding-top`}>
-
-
+    <Body className={`padding-top`}>
       <BodyEditor
         body={page.body}
         title='Main Text'
@@ -79,7 +78,7 @@ const EditHomePage: FunctionComponent = () => {
         icon='/icons/save.png'
         text='Save'
         onClick={save}/>
-    </div>
+    </Body>
   );
 }
 

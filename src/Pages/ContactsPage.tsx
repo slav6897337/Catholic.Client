@@ -7,10 +7,9 @@ const email = 'info@catholic.sk';
 
 const ContactsPage: React.FC = () => {
   const [page, setPage] = React.useState<IPage>(preloadPage);
-  const [loading, setLoading] = React.useState(false);
 
   return (
-    <Page onPageLoad={p => setPage(p)} onLoading={l => setLoading(l)} preloadPage={page}>
+    <Page onPageLoad={p => setPage(p)} onLoading={() => {}} preloadPage={page}>
       <div className={styles.contactsContainer}>
 
         <h2 className={styles.contactsTitle}>For more information contact us:</h2>

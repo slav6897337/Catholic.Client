@@ -1,0 +1,17 @@
+.bodyContainerWithBackgroundImage{
+    position: relative;
+}
+.bodyContainerWithWhiteGradient{
+    background: linear-gradient(0deg, rgba(241, 241, 241, 0.8) 10.97%, rgba(241, 241, 241, 0.65) 45.32%, rgba(241, 241, 241, 0.98) 90%);
+    padding: 2rem 0;
+    min-height: 60vh;
+}
+
+.backgroundBodyImage{
+    position   : absolute;
+    top        : 0;
+    width: 100%;
+    height: 100%;
+    object-fit : cover;
+    z-index: -1;
+}

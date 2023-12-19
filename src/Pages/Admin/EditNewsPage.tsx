@@ -13,6 +13,7 @@ import {defaultNews, INews} from "../../Domain/INews";
 import PageEditor from "../../Components/AdminPage/PageEditor";
 import Checkbox from "../../Components/StyledComponents/Checkbox";
 import {useScrollToTop} from "../../hookcs/useScrollToTop";
+import Body from "../../Components/PageElements/Body";
 
 const EditNewsPage: FunctionComponent = () => {
   const {id} = useParams();
@@ -114,12 +115,12 @@ const EditNewsPage: FunctionComponent = () => {
   };
 
   if (loading) return (
-    <div className={`body center`}>
+    <Body center={true}>
       <Loading/>
-    </div>);
+    </Body>);
 
   return (
-    <div className={`body padding-top`}>
+    <Body className={`padding-top`}>
 
       <div className={styles.blockContainer}>
         <p className={styles.header}>Title</p>
@@ -147,7 +148,7 @@ const EditNewsPage: FunctionComponent = () => {
         text='Save'
         onClick={save}/>
 
-    </div>
+    </Body>
   );
 }
 

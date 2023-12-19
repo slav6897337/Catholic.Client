@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import styles from "./Page.module.css";
-import Header from "../Components/PageElements/Header";
 import ImageGallery from "../Components/Carousel/ImageGallery";
 import Api from "../Utiles/Api";
 import log from "loglevel";
@@ -12,6 +11,7 @@ import {NotFound} from "../Components/StyledComponents/NotFound";
 import BlurContainer from "../Components/PageElements/BlurContainer";
 import {links} from "../Navigation/Lincks";
 import useWindowDimensions from "../hookcs/useWindowDimensions";
+import Body from "../Components/PageElements/Body";
 
 interface IPageProps {
   preloadPage?: IPage;
@@ -39,7 +39,7 @@ export const Page: React.FC<IPageProps> = (
   const {width} = useWindowDimensions();
   const location = useLocation();
   const [page, setPage] = React.useState<IPage>(preloadPage ?? defaultPage);
-  const [containerHeight, setContainerHeight] = useState<number>( 0);
+  const [containerHeight, setContainerHeight] = useState<number>(0);
   const [notFound, setNotFound] = useState<boolean>(false);
 
   const pagePath = location.pathname.split("/")[1];
@@ -69,8 +69,7 @@ export const Page: React.FC<IPageProps> = (
             document.head.appendChild(script);
             setPage(pageInfo);
             onPageLoad(pageInfo);
-          } else if(showNotFound)
-          {
+          } else if (showNotFound) {
             setNotFound(true);
           }
           onLoading(false);
@@ -83,52 +82,51 @@ export const Page: React.FC<IPageProps> = (
   }, [location]);
 
 
-
   if (notFound) return (
-    <div className='body center'>
+    <Body center={true}>
       <NotFound/>
-    </div>
+    </Body>
   );
 
   return (
-    <>
-      <Header>
+    <Body
+      className={styles.bodyAdditionalPadding}
+      headerContent={
         <div className={styles.titleContainer}>
           <p>{isNotNewsPage ? 'News' : page.title}</p>
         </div>
-      </Header>
-      <div className={`body ${styles.bodyAdditionalPadding}`}>
-        {hasBackgroundImage ?
-          <Image
-            className={styles.backgroundImage}
-            alt='Bacground Image'
-            selfSrc={page.mainImage}
-            onSizeChange={s => setContainerHeight(s.size.height)}
+      }
+    >
+      {hasBackgroundImage ?
+        <Image
+          className={styles.backgroundImage}
+          alt='Bacground Image'
+          selfSrc={page.mainImage}
+          onSizeChange={s => setContainerHeight(s.size.height)}
+        />
+        : null}
+
+      {blurContainer ?
+        <BlurContainer
+          className={`${hasBackgroundImage
+            ? styles.bodyBlurContainerWithImageOnBack
+            : styles.bodyBlurContainer} ${className}`}
+          title={page.title}
+          style={{minHeight: hasBackgroundImage ? containerHeight : undefined}}>
+          {children}
+        </BlurContainer>
+        : children}
+
+      {page.images.length ?
+        isNotNewsPage ?
+          null :
+          //<ImageViewer images={page?.images}/> :
+          <ImageGallery
+            className={styles.bodyImageGallery}
+            images={page.images ?? []}
           />
-          : null}
-
-        {blurContainer ?
-          <BlurContainer
-            className={`${hasBackgroundImage
-              ? styles.bodyBlurContainerWithImageOnBack
-              : styles.bodyBlurContainer} ${className}`}
-            title={page.title}
-            style={{minHeight: hasBackgroundImage ? containerHeight : undefined}}>
-            {children}
-          </BlurContainer>
-          : children}
-
-        {page.images.length ?
-          isNotNewsPage ?
-            null:
-            //<ImageViewer images={page?.images}/> :
-            <ImageGallery
-              className={styles.bodyImageGallery}
-              images={page.images ?? []}
-            />
-          : null}
-      </div>
-    </>
+        : null}
+    </Body>
   );
 
 }

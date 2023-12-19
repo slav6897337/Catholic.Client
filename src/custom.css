@@ -13,12 +13,6 @@ body {
     line-height: 1;
 }
 
-.body {
-    background: linear-gradient(0deg, rgba(241, 241, 241, 0.8) 10.97%, rgba(241, 241, 241, 0.65) 45.32%, rgba(241, 241, 241, 0.98) 90%);
-    padding: 2rem 0;
-    min-height: 60vh;
-}
-
 .padding-top {
     padding-top: 2rem;
 }
@@ -29,12 +23,6 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
-}
-
-.body-container {
-    background-image: url(../public/background.webp);
-    background-size: cover;
-    background-position: center;
 }
 
 p, h3, h2 {
@@ -91,12 +79,6 @@ table {
 
 }
 
-@media screen and (max-width: 768px) {
-    .body-container {
-        background-image: url(../public/background768.webp);
-    }
-}
-
 @media screen and (max-width: 567px) {
     p, h3, h2 {
         font-size: var(--font-size-medium);
@@ -119,22 +101,6 @@ table {
         line-height: var(--line-height-medium);
     }
 }
-
-@media screen and (max-width: 414px) {
-    .body-container {
-        background-image: url(../public/background414.webp);
-    }
-}
-
-@media screen and (max-width: 320px) {
-    .body-container {
-        background-image: url(../public/background320.webp);
-    }
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Bellota+Text:wght@700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cambay:wght@400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&&display=swap');
 
 body {
     margin: 0;

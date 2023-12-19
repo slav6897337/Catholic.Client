@@ -11,6 +11,7 @@ import WhiteContainer from "../../Components/PageElements/WhiteContainer";
 import AddCard from "../../Components/AdminPage/AddCard";
 import NavButton from "../../Components/StyledComponents/NavButton";
 import {Breadcrumbs} from "../../Components/StyledComponents/Breadcrumbs";
+import Body from "../../Components/PageElements/Body";
 
 interface IState {
   loading: boolean;
@@ -64,13 +65,13 @@ export default class AdminPage extends React.Component<{}, IState> {
   render() {
 
     if (this.state.loading) return (
-      <div className={`body center`}>
+      <Body center={true}>
         <Loading/>
-      </div>);
+      </Body>);
 
 
     return (
-      <div className={`body ${styles.body}`}>
+      <Body className={`${styles.body}`}>
 
         <Breadcrumbs breadcrumbs={[{text: 'Admin'}]}/>
 
@@ -105,7 +106,7 @@ export default class AdminPage extends React.Component<{}, IState> {
 
         <AddCard title='Create New Page' to='new-page'/>
 
-      </div>
+      </Body>
     );
   }
 }

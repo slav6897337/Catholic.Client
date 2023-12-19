@@ -1,10 +1,10 @@
 import React, {lazy, Suspense, useEffect} from 'react';
-import {Routes, Route, useLocation} from 'react-router-dom';
-import {AppRoutes, AdminRoutes} from './AppRoutes';
+import {Route, Routes, useLocation} from 'react-router-dom';
+import {AdminRoutes, AppRoutes} from './AppRoutes';
 import Loading from "../Components/PageElements/Loading";
+import Body from "../Components/PageElements/Body";
 
 const HolyMassPage = lazy(() => import("../Pages/HolyMassPage"));
-
 
 const catholicDomain = 'www.catholic-dev.store';
 const churchDomain = 'www.holymass-dev.store';
@@ -26,30 +26,28 @@ const Navigation = () => {
   }, [location]);
 
   return (
-    <div className="body-container">
-      <Routes>
-        {window.location.hostname === churchDomain && <Route index={true} element={
-          <Suspense fallback={<div className={`body center`}><Loading/></div>}>
-            <HolyMassPage/>
-          </Suspense>
-        }/>}
-        {AppRoutes.map((route, index) => {
-          const {element, component, ...rest} = route;
-          return <Route key={index} {...rest} element={element}/>;
-        })}
-        {AdminRoutes.map((route, index) => (
-          <Route
-            key={index}
-            {...route}
-            element={
-              <Suspense fallback={<div className={`body center`}><Loading/></div>}>
-                {route.component}
-              </Suspense>
-            }
-          />
-        ))}
-      </Routes>
-    </div>
+    <Routes>
+      {window.location.hostname === churchDomain && <Route index={true} element={
+        <Suspense fallback={<Body center={true}><Loading/></Body>}>
+          <HolyMassPage/>
+        </Suspense>
+      }/>}
+      {AppRoutes.map((route, index) => {
+        const {element, component, ...rest} = route;
+        return <Route key={index} {...rest} element={element}/>;
+      })}
+      {AdminRoutes.map((route, index) => (
+        <Route
+          key={index}
+          {...route}
+          element={
+            <Suspense fallback={<Body center={true}><Loading/></Body>}>
+              {route.component}
+            </Suspense>
+          }
+        />
+      ))}
+    </Routes>
   );
 };
 

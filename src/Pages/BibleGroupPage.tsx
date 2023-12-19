@@ -7,10 +7,9 @@ import Avatar from "../Components/StyledComponents/Avatar";
 
 const BibleGroupPage: React.FC = () => {
   const [page, setPage] = React.useState<IPage>(preloadPage);
-  const [loading, setLoading] = React.useState(false);
 
   return (
-    <Page onPageLoad={p => setPage(p)} onLoading={l => setLoading(l)} preloadPage={page}>
+    <Page onPageLoad={p => setPage(p)} onLoading={() => {}} preloadPage={page}>
       <div dangerouslySetInnerHTML={{__html: page.body}}/>
 
       <GoldLine style={{width: '65%'}}/>

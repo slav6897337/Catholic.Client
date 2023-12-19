@@ -6,11 +6,11 @@ import MainInfo from "../Components/HolyMassPage/MainInfo";
 import CalendarWithEvents from "../Components/Calendar/CalendarWithEvents";
 import IHolyMass from "../Domain/IHolyMass";
 import Map from "../Components/Maps/Maps";
-import Header from "../Components/PageElements/Header";
 import Api from "../Utiles/Api";
 import log from "loglevel";
 import {defaultPage, IPage} from "../Domain/IPage";
 import ImageGallery from "../Components/Carousel/ImageGallery";
+import Body from "../Components/PageElements/Body";
 
 interface IState {
   selectedDate: Date;
@@ -66,40 +66,36 @@ export default class HolyMassPage extends React.Component<{}, IState> {
 
   render() {
     return (
-      <div>
-
-        <Header>
+      <Body
+        headerContent={
           <div className={styles.titleContainer}>
             <p className={styles.left}><strong>Holly Masses</strong> at Church of St. Ladislaus</p>
             <p className={styles.right}>each <strong>Sunday at 11:00am</strong> (in English)</p>
           </div>
-        </Header>
-        <div className={`${styles.hollyMassBody} body`}>
-
-
-          <div className={styles.mainContainer}>
-            <div className={styles.sideContainer}>
-              <CalendarWithEvents holyMasses={this.state.holyMasses}/>
-              <Notes notesContainer={styles.notesContainer} holyMassOnly={true}/>
-            </div>
-
-            <MainInfo page={this.state.page} holyMasses={this.state.holyMasses}/>
-
+        }
+        className={styles.hollyMassBody}
+      >
+        <div className={styles.mainContainer}>
+          <div className={styles.sideContainer}>
+            <CalendarWithEvents holyMasses={this.state.holyMasses}/>
+            <Notes notesContainer={styles.notesContainer} holyMassOnly={true}/>
           </div>
 
-
-          <AllNews containerStyle={styles.newsContainerStyle} holyMassOnly={true}/>
-
-          <ImageGallery images={this.state.page.images ?? []}/>
-
-          <h1 className={styles.howToFindUs}>How to find us</h1>
-          <div className={styles.bottomContainer}>
-            <Map/>
-            <img className={styles.churchPhoto} src={'/img/churchPhoto.webp'} alt={'Church'}/>
-          </div>
+          <MainInfo page={this.state.page} holyMasses={this.state.holyMasses}/>
 
         </div>
-      </div>
+
+
+        <AllNews containerStyle={styles.newsContainerStyle} holyMassOnly={true}/>
+
+        <ImageGallery images={this.state.page.images ?? []}/>
+
+        <h1 className={styles.howToFindUs}>How to find us</h1>
+        <div className={styles.bottomContainer}>
+          <Map/>
+          <img className={styles.churchPhoto} src={'/img/churchPhoto.webp'} alt={'Church'}/>
+        </div>
+      </Body>
     );
   }
 }
