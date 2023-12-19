@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import './custom.css';
-
 import Navigation from './Navigation/Navigation';
-
 import Footer from "./Components/PageElements/Footer";
 import Error from "./Components/PageElements/Error";
 import Popup from "./Components/PopUp/Popup";
